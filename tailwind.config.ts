@@ -34,7 +34,7 @@ export default {
   				'Noto Color Emoji'
   			],
   			mono: [
-  				'JetBrains Mono',
+  				'IBM Plex Mono',
   				'ui-monospace',
   				'SFMono-Regular',
   				'Menlo',
