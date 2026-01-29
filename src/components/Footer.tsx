@@ -10,17 +10,17 @@ const Footer = () => {
             <img 
               src={tycheraLogoWhite} 
               alt="TYCHERA Investments" 
-              className="h-12 w-auto mb-4"
+              className="h-14 w-auto mb-4"
             />
             <p className="text-primary-foreground/70 text-sm font-sans leading-relaxed">
-              Bridging global capital with local potential through sovereign-grade financial structuring.
+              Pont entre le capital mondial et le potentiel local à travers une structuration financière de niveau souverain.
             </p>
           </div>
 
           {/* Column 2 - Sitemap */}
           <div>
             <h4 className="text-sm font-sans font-medium uppercase tracking-wider mb-4 text-primary-foreground/50">
-              Navigate
+              Navigation
             </h4>
             <nav className="space-y-3">
               <a 
@@ -30,10 +30,10 @@ const Footer = () => {
                 Expertise
               </a>
               <a 
-                href="#vision" 
+                href="#institution" 
                 className="block text-sm font-sans text-primary-foreground/80 hover:text-primary-foreground transition-colors"
               >
-                Vision
+                L'Institution
               </a>
               <a 
                 href="#contact" 
@@ -47,7 +47,7 @@ const Footer = () => {
           {/* Column 3 - Legal & Regulatory */}
           <div>
             <h4 className="text-sm font-sans font-medium uppercase tracking-wider mb-4 text-primary-foreground/50">
-              Legal & Regulatory
+              Légal & Réglementaire
             </h4>
             <div className="space-y-3">
               <p className="text-sm font-sans text-primary-foreground/80">
@@ -63,11 +63,11 @@ const Footer = () => {
           {/* Column 4 - Address */}
           <div>
             <h4 className="text-sm font-sans font-medium uppercase tracking-wider mb-4 text-primary-foreground/50">
-              Headquarters
+              Siège Social
             </h4>
             <address className="not-italic space-y-1">
               <p className="text-sm font-sans text-primary-foreground/80">
-                Immeuble OHAN
+                Immeuble OHANA
               </p>
               <p className="text-sm font-sans text-primary-foreground/80">
                 Nyarutarama
@@ -82,7 +82,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-primary-foreground/10">
           <p className="text-sm font-sans text-primary-foreground/50 text-center lg:text-left">
-            © 2026 TYCHERA Investments LTD. All Rights Reserved.
+            © 2026 TYCHERA Investments LTD. Tous droits réservés.
           </p>
         </div>
       </div>

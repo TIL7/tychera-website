@@ -1,26 +1,30 @@
-import { ArrowRight } from "lucide-react";
+import { Calculator, Landmark, TrendingUp } from "lucide-react";
 
 interface Pillar {
   number: string;
   title: string;
   description: string;
+  icon: React.ElementType;
 }
 
 const pillars: Pillar[] = [
   {
     number: "01",
-    title: "Financial Engineering",
-    description: "Structuring complex capital solutions for public and private stakeholders.",
+    title: "Ingénierie Financière",
+    description: "Structuration de solutions de capital complexes pour les parties prenantes publiques et privées.",
+    icon: Calculator,
   },
   {
     number: "02",
-    title: "Project Finance",
-    description: "End-to-end funding strategies for infrastructure.",
+    title: "Financement de Projets",
+    description: "Stratégies de financement de bout en bout pour les infrastructures.",
+    icon: Landmark,
   },
   {
     number: "03",
-    title: "Investment Fund Management",
-    description: "Secure, compliant, and strategic asset growth.",
+    title: "Gestion de Fonds",
+    description: "Croissance stratégique des actifs, sécurisée et conforme.",
+    icon: TrendingUp,
   },
 ];
 
@@ -30,43 +34,38 @@ const ThreePillars = () => {
       <div className="container">
         {/* Section Header */}
         <div className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-serif">Our Expertise</h2>
+          <h2 className="text-3xl md:text-4xl font-serif">Notre Expertise</h2>
         </div>
 
-        {/* Horizontal Accordion */}
-        <div className="border-t border-border">
+        {/* Swiss Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {pillars.map((pillar) => (
-            <div key={pillar.number} className="pillar-row group cursor-pointer">
-              <div className="py-8 px-4 lg:px-8">
-                {/* Row Content */}
-                <div className="flex items-start justify-between gap-8">
-                  <div className="flex items-start gap-8 lg:gap-16">
-                    {/* Number */}
-                    <span className="text-2xl font-serif text-accent">
-                      {pillar.number}
-                    </span>
-                    
-                    {/* Title */}
-                    <div className="flex-1">
-                      <h3 className="text-xl lg:text-2xl font-serif">
-                        {pillar.title}
-                      </h3>
-                      
-                      {/* Expandable Description */}
-                      <div className="pillar-content mt-4">
-                        <p className="text-muted-foreground font-sans max-w-xl">
-                          {pillar.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ArrowRight className="w-5 h-5 text-foreground/60" />
-                  </div>
-                </div>
+            <div 
+              key={pillar.number} 
+              className="group relative bg-card border border-border rounded-sm p-8 lg:p-10 transition-all duration-300 hover:border-accent hover:shadow-lg cursor-pointer"
+            >
+              {/* Number */}
+              <span className="text-5xl font-serif text-accent/60 group-hover:text-accent transition-colors">
+                {pillar.number}
+              </span>
+              
+              {/* Icon */}
+              <div className="mt-6 mb-4">
+                <pillar.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
               </div>
+              
+              {/* Title */}
+              <h3 className="text-xl lg:text-2xl font-serif mb-4">
+                {pillar.title}
+              </h3>
+              
+              {/* Description */}
+              <p className="text-muted-foreground font-sans text-sm leading-relaxed">
+                {pillar.description}
+              </p>
+
+              {/* Gold border accent on hover */}
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-b-sm" />
             </div>
           ))}
         </div>
