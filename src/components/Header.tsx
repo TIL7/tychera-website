@@ -4,10 +4,18 @@ import tychemLogo from "@/assets/tychera-logo-color.svg";
 const Header = () => {
   const [activeLang, setActiveLang] = useState<"EN" | "FR">("FR");
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-20 glass-header">
       <div className="container h-full flex items-center justify-between">
-        {/* Logo - Larger for V2 */}
+        {/* Logo - h-16 (64px) as specified */}
         <a href="/" className="flex items-center gap-3">
           <img 
             src={tychemLogo} 
@@ -16,23 +24,26 @@ const Header = () => {
           />
         </a>
 
-        {/* Navigation - French */}
+        {/* Navigation - French with smooth scroll */}
         <nav className="hidden md:flex items-center gap-8">
           <a 
             href="#expertise" 
-            className="text-sm font-sans text-foreground/80 hover:text-foreground transition-colors"
+            onClick={(e) => handleSmoothScroll(e, 'expertise')}
+            className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
           >
             Expertise
           </a>
           <a 
             href="#institution" 
-            className="text-sm font-sans text-foreground/80 hover:text-foreground transition-colors"
+            onClick={(e) => handleSmoothScroll(e, 'institution')}
+            className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
           >
             L'Institution
           </a>
           <a 
             href="#contact" 
-            className="text-sm font-sans text-foreground/80 hover:text-foreground transition-colors"
+            onClick={(e) => handleSmoothScroll(e, 'contact')}
+            className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
           >
             Contact
           </a>
@@ -43,17 +54,21 @@ const Header = () => {
           <div className="hidden sm:flex items-center gap-1 text-sm font-sans">
             <button
               onClick={() => setActiveLang("FR")}
-              className={`transition-opacity ${
-                activeLang === "FR" ? "opacity-100 font-medium" : "opacity-50 hover:opacity-70"
+              className={`px-2 py-1 transition-all ${
+                activeLang === "FR" 
+                  ? "text-primary font-medium" 
+                  : "text-foreground/50 hover:text-foreground/70"
               }`}
             >
               FR
             </button>
-            <span className="text-foreground/30">|</span>
+            <span className="text-accent">|</span>
             <button
               onClick={() => setActiveLang("EN")}
-              className={`transition-opacity ${
-                activeLang === "EN" ? "opacity-100 font-medium" : "opacity-50 hover:opacity-70"
+              className={`px-2 py-1 transition-all ${
+                activeLang === "EN" 
+                  ? "text-primary font-medium" 
+                  : "text-foreground/50 hover:text-foreground/70"
               }`}
             >
               EN
