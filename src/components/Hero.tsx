@@ -1,24 +1,26 @@
-import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-infrastructure.jpg";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen pt-16 flex flex-col lg:flex-row">
+    <section className="min-h-screen pt-20 flex flex-col lg:flex-row">
       {/* Left - Typography (40%) */}
       <div className="w-full lg:w-[40%] flex flex-col justify-center px-8 lg:px-16 py-16 lg:py-0 order-2 lg:order-1">
         <div className="max-w-lg">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight animate-text-reveal">
-            Bridging Global Capital with Local Potential.
+            Architecte du Financement des Projets en Afrique
           </h1>
           
           <p className="mt-8 text-lg text-muted-foreground font-sans leading-relaxed animate-text-reveal-delay-1">
-            Sovereign Structuring & Financial Engineering for the Future of Africa.
+            Structuration souveraine et ingénierie financière pour le développement du continent.
           </p>
           
           <div className="mt-10 animate-text-reveal-delay-2">
-            <Button variant="institutional" size="lg">
-              View Expertise
-            </Button>
+            <a 
+              href="#expertise"
+              className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-sans text-sm font-medium rounded-sm hover:bg-primary/90 transition-colors"
+            >
+              Découvrir notre expertise
+            </a>
           </div>
         </div>
       </div>
@@ -28,7 +30,7 @@ const Hero = () => {
         <div className="absolute inset-0 animate-slow-zoom">
           <img
             src={heroImage}
-            alt="Modern infrastructure connecting cities"
+            alt="Infrastructure moderne en Afrique"
             className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
           />
         </div>
