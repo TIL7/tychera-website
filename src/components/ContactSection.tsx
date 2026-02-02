@@ -31,6 +31,7 @@ const ContactSection = () => {
     requestType: "",
     message: "",
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -40,11 +41,12 @@ const ContactSection = () => {
     e.preventDefault();
     // Form submission will be connected to Zoho later
     console.log("Form submitted:", formData);
+    setIsSubmitted(true);
   };
 
   return (
     <section id="contact" className="py-24 lg:py-32 bg-background">
-      <div className="container">
+      <div className="container px-6 md:px-4">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <p className="text-sm font-sans uppercase tracking-widest text-primary mb-4">
@@ -63,6 +65,19 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Left - Contact Form (3 cols) */}
           <div className="lg:col-span-3">
+            {isSubmitted ? (
+              <div className="flex flex-col items-center justify-center py-16 px-8 bg-muted/30 border border-accent/30 rounded-sm">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                  <Send className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-serif text-foreground mb-4 text-center">
+                  Merci pour votre message
+                </h3>
+                <p className="text-muted-foreground font-sans text-center max-w-md">
+                  Votre demande a été envoyée avec succès. Notre équipe vous recontactera sous 24 heures ouvrables.
+                </p>
+              </div>
+            ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Row 1: Name + Organization */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -207,6 +222,7 @@ const ContactSection = () => {
                 Vos informations sont traitées de manière confidentielle conformément à notre politique de confidentialité.
               </p>
             </form>
+            )}
           </div>
 
           {/* Right - Contact Info + Map (2 cols) */}
