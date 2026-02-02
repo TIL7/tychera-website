@@ -1,8 +1,18 @@
 import { useState } from "react";
-import tychemLogo from "@/assets/tychera-logo-color.svg";
+import { Menu } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import tycheraLogo from "@/assets/tychera-logo-color.svg";
+
+const navLinks = [
+  { label: "Expertise", id: "expertise" },
+  { label: "L'Institution", id: "institution" },
+  { label: "Contact", id: "contact" },
+];
 
 const Header = () => {
   const [activeLang, setActiveLang] = useState<"EN" | "FR">("FR");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
@@ -10,48 +20,39 @@ const Header = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setMobileOpen(false);
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-20 glass-header">
-      <div className="container h-full flex items-center justify-between">
-        {/* Logo - h-16 (64px) as specified */}
+    <header className="fixed top-0 left-0 right-0 z-50 h-24 glass-header">
+      <div className="container h-full flex items-center justify-between px-6">
+        {/* Logo - h-20 (80px) commanding presence */}
         <a href="/" className="flex items-center gap-3">
           <img 
-            src={tychemLogo} 
+            src={tycheraLogo} 
             alt="TYCHERA Investments" 
-            className="h-16 w-auto"
+            className="h-20 w-auto"
           />
         </a>
 
-        {/* Navigation - French with smooth scroll */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a 
-            href="#expertise" 
-            onClick={(e) => handleSmoothScroll(e, 'expertise')}
-            className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
-          >
-            Expertise
-          </a>
-          <a 
-            href="#institution" 
-            onClick={(e) => handleSmoothScroll(e, 'institution')}
-            className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
-          >
-            L'Institution
-          </a>
-          <a 
-            href="#contact" 
-            onClick={(e) => handleSmoothScroll(e, 'contact')}
-            className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
-          >
-            Contact
-          </a>
+          {navLinks.map((link) => (
+            <a 
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => handleSmoothScroll(e, link.id)}
+              className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
 
-        {/* Language Toggle Only - No Partner Button */}
-        <div className="flex items-center">
-          <div className="hidden sm:flex items-center gap-1 text-sm font-sans">
+        {/* Right Side: Language Toggle (Desktop) + Mobile Menu */}
+        <div className="flex items-center gap-4">
+          {/* Language Toggle - Desktop Only */}
+          <div className="hidden md:flex items-center gap-1 text-sm font-sans">
             <button
               onClick={() => setActiveLang("FR")}
               className={`px-2 py-1 transition-all ${
@@ -74,6 +75,65 @@ const Header = () => {
               EN
             </button>
           </div>
+
+          {/* Mobile Hamburger Menu */}
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon" className="text-foreground">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Ouvrir le menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-80 bg-background border-l border-border/50">
+              <div className="flex flex-col h-full pt-12">
+                {/* Mobile Nav Links */}
+                <nav className="flex flex-col gap-6">
+                  {navLinks.map((link) => (
+                    <a 
+                      key={link.id}
+                      href={`#${link.id}`}
+                      onClick={(e) => handleSmoothScroll(e, link.id)}
+                      className="text-lg font-serif text-foreground hover:text-primary transition-colors py-2 border-b border-border/30"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </nav>
+
+                {/* Mobile Language Toggle */}
+                <div className="mt-8 flex items-center gap-2 text-sm font-sans">
+                  <button
+                    onClick={() => setActiveLang("FR")}
+                    className={`px-3 py-2 rounded-sm transition-all ${
+                      activeLang === "FR" 
+                        ? "bg-primary text-primary-foreground" 
+                        : "text-foreground/50 hover:text-foreground/70"
+                    }`}
+                  >
+                    Français
+                  </button>
+                  <button
+                    onClick={() => setActiveLang("EN")}
+                    className={`px-3 py-2 rounded-sm transition-all ${
+                      activeLang === "EN" 
+                        ? "bg-primary text-primary-foreground" 
+                        : "text-foreground/50 hover:text-foreground/70"
+                    }`}
+                  >
+                    English
+                  </button>
+                </div>
+
+                {/* Trust Indicator */}
+                <div className="mt-auto pb-8">
+                  <p className="text-xs text-muted-foreground font-sans">
+                    TYCHERA INVESTMENTS LTD<br />
+                    Immeuble OHANA, Kigali
+                  </p>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
