@@ -29,14 +29,14 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-24 glass-header">
-      <div className="container h-full flex items-center justify-between">
-        {/* Logo - h-16 (64px) */}
+    <header className="fixed top-0 left-0 right-0 z-50 h-28 glass-header">
+      <div className="container h-full flex items-center justify-between px-6 md:px-4">
+        {/* Logo - h-20 (80px) */}
         <a href="/" className="flex items-center gap-3">
           <img 
             src={tychemLogo} 
             alt="TYCHERA Investments" 
-            className="h-16 w-auto"
+            className="h-20 w-auto"
           />
         </a>
 
