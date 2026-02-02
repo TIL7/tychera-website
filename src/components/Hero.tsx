@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <section className="min-h-screen pt-20 flex flex-col lg:flex-row">
       {/* Left - Typography (40%) */}
-      <div className="w-full lg:w-[40%] flex flex-col justify-center px-8 lg:px-16 py-16 lg:py-0 order-2 lg:order-1">
+      <div className="w-full lg:w-[40%] flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-0 order-2 lg:order-1">
         <div className="max-w-lg">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight animate-text-reveal text-primary">
             Architecte du Financement des Projets en Afrique

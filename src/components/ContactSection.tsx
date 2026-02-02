@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, Clock, MapPin, Linkedin, Twitter, Send } from "lucide-react";
+import { Mail, Phone, Clock, MapPin, Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -31,6 +31,7 @@ const ContactSection = () => {
     requestType: "",
     message: "",
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -40,11 +41,12 @@ const ContactSection = () => {
     e.preventDefault();
     // Form submission will be connected to Zoho later
     console.log("Form submitted:", formData);
+    setIsSubmitted(true);
   };
 
   return (
     <section id="contact" className="py-24 lg:py-32 bg-background">
-      <div className="container">
+      <div className="container px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <p className="text-sm font-sans uppercase tracking-widest text-primary mb-4">
@@ -63,150 +65,156 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Left - Contact Form (3 cols) */}
           <div className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Row 1: Name + Organization */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-sans font-medium text-foreground">
-                    Nom complet <span className="text-primary">*</span>
-                  </label>
-                  <Input
-                    type="text"
-                    placeholder="Votre nom"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange("name", e.target.value)}
-                    className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-sans font-medium text-foreground">
-                    Organisation / Entreprise <span className="text-primary">*</span>
-                  </label>
-                  <Input
-                    type="text"
-                    placeholder="Votre organisation"
-                    value={formData.organization}
-                    onChange={(e) => handleInputChange("organization", e.target.value)}
-                    className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
-                    required
-                  />
-                </div>
-              </div>
-
-              {/* Row 2: Email + Type of Request */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-sans font-medium text-foreground">
-                    Email professionnel <span className="text-primary">*</span>
-                  </label>
-                  <Input
-                    type="email"
-                    placeholder="email@entreprise.com"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-sans font-medium text-foreground">
-                    Type de demande <span className="text-primary">*</span>
-                  </label>
-                  <Select
-                    value={formData.requestType}
-                    onValueChange={(value) => handleInputChange("requestType", value)}
-                  >
-                    <SelectTrigger className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans">
-                      <SelectValue placeholder="Sélectionnez une option" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-sm">
-                      {requestTypes.map((type) => (
-                        <SelectItem 
-                          key={type.value} 
-                          value={type.value}
-                          className="font-sans focus:bg-primary/10"
-                        >
-                          {type.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              {/* Row 3: Phone + Country */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-sans font-medium text-foreground">
-                    Téléphone (avec indicatif pays)
-                  </label>
-                  <Input
-                    type="tel"
-                    placeholder="+250 7XX XXX XXX"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                    className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-sans font-medium text-foreground">
-                    Pays
-                  </label>
-                  <Input
-                    type="text"
-                    placeholder="Votre pays"
-                    value={formData.country}
-                    onChange={(e) => handleInputChange("country", e.target.value)}
-                    className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
-                  />
-                </div>
-              </div>
-
-              {/* Row 4: Function/Title */}
-              <div className="space-y-2">
-                <label className="text-sm font-sans font-medium text-foreground">
-                  Fonction / Titre
-                </label>
-                <Input
-                  type="text"
-                  placeholder="Votre fonction"
-                  value={formData.title}
-                  onChange={(e) => handleInputChange("title", e.target.value)}
-                  className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
-                />
-              </div>
-
-              {/* Row 5: Message */}
-              <div className="space-y-2">
-                <label className="text-sm font-sans font-medium text-foreground">
-                  Message / Description du Projet <span className="text-primary">*</span>
-                </label>
-                <Textarea
-                  placeholder="Merci de décrire brièvement votre besoin ou projet..."
-                  value={formData.message}
-                  onChange={(e) => handleInputChange("message", e.target.value)}
-                  className="min-h-[140px] bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans resize-none"
-                  required
-                />
-              </div>
-
-              {/* Submit Button */}
-              <div className="pt-4">
+            {isSubmitted ? (
+              /* Success State */
+              <div className="flex flex-col items-center justify-center py-16 px-8 bg-muted/30 border border-border/50 rounded-sm">
+                <CheckCircle className="w-16 h-16 text-secondary mb-6" />
+                <h3 className="text-2xl font-serif text-foreground mb-4 text-center">
+                  Merci pour votre message
+                </h3>
+                <p className="text-muted-foreground font-sans text-center max-w-md">
+                  Votre demande a été envoyée avec succès. Notre équipe vous recontactera sous 24 heures ouvrables.
+                </p>
                 <Button 
-                  type="submit"
-                  className="w-full md:w-auto px-10 py-6 bg-primary text-primary-foreground font-sans text-sm font-medium rounded-sm hover:bg-primary/90 transition-colors"
+                  onClick={() => setIsSubmitted(false)}
+                  variant="outline"
+                  className="mt-8"
                 >
-                  <Send className="w-4 h-4 mr-2" />
-                  Envoyer ma demande
+                  Envoyer un autre message
                 </Button>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Row 1: Name + Organization */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-sans font-medium text-foreground">
+                      Nom complet <span className="text-primary">*</span>
+                    </label>
+                    <Input
+                      type="text"
+                      placeholder="Votre nom"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-sans font-medium text-foreground">
+                      Organisation / Entreprise <span className="text-primary">*</span>
+                    </label>
+                    <Input
+                      type="text"
+                      placeholder="Votre organisation"
+                      value={formData.organization}
+                      onChange={(e) => handleInputChange("organization", e.target.value)}
+                      className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
+                      required
+                    />
+                  </div>
+                </div>
 
-              {/* Privacy Note */}
-              <p className="text-xs text-muted-foreground font-sans">
-                Vos informations sont traitées de manière confidentielle conformément à notre politique de confidentialité.
-              </p>
-            </form>
+                {/* Row 2: Email + Type of Request */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-sans font-medium text-foreground">
+                      Email professionnel <span className="text-primary">*</span>
+                    </label>
+                    <Input
+                      type="email"
+                      placeholder="email@entreprise.com"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-sans font-medium text-foreground">
+                      Type de demande <span className="text-primary">*</span>
+                    </label>
+                    <Select
+                      value={formData.requestType}
+                      onValueChange={(value) => handleInputChange("requestType", value)}
+                    >
+                      <SelectTrigger className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans">
+                        <SelectValue placeholder="Sélectionnez une option" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-background border-border rounded-sm">
+                        {requestTypes.map((type) => (
+                          <SelectItem 
+                            key={type.value} 
+                            value={type.value}
+                            className="font-sans focus:bg-primary/10"
+                          >
+                            {type.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                {/* Row 3: Phone + Country */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-sans font-medium text-foreground">
+                      Téléphone (avec indicatif pays)
+                    </label>
+                    <Input
+                      type="tel"
+                      placeholder="+250 7XX XXX XXX"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange("phone", e.target.value)}
+                      className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-sans font-medium text-foreground">
+                      Pays
+                    </label>
+                    <Input
+                      type="text"
+                      placeholder="Votre pays"
+                      value={formData.country}
+                      onChange={(e) => handleInputChange("country", e.target.value)}
+                      className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
+                    />
+                  </div>
+                </div>
+
+                {/* Row 4: Message */}
+                <div className="space-y-2">
+                  <label className="text-sm font-sans font-medium text-foreground">
+                    Message / Description du Projet <span className="text-primary">*</span>
+                  </label>
+                  <Textarea
+                    placeholder="Merci de décrire brièvement votre besoin ou projet..."
+                    value={formData.message}
+                    onChange={(e) => handleInputChange("message", e.target.value)}
+                    className="min-h-[140px] bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans resize-none"
+                    required
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <div className="pt-4">
+                  <Button 
+                    type="submit"
+                    className="w-full md:w-auto px-10 py-6 bg-primary text-primary-foreground font-sans text-sm font-medium rounded-sm hover:bg-primary/90 transition-colors"
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    Envoyer ma demande
+                  </Button>
+                </div>
+
+                {/* Privacy Note */}
+                <p className="text-xs text-muted-foreground font-sans">
+                  Vos informations sont traitées de manière confidentielle conformément à notre politique de confidentialité.
+                </p>
+              </form>
+            )}
           </div>
 
           {/* Right - Contact Info + Map (2 cols) */}
@@ -266,26 +274,6 @@ const ContactSection = () => {
                     </p>
                   </div>
                 </div>
-              </div>
-
-              {/* Social Links */}
-              <div className="pt-4 flex items-center gap-4">
-                <a 
-                  href="https://linkedin.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center border border-border/50 rounded-sm text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-                >
-                  <Linkedin className="w-4 h-4" />
-                </a>
-                <a 
-                  href="https://twitter.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center border border-border/50 rounded-sm text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-                >
-                  <Twitter className="w-4 h-4" />
-                </a>
               </div>
             </div>
 

@@ -6,7 +6,7 @@ const PrincipalVision = () => {
 
   return (
     <section id="institution" className="py-24 lg:py-32 bg-muted/30">
-      <div className="container">
+      <div className="container px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <p className="text-sm font-sans uppercase tracking-widest text-primary mb-4">
