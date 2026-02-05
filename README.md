@@ -1,73 +1,100 @@
-# Welcome to your Lovable project
+# TYCHERA Investments LTD - Corporate Website
 
-## Project info
+Official corporate website for TYCHERA Investments LTD, a sovereign financial firm specializing in project financing across Africa.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## About TYCHERA
 
-## How can I edit this code?
+TYCHERA Investments LTD is headquartered in Kigali, Rwanda, and serves as the bridge between international capital and African potential. We provide sophisticated financial structuring with sustainable impact.
 
-There are several ways of editing your application.
+## Technology Stack
 
-**Use Lovable**
+- **Framework:** Next.js 15 (App Router)
+- **Styling:** Tailwind CSS v4
+- **CMS:** Sanity
+- **Internationalization:** next-intl (French/English)
+- **Form Validation:** React Hook Form + Zod
+- **UI Components:** Radix UI + shadcn/ui
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js 18+ and npm installed
+- Sanity account and project credentials
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+npm install
+```
 
-Follow these steps:
+### Environment Variables
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Create a `.env.local` file with:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SITE_URL=https://tycherainvestments.com
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Development
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Sanity Studio
 
-**Use GitHub Codespaces**
+Access the embedded Sanity Studio at [http://localhost:3000/studio](http://localhost:3000/studio) to manage content.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+├── app/                    # Next.js App Router
+│   ├── [locale]/          # Internationalized routes
+│   └── studio/            # Embedded Sanity Studio
+├── components/
+│   ├── sections/          # Page sections (Hero, Footer, etc.)
+│   └── ui/                # Reusable UI components
+├── lib/
+│   └── sanity/            # Sanity client and queries
+├── messages/              # i18n translation files
+├── public/                # Static assets
+└── sanity/                # Sanity schemas and config
+```
 
-This project is built with:
+## Localization
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Default Language:** French (fr)
+- **Secondary Language:** English (en)
+- All content is managed through `messages/fr.json` and `messages/en.json`
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```bash
+npm run build
+npm start
+```
 
-## Can I connect a custom domain to my Lovable project?
+## Brand Guidelines
 
-Yes, you can!
+- **Primary Blue:** #2283a2
+- **Accent Green:** #588157
+- **Gold:** #E9C46A
+- **Typography:** Playfair Display (headers), Inter (body)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Contact
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+**TYCHERA INVESTMENTS LTD**  
+Immeuble OHANA, Nyarutarama  
+Kigali, Rwanda
+
+Email: contact@tycherainvestments.com  
+Phone: +250 793 145 440
+
+---
+
+© 2024 TYCHERA INVESTMENTS LTD. All rights reserved.

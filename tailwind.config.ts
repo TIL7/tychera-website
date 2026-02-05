@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
   	container: {
@@ -15,7 +20,7 @@ export default {
   	extend: {
   		fontFamily: {
   			serif: [
-  				'Cormorant Garamond',
+  				'Playfair Display',
   				'ui-serif',
   				'Georgia',
   				'Cambria',
@@ -24,7 +29,7 @@ export default {
   				'serif'
   			],
   			sans: [
-  				'Raleway',
+  				'Inter',
   				'ui-sans-serif',
   				'system-ui',
   				'sans-serif',
@@ -34,7 +39,7 @@ export default {
   				'Noto Color Emoji'
   			],
   			mono: [
-  				'Inconsolata',
+  				'JetBrains Mono',
   				'ui-monospace',
   				'SFMono-Regular',
   				'Menlo',
@@ -88,7 +93,11 @@ export default {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			}
+  			},
+  			// TYCHERA Design System Colors
+  			'tychera-blue': '#2283a2',
+  			'tychera-green': '#588157',
+  			'tychera-gold': '#E9C46A',
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -111,11 +120,47 @@ export default {
   				to: {
   					height: '0'
   				}
+  			},
+  			'fade-in': {
+  				from: {
+  					opacity: '0',
+  					transform: 'translateY(20px)'
+  				},
+  				to: {
+  					opacity: '1',
+  					transform: 'translateY(0)'
+  				}
+  			},
+  			'slide-in-left': {
+  				from: {
+  					opacity: '0',
+  					transform: 'translateX(-20px)'
+  				},
+  				to: {
+  					opacity: '1',
+  					transform: 'translateX(0)'
+  				}
+  			},
+  			'slide-in-right': {
+  				from: {
+  					opacity: '0',
+  					transform: 'translateX(20px)'
+  				},
+  				to: {
+  					opacity: '1',
+  					transform: 'translateX(0)'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'fade-in': 'fade-in 0.6s ease-out',
+  			'slide-in-left': 'slide-in-left 0.6s ease-out',
+  			'slide-in-right': 'slide-in-right 0.6s ease-out'
+  		},
+  		backdropBlur: {
+  			xs: '2px',
   		}
   	}
   },

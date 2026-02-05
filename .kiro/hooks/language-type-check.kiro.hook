@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "name": "Language & Type Check",
+  "description": "Automatically runs TypeScript type checking and validates content against forbidden language patterns when TypeScript or content files are saved",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.ts",
+      "*.tsx",
+      "*.md",
+      "*.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Run TypeScript type checking with `npm run type-check` (or `tsc --noEmit` if no script exists). Then scan the edited file for forbidden language terms: \"rocketship\", \"unleash\", \"disrupt\", \"game-changer\", \"awesome\", \"cool\", \"amazing\", \"limited time\", \"act now\", \"don't miss out\". If any forbidden terms are found in user-facing content (not in code comments or technical docs), report them and suggest institutional alternatives like \"partenariat stratégique\", \"excellence institutionnelle\", \"croissance durable\"."
+  },
+  "workspaceFolderName": "tychera-invest-website",
+  "shortName": "language-type-check"
+}
