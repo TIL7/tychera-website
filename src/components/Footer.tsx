@@ -10,7 +10,7 @@ const Footer = () => {
             <img 
               src={tycheraLogoWhite} 
               alt="TYCHERA Investments" 
-              className="h-14 w-auto mb-4 brightness-0 invert"
+              className="h-14 w-auto mb-4"
             />
             <p className="text-primary-foreground/70 text-sm font-sans leading-relaxed">
               Le pont entre capital international et potentiel africain. Structuration sophistiquée, impact durable.

@@ -24,14 +24,14 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-24 glass-header">
+    <header className="fixed top-0 left-0 right-0 z-50 h-32 glass-header">
       <div className="container h-full flex items-center justify-between px-6">
-        {/* Logo - h-20 (80px) commanding presence */}
+        {/* Logo - h-28 (112px) commanding presence */}
         <a href="/" className="flex items-center gap-3">
           <img 
             src={tycheraLogo} 
             alt="TYCHERA Investments" 
-            className="h-20 w-auto"
+            className="h-28 w-auto"
           />
         </a>
 

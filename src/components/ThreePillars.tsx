@@ -1,24 +1,30 @@
-import { TrendingUp, Building2, PieChart } from "lucide-react";
+import { Scale, Construction, TrendingUp, Handshake } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const pillars = [
   {
     number: "01",
     title: "Ingénierie Financière",
-    description: "Structuration sophistiquée de véhicules d'investissement adaptés aux spécificités des marchés africains. Nous concevons des solutions sur mesure incluant obligations vertes, financement structuré et instruments innovants répondant aux besoins de nos clients institutionnels.",
-    icon: TrendingUp,
+    description: "Structuration sophistiquée de véhicules d'investissement adaptés aux spécificités des marchés africains.",
+    icon: Scale,
   },
   {
     number: "02",
     title: "Financement de Projets",
-    description: "Accompagnement stratégique de bout en bout pour les projets d'infrastructure et d'énergie renouvelable. De la phase de conception initiale jusqu'à la clôture financière, nous assurons la viabilité et l'attractivité de chaque projet auprès des investisseurs internationaux.",
-    icon: Building2,
+    description: "Accompagnement stratégique de bout en bout pour les projets d'infrastructure et d'énergie renouvelable.",
+    icon: Construction,
   },
   {
     number: "03",
     title: "Gestion de Fonds",
-    description: "Gestion active de portefeuilles institutionnels selon une approche ESG rigoureuse. Notre expertise combine performance financière mesurable et impact social et environnemental positif, créant une valeur durable pour nos investisseurs.",
-    icon: PieChart,
+    description: "Gestion active de portefeuilles institutionnels selon une approche ESG rigoureuse et performante.",
+    icon: TrendingUp,
+  },
+  {
+    number: "04",
+    title: "Structuration de Deals",
+    description: "Conception et montage de transactions complexes réunissant acteurs publics et investisseurs privés.",
+    icon: Handshake,
   },
 ];
 
@@ -58,7 +64,7 @@ const ThreePillars = () => {
         </div>
 
         {/* Service Cards Grid - All Identical Styling */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
           {pillars.map((pillar, index) => (
             <div
               key={pillar.number}
