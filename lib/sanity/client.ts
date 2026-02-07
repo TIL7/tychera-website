@@ -12,10 +12,24 @@ import { createClient } from 'next-sanity';
  * @requirements 4.1, 4.5, 4.7, 4.8
  */
 
+// Validate environment variables
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
+const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2026-02-05';
+
+if (!projectId) {
+  console.error('❌ CRITICAL: Missing NEXT_PUBLIC_SANITY_PROJECT_ID');
+  console.error('📋 Create .env.local with:');
+  console.error('   NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id');
+  console.error('   NEXT_PUBLIC_SANITY_DATASET=production');
+  console.error('   NEXT_PUBLIC_SANITY_API_VERSION=2026-02-05');
+  console.error('   NEXT_PUBLIC_SITE_URL=http://localhost:3000');
+}
+
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2026-02-05',
+  projectId: projectId!,
+  dataset,
+  apiVersion,
   useCdn: process.env.NODE_ENV === 'production',
   perspective: 'published',
   stega: {
