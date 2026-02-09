@@ -49,20 +49,6 @@
       }
     }
   },
-  "principal": {
-    "sectionLabel": "L'Institution",
-    "sectionTitle": "De la Gouvernance Publique à l'Architecture Financière",
-    "portraitPlaceholder": "Portrait à venir",
-    "name": "Kamal Alawo Adjayi",
-    "title": "CEO & Fondateur",
-    "quote": "La transformation de l'Afrique nécessite des partenariats structurés où l'expertise financière rencontre la compréhension profonde des réalités institutionnelles. Notre mission est de créer ces synergies public-privé qui génèrent un impact tangible.",
-    "bio": {
-      "intro": "M. Kamal Alawo Adjayi apporte à TYCHERA INVESTMENTS une expertise distinctive combinant leadership politique, administration publique de haut niveau et finance internationale.",
-      "experience": "Ancien Maire de Lomé (Togo), il a dirigé la transformation urbaine et le développement économique de la capitale togolaise, acquérant une compréhension approfondie des défis institutionnels et des besoins en infrastructure du continent africain.",
-      "value": "La valeur distinctive de M. Adjayi réside dans sa capacité rare à traduire les besoins publics en actifs financiers structurés et attractifs. Cette double compétence: comprendre intimement les priorités institutionnelles africaines tout en maîtrisant les exigences des marchés de capitaux internationaux, permet à TYCHERA INVESTMENTS de créer des solutions financières véritablement adaptées et efficaces."
-    },
-    "cta": "Initier une collaboration"
-  },
   "contact": {
     "sectionLabel": "Contact",
     "sectionTitle": "Initier une Collaboration Stratégique",
@@ -133,8 +119,77 @@
       "building": "Immeuble OHANA",
       "city": "Kigali, Rwanda"
     },
-    "copyright": "© 2024 TYCHERA INVESTMENTS LTD. Tous droits réservés.",
+    "copyright": " 2024 TYCHERA INVESTMENTS LTD. Tous droits réservés.",
     "ariaEmail": "Envoyer un email à TYCHERA Investments",
     "ariaPhone": "Appeler TYCHERA Investments"
+  },
+  "institution": {
+    "hero": {
+      "label": "L'Institution",
+      "title": "TYCHERA Investments",
+      "subtitle": "Architecture financière souveraine au service du développement africain. Une expertise institutionnelle structurée, ancrée dans les réalités du continent et connectée aux marchés internationaux.",
+      "location": "Immeuble OHANA, Kigali"
+    },
+    "sections": {
+      "legalIdentity": {
+        "title": "Identité légale",
+        "company": "TYCHERA INVESTMENTS LTD",
+        "jurisdiction": "République du Rwanda",
+        "registration": "Société d'investissement réglementée"
+      },
+      "location": {
+        "title": "Présence",
+        "address": "Immeuble OHANA",
+        "city": "Kigali, Rwanda",
+        "description": "Siège stratégique au cœur de l'Afrique de l'Est, hub financier régional en pleine expansion."
+      },
+      "team": {
+        "title": "Équipe",
+        "description": "Une équipe multidisciplinaire combinant expertise financière internationale et connaissance approfondie des écosystèmes institutionnels africains.",
+        "cta": "Initier une collaboration"
+      }
+    },
+    "team": {
+      "cardTitle": "Membre de l'équipe",
+      "cardRolePlaceholder": "Rôle (à venir)"
+    },
+    "principal": {
+      "sectionLabel": "L'Institution",
+      "sectionTitle": "De la Gouvernance Publique à l'Architecture Financière",
+      "portraitPlaceholder": "Portrait à venir",
+      "name": "Kamal Alawo Adjayi",
+      "title": "CEO & Fondateur",
+      "quote": "La transformation de l'Afrique nécessite des partenariats structurés où l'expertise financière rencontre la compréhension profonde des réalités institutionnelles. Notre mission est de créer ces synergies public-privé qui génèrent un impact tangible.",
+      "bio": {
+        "intro": "M. Kamal Alawo Adjayi apporte à TYCHERA INVESTMENTS une expertise distinctive combinant leadership politique, administration publique de haut niveau et finance internationale.",
+        "experience": "Ancien Maire de Lomé (Togo), il a dirigé la transformation urbaine et le développement économique de la capitale togolaise, acquérant une compréhension approfondie des défis institutionnels et des besoins en infrastructure du continent africain.",
+        "value": "La valeur distinctive de M. Adjayi réside dans sa capacité rare à traduire les besoins publics en actifs financiers structurés et attractifs. Cette double compétence: comprendre intimement les priorités institutionnelles africaines tout en maîtrisant les exigences des marchés de capitaux internationaux, permet à TYCHERA INVESTMENTS de créer des solutions financières véritablement adaptées et efficaces."
+      },
+      "cta": "Initier une collaboration"
+    }
+  },
+  "contactPage": {
+    "hero": {
+      "label": "Contact",
+      "title": "Contact",
+      "subtitle": "Initier une collaboration stratégique."
+    }
+  },
+  "homepage": {
+    "teaser": {
+      "quote": "La transformation de l'Afrique nécessite des partenariats structurés où l'expertise financière rencontre la compréhension profonde des réalités institutionnelles. Notre mission est de créer ces synergies public-privé qui génèrent un impact tangible.",
+      "context": "Cette vision guide chaque structuration que nous concevons, chaque partenariat que nous tissons.",
+      "cta": "En savoir plus",
+      "ariaLabel": "En savoir plus sur l'institution",
+      "attribution": {
+        "name": "Kamal Alawo Adjayi",
+        "title": "CEO & Fondateur"
+      }
+    }
+  },
+  "notFound": {
+    "title": "Page Non Trouvée",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backToHome": "Retour à l'accueil"
   }
 }

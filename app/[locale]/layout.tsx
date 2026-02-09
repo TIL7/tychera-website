@@ -64,7 +64,7 @@ export async function generateMetadata(
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        "fr": `${baseUrl}/fr`,
+        "fr": baseUrl,
         "en": `${baseUrl}/en`,
         "x-default": baseUrl,
       },
@@ -84,7 +84,7 @@ export default async function LocaleLayout(props: LocaleLayoutProps) {
 
   return (
     <div className={`${inter.variable} ${playfairDisplay.variable}`}>
-      <NextIntlClientProvider messages={messages}>
+      <NextIntlClientProvider locale={locale} messages={messages}>
         <Header />
         <main className="pt-32">
           {props.children}

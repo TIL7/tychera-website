@@ -216,4 +216,8 @@
     animation: fade-in-up 0.6s ease-out forwards;
     opacity: 0;
   }
+
+  .tychera-delay-800 {
+    animation-delay: 800ms;
+  }
 }

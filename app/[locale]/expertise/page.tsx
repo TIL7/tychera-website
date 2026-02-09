@@ -25,7 +25,7 @@ const fallbackData: ExpertisePageData = {
       _id: "1",
       number: "01",
       title: { fr: "Ingénierie Financière", en: "Financial Engineering" },
-      description: { 
+      description: {
         fr: "Structuration sophistiquée de véhicules d'investissement adaptés aux spécificités des marchés africains.",
         en: "Sophisticated structuring of investment vehicles adapted to African market specificities."
       },
@@ -50,7 +50,7 @@ const fallbackData: ExpertisePageData = {
       _id: "2",
       number: "02",
       title: { fr: "Financement de Projets", en: "Project Financing" },
-      description: { 
+      description: {
         fr: "Accompagnement stratégique de bout en bout pour les projets d'infrastructure et d'énergie renouvelable.",
         en: "End-to-end strategic support for infrastructure and renewable energy projects."
       },
@@ -75,7 +75,7 @@ const fallbackData: ExpertisePageData = {
       _id: "3",
       number: "03",
       title: { fr: "Gestion de Fonds", en: "Fund Management" },
-      description: { 
+      description: {
         fr: "Gestion active de portefeuilles institutionnels selon une approche ESG rigoureuse et performante.",
         en: "Active management of institutional portfolios with rigorous and high-performing ESG approach."
       },
@@ -100,7 +100,7 @@ const fallbackData: ExpertisePageData = {
       _id: "4",
       number: "04",
       title: { fr: "Structuration de Deals", en: "Deal Structuring" },
-      description: { 
+      description: {
         fr: "Conception et montage de transactions complexes réunissant acteurs publics et investisseurs privés.",
         en: "Design and structuring of complex transactions bringing together public actors and private investors."
       },
@@ -154,7 +154,7 @@ export default async function ExpertisePage(props: ExpertisePageProps) {
               {locale === 'fr' ? 'Notre Expertise' : 'Our Expertise'}
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight text-foreground mb-6">
-              {locale === 'fr' 
+              {locale === 'fr'
                 ? 'Solutions financières institutionnelles pour l\'Afrique'
                 : 'Institutional financial solutions for Africa'
               }
@@ -176,9 +176,9 @@ export default async function ExpertisePage(props: ExpertisePageProps) {
             {data.services.map((service, index) => {
               const IconComponent = iconMap[service.icon] || Scale;
               const isEven = index % 2 === 0;
-              
+
               return (
-                <div 
+                <div
                   key={service._id}
                   className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center"
                 >
@@ -189,17 +189,17 @@ export default async function ExpertisePage(props: ExpertisePageProps) {
                       <div className="absolute -top-12 -left-6 text-[10rem] font-serif text-accent/10 leading-none pointer-events-none select-none">
                         {service.number}
                       </div>
-                      
+
                       {/* Icon */}
                       <div className="relative mb-6 text-primary">
                         <IconComponent className="w-14 h-14" strokeWidth={1.5} />
                       </div>
-                      
+
                       {/* Title */}
                       <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-6 leading-tight">
                         {getLocalizedText(service.title, locale)}
                       </h2>
-                      
+
                       {/* Short Description */}
                       <p className="text-xl text-primary/80 font-sans leading-relaxed mb-8 font-medium">
                         {getLocalizedText(service.description, locale)}
@@ -215,7 +215,7 @@ export default async function ExpertisePage(props: ExpertisePageProps) {
                       <div className="prose prose-lg max-w-none">
                         <div className="text-muted-foreground font-sans leading-relaxed text-base space-y-4">
                           {service.detailedContent && (
-                            <PortableText 
+                            <PortableText
                               value={getLocalizedRichText(service.detailedContent, locale)}
                             />
                           )}

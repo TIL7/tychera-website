@@ -85,9 +85,6 @@ const ContactSection = () => {
       <div className="container px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <p className="text-sm font-sans uppercase tracking-widest text-primary mb-4">
-            {t('sectionLabel')}
-          </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight text-foreground mb-6">
             {t('sectionTitle')}
           </h2>

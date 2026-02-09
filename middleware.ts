@@ -1,28 +1,20 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
-import { locales, defaultLocale } from './i18n/config';
+import { routing } from './i18n/routing';
 
 // Create the i18n middleware
-const intlMiddleware = createMiddleware({
-  locales,
-  defaultLocale,
-  localePrefix: 'as-needed', // Default locale (fr) at /, other locales at /en
-});
+const intlMiddleware = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
-  console.log('[MIDDLEWARE] Processing:', pathname);
-  
   // Bypass i18n middleware completely for Studio routes
   if (pathname.startsWith('/studio')) {
-    console.log('[MIDDLEWARE] Bypassing /studio');
     return NextResponse.next();
   }
   
   // Bypass i18n middleware for API routes
   if (pathname.startsWith('/api')) {
-    console.log('[MIDDLEWARE] Bypassing /api');
     return NextResponse.next();
   }
   
@@ -34,11 +26,9 @@ export default function middleware(request: NextRequest) {
     pathname.startsWith('/apple-icon') ||
     pathname.includes('.')
   ) {
-    console.log('[MIDDLEWARE] Bypassing static file');
     return NextResponse.next();
   }
-  
-  console.log('[MIDDLEWARE] Applying i18n middleware');
+
   // Apply i18n middleware for all other routes
   return intlMiddleware(request);
 }

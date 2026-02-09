@@ -3,19 +3,20 @@ import { useTranslations } from 'next-intl';
 
 const Footer = () => {
   const t = useTranslations('footer');
-  
+
   return (
     <footer className="bg-primary text-primary-foreground py-16 lg:py-20">
       <div className="container px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8">
           {/* Column 1 - Brand */}
           <div>
-            <Image 
+            <Image
               src="/images/tychera-logo-white.svg"
-              alt="TYCHERA Investments" 
+              alt="TYCHERA Investments"
               width={200}
               height={56}
               className="h-14 w-auto mb-4"
+              style={{ width: 'auto' }}
               priority
             />
             <p className="text-primary-foreground/70 text-sm font-sans leading-relaxed">
@@ -47,14 +48,14 @@ const Footer = () => {
               {t('contact')}
             </h4>
             <div className="space-y-2">
-              <a 
+              <a
                 href="mailto:contact@tycherainvestments.com"
                 className="block text-sm font-sans text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 aria-label={t('ariaEmail')}
               >
                 contact@tycherainvestments.com
               </a>
-              <a 
+              <a
                 href="tel:+250793145440"
                 className="block text-sm font-mono text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 aria-label={t('ariaPhone')}

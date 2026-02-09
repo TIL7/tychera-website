@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 
 /**
  * PrincipalVision Component
@@ -11,16 +12,13 @@ import { useTranslations } from 'next-intl';
  */
 
 export default function PrincipalVision(): JSX.Element {
-  const t = useTranslations('principal');
-  
+  const t = useTranslations('institution.principal');
+
   return (
     <section id="institution" className="py-24 lg:py-32 bg-muted/30">
       <div className="container px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <p className="text-sm font-sans uppercase tracking-widest text-primary mb-4">
-            {t('sectionLabel')}
-          </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight text-foreground">
             {t('sectionTitle')}
           </h2>
@@ -70,21 +68,23 @@ export default function PrincipalVision(): JSX.Element {
             </div>
 
             <div className="pt-8">
-              <a 
-                href="#contact"
+              <Link
+                href="/contact"
                 className="inline-flex items-center text-sm font-sans text-primary hover:text-primary/80 transition-colors group"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {t('cta')}
-                <svg 
-                  className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

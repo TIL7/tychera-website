@@ -1,6 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import ThreePillars from "@/components/sections/ThreePillars";
-import PrincipalVision from "@/components/sections/PrincipalVision";
+import FounderTeaser from "@/components/sections/FounderTeaser";
 import ContactSection from "@/components/sections/ContactSection";
 import { CMSErrorBoundary } from "@/components/sections/CMSErrorBoundary";
 
@@ -16,7 +16,7 @@ interface HomePageProps {
  * Composes all major section components in the correct order:
  * 1. Hero - Main value proposition
  * 2. ThreePillars - Service offerings (4 pillars) [CMS-powered]
- * 3. PrincipalVision - CEO background and vision
+ * 3. FounderTeaser - Kamal quote with link to institution
  * 4. ContactSection - Contact form and information
  * 
  * This is a Server Component that renders static content.
@@ -32,9 +32,9 @@ export default async function HomePage(props: HomePageProps) {
     <>
       <Hero />
       <CMSErrorBoundary>
-        <ThreePillars />
+        <ThreePillars mode="teaser" />
       </CMSErrorBoundary>
-      <PrincipalVision />
+      <FounderTeaser />
       <ContactSection />
     </>
   );
