@@ -169,10 +169,10 @@ export default async function ExpertisePage(props: ExpertisePageProps) {
         </div>
       </section>
 
-      {/* Services Detail Section */}
+      {/* Services Detail Section - Zig-Zag Layout */}
       <section className="py-24 lg:py-32">
         <div className="container px-6">
-          <div className="space-y-32">
+          <div className="space-y-40">
             {data.services.map((service, index) => {
               const IconComponent = iconMap[service.icon] || Scale;
               const isEven = index % 2 === 0;
@@ -180,57 +180,62 @@ export default async function ExpertisePage(props: ExpertisePageProps) {
               return (
                 <div 
                   key={service._id}
-                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
-                    isEven ? '' : 'lg:grid-flow-dense'
-                  }`}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center"
                 >
-                  {/* Icon & Number Column */}
-                  <div className={`${isEven ? '' : 'lg:col-start-2'}`}>
+                  {/* Text Column */}
+                  <div className={`lg:col-span-6 ${isEven ? 'lg:col-start-1' : 'lg:col-start-7'}`}>
                     <div className="relative">
                       {/* Large Number Background */}
-                      <div className="absolute -top-8 -left-4 text-[12rem] font-serif text-accent/10 leading-none pointer-events-none">
+                      <div className="absolute -top-12 -left-6 text-[10rem] font-serif text-accent/10 leading-none pointer-events-none select-none">
                         {service.number}
                       </div>
                       
                       {/* Icon */}
-                      <div className="relative mb-8 text-primary">
-                        <IconComponent className="w-16 h-16" strokeWidth={1.5} />
+                      <div className="relative mb-6 text-primary">
+                        <IconComponent className="w-14 h-14" strokeWidth={1.5} />
                       </div>
                       
                       {/* Title */}
-                      <h2 className="text-3xl md:text-4xl font-serif text-primary mb-4">
+                      <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-6 leading-tight">
                         {getLocalizedText(service.title, locale)}
                       </h2>
                       
                       {/* Short Description */}
-                      <p className="text-lg text-muted-foreground font-sans leading-relaxed">
+                      <p className="text-xl text-primary/80 font-sans leading-relaxed mb-8 font-medium">
                         {getLocalizedText(service.description, locale)}
                       </p>
+
+                      {/* Gold Divider */}
+                      <div className="flex items-center gap-3 mb-8">
+                        <div className="h-px w-16 bg-accent" />
+                        <div className="w-1.5 h-1.5 bg-accent rotate-45" />
+                      </div>
+
+                      {/* Detailed Content */}
+                      <div className="prose prose-lg max-w-none">
+                        <div className="text-muted-foreground font-sans leading-relaxed text-base space-y-4">
+                          {service.detailedContent && (
+                            <PortableText 
+                              value={getLocalizedRichText(service.detailedContent, locale)}
+                            />
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Detailed Content Column */}
-                  <div className={`${isEven ? '' : 'lg:col-start-1 lg:row-start-1'}`}>
-                    <div className="prose prose-lg max-w-none">
-                      <div className="text-foreground font-sans leading-relaxed space-y-4">
-                        {service.detailedContent && (
-                          <PortableText 
-                            value={getLocalizedRichText(service.detailedContent, locale)}
-                          />
-                        )}
+                  {/* Visual/Spacer Column */}
+                  <div className={`lg:col-span-5 ${isEven ? 'lg:col-start-8' : 'lg:col-start-1 lg:row-start-1'}`}>
+                    <div className="relative aspect-square bg-gradient-to-br from-primary/5 to-accent/5 rounded-sm border border-border/30">
+                      {/* Decorative Element */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <IconComponent className="w-32 h-32 text-primary/10" strokeWidth={1} />
                       </div>
                     </div>
                   </div>
                 </div>
               );
             })}
-          </div>
-
-          {/* Gold Divider */}
-          <div className="mt-32 flex items-center justify-center">
-            <div className="h-px w-24 bg-accent" />
-            <div className="w-2 h-2 bg-accent mx-4 rotate-45" />
-            <div className="h-px w-24 bg-accent" />
           </div>
         </div>
       </section>

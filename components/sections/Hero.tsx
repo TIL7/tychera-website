@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
 
 /**
  * Hero Section - Server Component
@@ -8,17 +9,19 @@ import Image from "next/image";
  * Smooth scrolling is handled by the browser via anchor links.
  */
 const Hero = () => {
+  const t = useTranslations('hero');
+  
   return (
     <section className="min-h-screen pt-20 flex flex-col lg:flex-row">
       {/* Left - Typography (40%) */}
       <div className="w-full lg:w-[40%] flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-0 order-2 lg:order-1">
         <div className="max-w-lg">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight animate-text-reveal text-primary">
-            Architecte du Financement des Projets en Afrique
+            {t('title')}
           </h1>
           
           <p className="mt-8 text-lg text-muted-foreground font-sans leading-relaxed animate-text-reveal-delay-1">
-            Le pont entre capital international et potentiel africain. Structuration sophistiquée, impact durable.
+            {t('subtitle')}
           </p>
           
           <div className="mt-10 animate-text-reveal-delay-2">
@@ -26,7 +29,7 @@ const Hero = () => {
               href="#expertise"
               className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-sans text-sm font-medium rounded-sm hover:bg-primary/90 transition-colors"
             >
-              Découvrir nos services
+              {t('cta')}
             </a>
           </div>
         </div>
@@ -37,7 +40,7 @@ const Hero = () => {
         <div className="absolute inset-0 animate-slow-zoom">
           <Image
             src="/images/hero-infrastructure.webp"
-            alt="Infrastructure moderne en Afrique"
+            alt={t('imageAlt')}
             fill
             priority
             className="object-cover grayscale hover:grayscale-0 transition-all duration-700"

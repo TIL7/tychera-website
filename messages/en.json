@@ -1,120 +1,140 @@
 {
-  "nav": {
-    "expertise": "Expertise",
-    "institution": "The Institution",
-    "contact": "Contact",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "changeLangFr": "Change language to French",
-    "changeLangEn": "Change language to English",
-    "french": "Français",
-    "english": "English",
-    "trustIndicator": "TYCHERA INVESTMENTS LTD"
+  "header": {
+    "nav": {
+      "expertise": "Expertise",
+      "institution": "The Institution",
+      "contact": "Contact"
+    },
+    "languageToggle": {
+      "french": "Français",
+      "english": "English",
+      "ariaFrench": "Change language to French",
+      "ariaEnglish": "Change language to English"
+    },
+    "mobile": {
+      "openMenu": "Open menu",
+      "trustIndicator": "TYCHERA INVESTMENTS LTD\nOHANA Building, Kigali"
+    }
   },
   "hero": {
-    "title": "Architect of Project Financing in Africa",
-    "subtitle": "The bridge between international capital and African potential. Sophisticated structuring, sustainable impact.",
-    "cta": "Discover our services",
+    "title": "Architect of Project Finance in Africa",
+    "subtitle": "The bridge between international capital and African potential. Sophisticated structuring, enduring impact.",
+    "cta": "Discover our expertise",
     "imageAlt": "Modern infrastructure in Africa"
   },
   "pillars": {
     "sectionLabel": "Our Pillars of Excellence",
     "sectionTitle": "Financial excellence in service of sustainable development",
     "learnMore": "Learn more",
-    "pillar01": {
-      "number": "01",
-      "title": "Financial Engineering",
-      "description": "Sophisticated structuring of investment vehicles tailored to the specificities of African markets."
-    },
-    "pillar02": {
-      "number": "02",
-      "title": "Project Financing",
-      "description": "End-to-end strategic support for infrastructure and renewable energy projects."
-    },
-    "pillar03": {
-      "number": "03",
-      "title": "Fund Management",
-      "description": "Active management of institutional portfolios according to a rigorous and high-performing ESG approach."
-    },
-    "pillar04": {
-      "number": "04",
-      "title": "Deal Structuring",
-      "description": "Design and execution of complex transactions bringing together public actors and private investors."
+    "services": {
+      "financial": {
+        "number": "01",
+        "title": "Financial Engineering",
+        "description": "Sophisticated structuring of investment vehicles adapted to the specificities of African markets. We design bespoke solutions including green bonds, structured finance, and innovative instruments that address the requirements of our institutional clients."
+      },
+      "project": {
+        "number": "02",
+        "title": "Project Finance",
+        "description": "Strategic end-to-end support for infrastructure and renewable energy projects. From initial conception through financial close, we ensure the viability and attractiveness of each project to international investors."
+      },
+      "fund": {
+        "number": "03",
+        "title": "Fund Management",
+        "description": "Active management of institutional portfolios following a rigorous ESG approach. Our expertise combines measurable financial performance with positive social and environmental impact, creating enduring value for our investors."
+      },
+      "deal": {
+        "number": "04",
+        "title": "Deal Structuring",
+        "description": "Design and assembly of complex transactions bringing together public actors and private investors. We optimize risk-return structures and develop robust contractual frameworks to ensure bankable, compliant, and sustainable operations."
+      }
     }
   },
-  "institution": {
+  "principal": {
     "sectionLabel": "The Institution",
     "sectionTitle": "From Public Governance to Financial Architecture",
-    "quote": "Africa's transformation requires structured partnerships where financial expertise meets a deep understanding of institutional realities. Our mission is to create these public-private synergies that generate tangible impact.",
-    "narrative1": "Mr. Kamal Alawo Adjayi brings to TYCHERA INVESTMENTS a unique expertise combining political leadership, high-level public administration, and international finance.",
-    "narrative2": "Former Mayor of Lomé (Togo), he led the urban transformation and economic development of Togo's capital, acquiring a deep understanding of the institutional challenges and infrastructure needs of the African continent.",
-    "narrative3": "His distinctive value lies in his rare ability to translate public needs into structured financial assets attractive to international capital markets.",
-    "ceoTitle": "CEO & Founder",
     "portraitPlaceholder": "Portrait coming soon",
-    "initiateCollaboration": "Initiate a collaboration",
-    "formerMayorLabel": "Former Mayor of Lomé (Togo)"
+    "name": "Kamal Alawo Adjayi",
+    "title": "CEO & Founder",
+    "quote": "Africa's transformation requires structured partnerships where financial expertise meets deep understanding of institutional realities. Our mission is to create these public-private synergies that generate tangible impact.",
+    "bio": {
+      "intro": "Mr. Kamal Alawo Adjayi brings to TYCHERA INVESTMENTS distinctive expertise combining political leadership, senior public administration, and international finance.",
+      "experience": "Former Mayor of Lomé (Togo), he led the urban transformation and economic development of the Togolese capital, acquiring deep understanding of the institutional challenges and infrastructure requirements across the African continent.",
+      "value": "Mr. Adjayi's distinctive value resides in his rare capacity to translate public requirements into structured and attractive financial assets. This dual competence: intimately understanding African institutional priorities while mastering the requirements of international capital markets, enables TYCHERA INVESTMENTS to create financial solutions that are genuinely adapted and effective."
+    },
+    "cta": "Initiate a collaboration"
   },
   "contact": {
     "sectionLabel": "Contact",
     "sectionTitle": "Initiate a Strategic Collaboration",
-    "sectionDescription": "Whether you are a public institution seeking to finance infrastructure projects, an international investor seeking high-impact opportunities, or a company requiring tailored financing solutions, TYCHERA INVESTMENTS is your preferred partner.",
+    "sectionDescription": "Whether you are a public institution seeking to finance infrastructure projects, an international investor pursuing high-impact opportunities, or an enterprise requiring bespoke financing solutions, TYCHERA INVESTMENTS is your privileged partner.",
     "form": {
-      "fullName": "Full name",
+      "name": "Full name",
+      "namePlaceholder": "Your name",
       "organization": "Organization / Company",
-      "professionalEmail": "Professional email",
-      "phone": "Phone (with country code)",
+      "organizationPlaceholder": "Your organization",
+      "title": "Position / Title",
+      "titlePlaceholder": "Your title",
+      "email": "Professional email",
+      "emailPlaceholder": "email@company.com",
+      "requestType": "Type of Inquiry",
+      "requestTypePlaceholder": "Select an option",
+      "phone": "Telephone (with country code)",
+      "phonePlaceholder": "+250 7XX XXX XXX",
       "country": "Country",
-      "requestType": "Request type",
+      "countryPlaceholder": "Your country",
       "message": "Message / Project Description",
-      "submit": "Send my request",
+      "messagePlaceholder": "Please briefly describe your requirement or project...",
       "required": "*",
-      "placeholders": {
-        "name": "Your name",
-        "organization": "Your organization",
-        "email": "email@company.com",
-        "phone": "+250 7XX XXX XXX",
-        "country": "Your country",
-        "requestType": "Select an option",
-        "message": "Please briefly describe your need or project..."
-      },
+      "submit": "Submit my inquiry",
+      "privacy": "Your information is treated confidentially in accordance with our privacy policy.",
       "requestTypes": {
-        "financing": "Project Financing (Infrastructure, Energy, Development)",
-        "investment": "Investment Opportunity",
-        "consulting": "Strategic Consulting & Structuring",
-        "fundManagement": "Fund Management",
-        "other": "Other request"
+        "financement": "Project Finance (Infrastructure, Energy, Development)",
+        "investissement": "Investment Opportunity",
+        "conseil": "Strategic Advisory & Structuring",
+        "gestion": "Fund Management",
+        "autre": "Other inquiry"
       },
-      "success": "Thank you for your message",
-      "successMessage": "Your request has been sent successfully. Our team will contact you within 24 business hours.",
-      "sendAnother": "Send another message",
-      "privacyNote": "Your information is processed confidentially in accordance with our privacy policy."
+      "successTitle": "Thank you for your message",
+      "successMessage": "Your inquiry has been sent successfully. Our team will contact you within 24 business hours.",
+      "sendAnother": "Send another message"
     },
-    "directContact": {
-      "title": "Direct Contact Information",
-      "address": "Address",
-      "email": "Email",
-      "phone": "Phone",
-      "hours": "Hours",
-      "addressText": "TYCHERA INVESTMENTS LTD\nOHANA Building\nNyarutarama, Kigali, Rwanda",
-      "hoursText": "Monday - Friday: 8:00 AM - 5:00 PM",
-      "timezone": "(EAT - East Africa Time)",
-      "emailLink": "contact@tycherainvestments.com",
-      "phoneLink": "+250 793 145 440",
-      "emailAriaLabel": "Send an email to TYCHERA Investments",
-      "phoneAriaLabel": "Call TYCHERA Investments"
+    "success": {
+      "title": "Thank you for your message",
+      "description": "Your inquiry has been sent successfully. Our team will contact you within 24 business hours.",
+      "cta": "Send another message"
+    },
+    "info": {
+      "title": "Direct Contact Details",
+      "address": {
+        "label": "Address",
+        "line1": "TYCHERA INVESTMENTS LTD",
+        "line2": "OHANA Building",
+        "line3": "Kigali, Rwanda"
+      },
+      "email": {
+        "label": "Email"
+      },
+      "phone": {
+        "label": "Telephone"
+      },
+      "hours": {
+        "label": "Business Hours",
+        "schedule": "Monday - Friday: 8:00 AM - 5:00 PM",
+        "timezone": "(EAT - East Africa Time)"
+      }
     }
   },
   "footer": {
-    "tagline": "The bridge between international capital and African potential. Sophisticated structuring, sustainable impact.",
+    "tagline": "The bridge between international capital and African potential. Sophisticated structuring, enduring impact.",
     "headquarters": "Headquarters",
     "contact": "Contact",
-    "companyName": "TYCHERA INVESTMENTS LTD",
-    "address": "OHANA Building",
-    "city": "Nyarutarama",
-    "country": "Kigali, Rwanda",
-    "tin": "TIN: 123456789",
+    "address": {
+      "company": "TYCHERA INVESTMENTS LTD",
+      "building": "OHANA Building",
+      "city": "Kigali, Rwanda"
+    },
     "copyright": "© 2024 TYCHERA INVESTMENTS LTD. All rights reserved.",
-    "email": "contact@tycherainvestments.com",
-    "phone": "+250 793 145 440"
+    "ariaEmail": "Send an email to TYCHERA Investments",
+    "ariaPhone": "Call TYCHERA Investments"
   }
 }

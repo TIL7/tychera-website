@@ -5,6 +5,7 @@ import { groq } from 'next-sanity';
  * 
  * This module contains all GROQ queries used to fetch data from Sanity.
  * Queries are organized by content type and include proper field selection.
+ * All queries support bilingual content (French/English).
  * 
  * GROQ (Graph-Relational Object Queries) is Sanity's query language.
  * Learn more: https://www.sanity.io/docs/groq
@@ -24,9 +25,9 @@ export const SERVICE_ITEMS_QUERY = groq`
     _createdAt,
     _updatedAt,
     number,
-    title,
-    description,
-    detailedContent,
+    "title": title,
+    "description": description,
+    "detailedContent": detailedContent,
     icon,
     order
   }
@@ -45,9 +46,9 @@ export const SINGLE_SERVICE_QUERY = groq`
     _createdAt,
     _updatedAt,
     number,
-    title,
-    description,
-    detailedContent,
+    "title": title,
+    "description": description,
+    "detailedContent": detailedContent,
     icon,
     order
   }
@@ -65,8 +66,8 @@ export const TEAM_MEMBERS_QUERY = groq`
     _createdAt,
     _updatedAt,
     name,
-    role,
-    bio,
+    "role": role,
+    "bio": bio,
     image {
       asset->{
         _id,
@@ -96,8 +97,8 @@ export const SINGLE_TEAM_MEMBER_QUERY = groq`
     _createdAt,
     _updatedAt,
     name,
-    role,
-    bio,
+    "role": role,
+    "bio": bio,
     image {
       asset->{
         _id,
@@ -128,7 +129,7 @@ export const PAGE_CONTENT_QUERY = groq`
     _createdAt,
     _updatedAt,
     key,
-    content,
+    "content": content,
     page,
     description
   }
@@ -148,7 +149,7 @@ export const SINGLE_PAGE_CONTENT_QUERY = groq`
     _createdAt,
     _updatedAt,
     key,
-    content,
+    "content": content,
     page,
     description
   }
@@ -165,15 +166,15 @@ export const HOME_PAGE_QUERY = groq`
     "services": *[_type == "serviceItem"] | order(order asc) {
       _id,
       number,
-      title,
-      description,
+      "title": title,
+      "description": description,
       icon,
       order
     },
     "content": *[_type == "pageContent" && page == "home"] {
       _id,
       key,
-      content
+      "content": content
     }
   }
 `;
@@ -189,16 +190,16 @@ export const EXPERTISE_PAGE_QUERY = groq`
     "services": *[_type == "serviceItem"] | order(order asc) {
       _id,
       number,
-      title,
-      description,
-      detailedContent,
+      "title": title,
+      "description": description,
+      "detailedContent": detailedContent,
       icon,
       order
     },
     "content": *[_type == "pageContent" && page == "expertise"] {
       _id,
       key,
-      content
+      "content": content
     }
   }
 `;

@@ -5,27 +5,46 @@ import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-
-const navLinks = [
-  { label: 'Expertise', id: 'expertise' },
-  { label: "L'Institution", id: 'institution' },
-  { label: 'Contact', id: 'contact' },
-];
+import { useTranslations, useLocale } from 'next-intl';
+import { useRouter, usePathname, Link } from '@/i18n/navigation';
 
 const Header = () => {
-  const [activeLang, setActiveLang] = useState<'EN' | 'FR'>('FR');
+  const t = useTranslations('header');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleSmoothScroll = (
+  const navLinks = [
+    { label: t('nav.expertise'), href: '/expertise', isExternal: true },
+    { label: t('nav.institution'), href: '#institution', isExternal: false },
+    { label: t('nav.contact'), href: '#contact', isExternal: false },
+  ];
+
+  const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    targetId: string
+    href: string,
+    isExternal: boolean
   ) => {
+    if (isExternal) {
+      // Let Next.js handle the navigation
+      return;
+    }
+    
+    // Handle smooth scroll for anchor links
     e.preventDefault();
+    const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setMobileOpen(false);
+  };
+
+  const switchLanguage = (newLocale: string) => {
+    // Get the current pathname without locale prefix
+    const currentPath = pathname;
+    router.replace(currentPath, { locale: newLocale });
   };
 
   return (
@@ -45,23 +64,29 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              onClick={(e) => handleSmoothScroll(e, link.id)}
-              className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            onClick={(e) => handleSmoothScroll(e, 'contact')}
-            className="px-6 py-2.5 bg-primary text-primary-foreground font-sans text-sm font-medium rounded-sm hover:bg-primary/90 transition-colors"
-          >
-            Investir avec nous
-          </a>
+          {navLinks.map((link) => {
+            if (link.isExternal) {
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              );
+            }
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href, link.isExternal)}
+                className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Right Side: Language Toggle (Desktop) + Mobile Menu */}
@@ -69,25 +94,25 @@ const Header = () => {
           {/* Language Toggle - Desktop Only */}
           <div className="hidden md:flex items-center gap-1 text-sm font-sans">
             <button
-              onClick={() => setActiveLang('FR')}
+              onClick={() => switchLanguage('fr')}
               className={`px-2 py-1 transition-all ${
-                activeLang === 'FR'
+                locale === 'fr'
                   ? 'text-primary font-medium'
                   : 'text-foreground/50 hover:text-foreground/70'
               }`}
-              aria-label="Changer la langue en français"
+              aria-label={t('languageToggle.ariaFrench')}
             >
               FR
             </button>
             <span className="text-accent">|</span>
             <button
-              onClick={() => setActiveLang('EN')}
+              onClick={() => switchLanguage('en')}
               className={`px-2 py-1 transition-all ${
-                activeLang === 'EN'
+                locale === 'en'
                   ? 'text-primary font-medium'
                   : 'text-foreground/50 hover:text-foreground/70'
               }`}
-              aria-label="Change language to English"
+              aria-label={t('languageToggle.ariaEnglish')}
             >
               EN
             </button>
@@ -100,10 +125,10 @@ const Header = () => {
                 variant="ghost"
                 size="icon"
                 className="text-foreground"
-                aria-label="Ouvrir le menu"
+                aria-label={t('mobile.openMenu')}
               >
                 <Menu className="h-6 w-6" />
-                <span className="sr-only">Ouvrir le menu</span>
+                <span className="sr-only">{t('mobile.openMenu')}</span>
               </Button>
             </SheetTrigger>
             <SheetContent
@@ -113,50 +138,62 @@ const Header = () => {
               <div className="flex flex-col h-full pt-12">
                 {/* Mobile Nav Links */}
                 <nav className="flex flex-col gap-6">
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.id}
-                      href={`#${link.id}`}
-                      onClick={(e) => handleSmoothScroll(e, link.id)}
-                      className="text-lg font-serif text-foreground hover:text-primary transition-colors py-2 border-b border-border/30"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
+                  {navLinks.map((link) => {
+                    if (link.isExternal) {
+                      return (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="text-lg font-serif text-foreground hover:text-primary transition-colors py-2 border-b border-border/30"
+                        >
+                          {link.label}
+                        </Link>
+                      );
+                    }
+                    return (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        onClick={(e) => handleNavClick(e, link.href, link.isExternal)}
+                        className="text-lg font-serif text-foreground hover:text-primary transition-colors py-2 border-b border-border/30"
+                      >
+                        {link.label}
+                      </a>
+                    );
+                  })}
                 </nav>
 
                 {/* Mobile Language Toggle */}
                 <div className="mt-8 flex items-center gap-2 text-sm font-sans">
                   <button
-                    onClick={() => setActiveLang('FR')}
+                    onClick={() => switchLanguage('fr')}
                     className={`px-3 py-2 rounded-sm transition-all ${
-                      activeLang === 'FR'
+                      locale === 'fr'
                         ? 'bg-primary text-primary-foreground'
                         : 'text-foreground/50 hover:text-foreground/70'
                     }`}
-                    aria-label="Changer la langue en français"
+                    aria-label={t('languageToggle.ariaFrench')}
                   >
-                    Français
+                    {t('languageToggle.french')}
                   </button>
                   <button
-                    onClick={() => setActiveLang('EN')}
+                    onClick={() => switchLanguage('en')}
                     className={`px-3 py-2 rounded-sm transition-all ${
-                      activeLang === 'EN'
+                      locale === 'en'
                         ? 'bg-primary text-primary-foreground'
                         : 'text-foreground/50 hover:text-foreground/70'
                     }`}
-                    aria-label="Change language to English"
+                    aria-label={t('languageToggle.ariaEnglish')}
                   >
-                    English
+                    {t('languageToggle.english')}
                   </button>
                 </div>
 
                 {/* Trust Indicator */}
                 <div className="mt-auto pb-8">
-                  <p className="text-xs text-muted-foreground font-sans">
-                    TYCHERA INVESTMENTS LTD
-                    <br />
-                    Immeuble OHANA, Kigali
+                  <p className="text-xs text-muted-foreground font-sans whitespace-pre-line">
+                    {t('mobile.trustIndicator')}
                   </p>
                 </div>
               </div>

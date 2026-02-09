@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Scale, Construction, TrendingUp, Handshake, ArrowRight } from "lucide-react";
+import { useTranslations } from 'next-intl';
 
 // Icon mapping for dynamic icon rendering
 const iconMap: Record<string, any> = {
@@ -9,51 +10,52 @@ const iconMap: Record<string, any> = {
   Handshake,
 };
 
-// Static data - matches approved sitemap exactly
-const pillars = [
-  {
-    _id: "1",
-    number: "01",
-    title: "Ingénierie Financière",
-    description: "Structuration sophistiquée de véhicules d'investissement adaptés aux spécificités des marchés africains.",
-    icon: "Scale",
-    order: 1,
-  },
-  {
-    _id: "2",
-    number: "02",
-    title: "Financement de Projets",
-    description: "Accompagnement stratégique de bout en bout pour les projets d'infrastructure et d'énergie renouvelable.",
-    icon: "Construction",
-    order: 2,
-  },
-  {
-    _id: "3",
-    number: "03",
-    title: "Gestion de Fonds",
-    description: "Gestion active de portefeuilles institutionnels selon une approche ESG rigoureuse et performante.",
-    icon: "TrendingUp",
-    order: 3,
-  },
-  {
-    _id: "4",
-    number: "04",
-    title: "Structuration de Deals",
-    description: "Conception et montage de transactions complexes réunissant acteurs publics et investisseurs privés.",
-    icon: "Handshake",
-    order: 4,
-  },
-];
-
 /**
  * ThreePillars Server Component
  * 
  * Displays TYCHERA's four service pillars with CSS-based animations.
- * Uses static French content (default language).
+ * Uses i18n translations for multi-language support.
  * 
  * @requirements 1.2, 2.1
  */
 export default function ThreePillars() {
+  const t = useTranslations('pillars');
+
+  // Static data structure - translations come from i18n
+  const pillars = [
+    {
+      _id: "1",
+      number: t('services.financial.number'),
+      title: t('services.financial.title'),
+      description: t('services.financial.description'),
+      icon: "Scale",
+      order: 1,
+    },
+    {
+      _id: "2",
+      number: t('services.project.number'),
+      title: t('services.project.title'),
+      description: t('services.project.description'),
+      icon: "Construction",
+      order: 2,
+    },
+    {
+      _id: "3",
+      number: t('services.fund.number'),
+      title: t('services.fund.title'),
+      description: t('services.fund.description'),
+      icon: "TrendingUp",
+      order: 3,
+    },
+    {
+      _id: "4",
+      number: t('services.deal.number'),
+      title: t('services.deal.title'),
+      description: t('services.deal.description'),
+      icon: "Handshake",
+      order: 4,
+    },
+  ];
 
   return (
     <section id="expertise" className="py-24 lg:py-32 bg-background">
@@ -61,10 +63,10 @@ export default function ThreePillars() {
         {/* Section Header */}
         <div className="max-w-3xl mb-16 animate-fade-in-up">
           <p className="text-sm font-sans uppercase tracking-widest text-primary mb-4">
-            Nos Piliers d'Excellence
+            {t('sectionLabel')}
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight text-foreground">
-            Excellence financière au service du développement durable
+            {t('sectionTitle')}
           </h2>
         </div>
 
@@ -107,7 +109,7 @@ export default function ThreePillars() {
 
                 {/* Learn More Link - Visible on hover */}
                 <div className="flex items-center gap-2 text-primary text-sm font-sans opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span>En savoir plus</span>
+                  <span>{t('learnMore')}</span>
                   <ArrowRight className="w-4 h-4" />
                 </div>
               </Link>

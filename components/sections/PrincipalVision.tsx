@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 /**
  * PrincipalVision Component
  * 
@@ -9,16 +11,18 @@
  */
 
 export default function PrincipalVision(): JSX.Element {
+  const t = useTranslations('principal');
+  
   return (
     <section id="institution" className="py-24 lg:py-32 bg-muted/30">
       <div className="container px-6">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <p className="text-sm font-sans uppercase tracking-widest text-primary mb-4">
-            L'Institution
+            {t('sectionLabel')}
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight text-foreground">
-            De la Gouvernance Publique à l'Architecture Financière
+            {t('sectionTitle')}
           </h2>
         </div>
 
@@ -33,13 +37,13 @@ export default function PrincipalVision(): JSX.Element {
                     <span className="text-3xl font-serif text-primary">KA</span>
                   </div>
                   <p className="text-sm text-muted-foreground font-sans">
-                    Portrait à venir
+                    {t('portraitPlaceholder')}
                   </p>
                 </div>
               </div>
             </div>
             <p className="mt-4 text-sm text-muted-foreground font-sans text-center lg:text-left">
-              <span className="text-foreground font-medium">Kamal Alawo Adjayi</span>, CEO & Fondateur
+              <span className="text-foreground font-medium">{t('name')}</span>, {t('title')}
             </p>
           </div>
 
@@ -48,20 +52,20 @@ export default function PrincipalVision(): JSX.Element {
             {/* Pull Quote */}
             <blockquote className="mb-8 border-l-2 border-accent pl-6">
               <p className="text-xl md:text-2xl lg:text-3xl leading-relaxed text-foreground/90 italic font-serif">
-                "La transformation de l'Afrique nécessite des partenariats structurés où l'expertise financière rencontre la compréhension profonde des réalités institutionnelles. Notre mission est de créer ces synergies public-privé qui génèrent un impact tangible."
+                "{t('quote')}"
               </p>
             </blockquote>
 
             {/* Narrative */}
             <div className="space-y-4">
               <p className="text-muted-foreground font-sans leading-relaxed">
-                M. Kamal Alawo Adjayi apporte à TYCHERA INVESTMENTS une expertise unique combinant leadership politique, administration publique de haut niveau et finance internationale.
+                {t('bio.intro')}
               </p>
               <p className="text-muted-foreground font-sans leading-relaxed">
-                <span className="text-primary font-medium">Ancien Maire de Lomé (Togo)</span>, il a dirigé la transformation urbaine et le développement économique de la capitale togolaise, acquérant une compréhension approfondie des défis institutionnels et des besoins en infrastructure du continent africain.
+                <span className="text-primary font-medium">{t('bio.experience').split(',')[0]}</span>, {t('bio.experience').substring(t('bio.experience').indexOf(',') + 2)}
               </p>
               <p className="text-muted-foreground font-sans leading-relaxed">
-                Sa valeur distinctive réside dans sa capacité rare à traduire les besoins publics en actifs financiers structurés et attractifs pour les marchés de capitaux internationaux.
+                {t('bio.value')}
               </p>
             </div>
 
@@ -70,7 +74,7 @@ export default function PrincipalVision(): JSX.Element {
                 href="#contact"
                 className="inline-flex items-center text-sm font-sans text-primary hover:text-primary/80 transition-colors group"
               >
-                Initier une collaboration
+                {t('cta')}
                 <svg 
                   className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" 
                   fill="none" 

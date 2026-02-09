@@ -1,8 +1,24 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { Inter, Playfair_Display } from 'next/font/google';
 import { locales } from "@/i18n/config";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
+
+// Configure fonts
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
 
 type Locale = (typeof locales)[number];
 
@@ -64,13 +80,18 @@ export default async function LocaleLayout(props: LocaleLayoutProps) {
     notFound();
   }
 
+  const messages = await getMessages();
+
   return (
-    <>
-      <Header />
-      <main className="pt-32">
-        {props.children}
-      </main>
-      <Footer />
-    </>
+    <div className={`${inter.variable} ${playfairDisplay.variable}`}>
+      <NextIntlClientProvider messages={messages}>
+        <Header />
+        <main className="pt-32">
+          {props.children}
+        </main>
+        <Footer />
+      </NextIntlClientProvider>
+    </div>
   );
 }
+

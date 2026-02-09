@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -92,23 +93,6 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning>
-      <head>
-        {/* Preload critical fonts */}
-        <link
-          rel="preload"
-          href="/fonts/playfair-display-400.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/inter-400.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body>
         <TooltipProvider>
           {children}
@@ -119,6 +103,7 @@ export default function RootLayout({
             theme="light"
             expand
           />
+          <SpeedInsights />
         </TooltipProvider>
       </body>
     </html>

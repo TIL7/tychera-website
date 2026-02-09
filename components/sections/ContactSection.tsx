@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from "react";
-import { Mail, Phone, Clock, MapPin, Send, CheckCircle } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Mail, Phone, Clock, MapPin, Send, CheckCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,37 +15,69 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import LocationMap from "@/components/sections/LocationMap";
-
-const requestTypes = [
-  { value: "financement", label: "Financement de Projet (Infrastructure, Énergie, Développement)" },
-  { value: "investissement", label: "Opportunité d'Investissement" },
-  { value: "conseil", label: "Conseil Stratégique & Structuration" },
-  { value: "gestion", label: "Gestion de Fonds" },
-  { value: "autre", label: "Autre demande" },
-];
+import { useTranslations, useLocale } from 'next-intl';
+import { contactFormSchema, contactFormSchemaEN, type ContactFormData } from '@/lib/validations/contact';
+import { submitContactForm } from '@/app/actions/contact';
+import { toast } from 'sonner';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    organization: "",
-    title: "",
-    email: "",
-    phone: "",
-    country: "",
-    requestType: "",
-    message: "",
-  });
+  const t = useTranslations('contact');
+  const locale = useLocale();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
+  const requestTypes = [
+    { value: "financement" as const, label: t('form.requestTypes.financement') },
+    { value: "investissement" as const, label: t('form.requestTypes.investissement') },
+    { value: "conseil" as const, label: t('form.requestTypes.conseil') },
+    { value: "gestion" as const, label: t('form.requestTypes.gestion') },
+    { value: "autre" as const, label: t('form.requestTypes.autre') },
+  ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Form submission will be connected to Zoho later
-    console.log("Form submitted:", formData);
-    setIsSubmitted(true);
+  // Use locale-specific schema
+  const schema = locale === 'en' ? contactFormSchemaEN : contactFormSchema;
+
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: "",
+      organization: "",
+      title: "",
+      email: "",
+      phone: "",
+      country: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      const result = await submitContactForm(data);
+
+      if (result.success) {
+        setIsSubmitted(true);
+        form.reset();
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+
+        // Set field-specific errors if available
+        if (result.errors) {
+          Object.entries(result.errors).forEach(([field, messages]) => {
+            form.setError(field as any, {
+              type: 'manual',
+              message: messages[0],
+            });
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast.error(
+        locale === 'en'
+          ? 'An error occurred while sending your message. Please try again.'
+          : 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.'
+      );
+    }
   };
 
   return (
@@ -52,67 +86,76 @@ const ContactSection = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <p className="text-sm font-sans uppercase tracking-widest text-primary mb-4">
-            Contact
+            {t('sectionLabel')}
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight text-foreground mb-6">
-            Initier une Collaboration Stratégique
+            {t('sectionTitle')}
           </h2>
           <p className="text-muted-foreground font-sans leading-relaxed">
-            Que vous soyez une institution publique cherchant à financer des projets d'infrastructure, 
-            un investisseur international en quête d'opportunités à fort impact, ou une entreprise 
-            nécessitant des solutions de financement sur mesure, TYCHERA INVESTMENTS est votre partenaire privilégié.
+            {t('sectionDescription')}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Left - Contact Form (3 cols) */}
           <div className="lg:col-span-3">
             {isSubmitted ? (
-              /* Success State */
-              <div className="flex flex-col items-center justify-center py-16 px-8 bg-muted/30 border border-border/50 rounded-sm">
-                <CheckCircle className="w-16 h-16 text-secondary mb-6" />
-                <h3 className="text-2xl font-serif text-foreground mb-4 text-center">
-                  Merci pour votre message
-                </h3>
+              <div className="flex flex-col items-center justify-center py-16 space-y-6">
+                <CheckCircle className="w-16 h-16 text-primary" />
+                <h3 className="text-2xl font-serif text-foreground">{t('form.successTitle')}</h3>
                 <p className="text-muted-foreground font-sans text-center max-w-md">
-                  Votre demande a été envoyée avec succès. Notre équipe vous recontactera sous 24 heures ouvrables.
+                  {t('form.successMessage')}
                 </p>
-                <Button 
+                <Button
                   onClick={() => setIsSubmitted(false)}
                   variant="outline"
-                  className="mt-8"
+                  className="mt-4"
                 >
-                  Envoyer un autre message
+                  {t('form.sendAnother')}
                 </Button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Row 1: Name + Organization */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                {/* Row 1: Name + Organization + Title */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-sans font-medium text-foreground">
-                      Nom complet <span className="text-primary">*</span>
+                      {t('form.name')} <span className="text-primary">{t('form.required')}</span>
                     </label>
                     <Input
                       type="text"
-                      placeholder="Votre nom"
-                      value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      placeholder={t('form.namePlaceholder')}
+                      {...form.register("name")}
                       className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
-                      required
                     />
+                    {form.formState.errors.name && (
+                      <p className="text-xs text-destructive">{form.formState.errors.name.message}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-sans font-medium text-foreground">
-                      Organisation / Entreprise <span className="text-primary">*</span>
+                      {t('form.organization')} <span className="text-primary">{t('form.required')}</span>
                     </label>
                     <Input
                       type="text"
-                      placeholder="Votre organisation"
-                      value={formData.organization}
-                      onChange={(e) => handleInputChange("organization", e.target.value)}
+                      placeholder={t('form.organizationPlaceholder')}
+                      {...form.register("organization")}
                       className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
-                      required
+                    />
+                    {form.formState.errors.organization && (
+                      <p className="text-xs text-destructive">{form.formState.errors.organization.message}</p>
+                    )}
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-sans font-medium text-foreground">
+                      {t('form.title')}
+                    </label>
+                    <Input
+                      type="text"
+                      placeholder={t('form.titlePlaceholder')}
+                      {...form.register("title")}
+                      className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
                     />
                   </div>
                 </div>
@@ -121,32 +164,33 @@ const ContactSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-sans font-medium text-foreground">
-                      Email professionnel <span className="text-primary">*</span>
+                      {t('form.email')} <span className="text-primary">{t('form.required')}</span>
                     </label>
                     <Input
                       type="email"
-                      placeholder="email@entreprise.com"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      placeholder={t('form.emailPlaceholder')}
+                      {...form.register("email")}
                       className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
-                      required
                     />
+                    {form.formState.errors.email && (
+                      <p className="text-xs text-destructive">{form.formState.errors.email.message}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-sans font-medium text-foreground">
-                      Type de demande <span className="text-primary">*</span>
+                      {t('form.requestType')} <span className="text-primary">{t('form.required')}</span>
                     </label>
                     <Select
-                      value={formData.requestType}
-                      onValueChange={(value) => handleInputChange("requestType", value)}
+                      value={form.watch("requestType")}
+                      onValueChange={(value) => form.setValue("requestType", value as any)}
                     >
                       <SelectTrigger className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans">
-                        <SelectValue placeholder="Sélectionnez une option" />
+                        <SelectValue placeholder={t('form.requestTypePlaceholder')} />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-sm">
                         {requestTypes.map((type) => (
-                          <SelectItem 
-                            key={type.value} 
+                          <SelectItem
+                            key={type.value}
                             value={type.value}
                             className="font-sans focus:bg-primary/10"
                           >
@@ -155,6 +199,9 @@ const ContactSection = () => {
                         ))}
                       </SelectContent>
                     </Select>
+                    {form.formState.errors.requestType && (
+                      <p className="text-xs text-destructive">{form.formState.errors.requestType.message}</p>
+                    )}
                   </div>
                 </div>
 
@@ -162,25 +209,23 @@ const ContactSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-sans font-medium text-foreground">
-                      Téléphone (avec indicatif pays)
+                      {t('form.phone')}
                     </label>
                     <Input
                       type="tel"
-                      placeholder="+250 7XX XXX XXX"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange("phone", e.target.value)}
+                      placeholder={t('form.phonePlaceholder')}
+                      {...form.register("phone")}
                       className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-sans font-medium text-foreground">
-                      Pays
+                      {t('form.country')}
                     </label>
                     <Input
                       type="text"
-                      placeholder="Votre pays"
-                      value={formData.country}
-                      onChange={(e) => handleInputChange("country", e.target.value)}
+                      placeholder={t('form.countryPlaceholder')}
+                      {...form.register("country")}
                       className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
                     />
                   </div>
@@ -189,31 +234,37 @@ const ContactSection = () => {
                 {/* Row 4: Message */}
                 <div className="space-y-2">
                   <label className="text-sm font-sans font-medium text-foreground">
-                    Message / Description du Projet <span className="text-primary">*</span>
+                    {t('form.message')} <span className="text-primary">{t('form.required')}</span>
                   </label>
                   <Textarea
-                    placeholder="Merci de décrire brièvement votre besoin ou projet..."
-                    value={formData.message}
-                    onChange={(e) => handleInputChange("message", e.target.value)}
+                    placeholder={t('form.messagePlaceholder')}
+                    {...form.register("message")}
                     className="min-h-[140px] bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans resize-none"
-                    required
                   />
+                  {form.formState.errors.message && (
+                    <p className="text-xs text-destructive">{form.formState.errors.message.message}</p>
+                  )}
                 </div>
 
                 {/* Submit Button */}
                 <div className="pt-4">
-                  <Button 
+                  <Button
                     type="submit"
-                    className="w-full md:w-auto px-10 py-6 bg-primary text-primary-foreground font-sans text-sm font-medium rounded-sm hover:bg-primary/90 transition-colors"
+                    disabled={form.formState.isSubmitting}
+                    className="w-full md:w-auto px-10 py-6 bg-primary text-primary-foreground font-sans text-sm font-medium rounded-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
                   >
-                    <Send className="w-4 h-4 mr-2" />
-                    Envoyer ma demande
+                    {form.formState.isSubmitting ? (
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    ) : (
+                      <Send className="w-4 h-4 mr-2" />
+                    )}
+                    {t('form.submit')}
                   </Button>
                 </div>
 
                 {/* Privacy Note */}
                 <p className="text-xs text-muted-foreground font-sans">
-                  Vos informations sont traitées de manière confidentielle conformément à notre politique de confidentialité.
+                  {t('form.privacy')}
                 </p>
               </form>
             )}
@@ -224,18 +275,18 @@ const ContactSection = () => {
             {/* Direct Contact Info */}
             <div className="space-y-6">
               <h3 className="text-lg font-serif text-foreground">
-                Coordonnées Directes
+                {t('info.title')}
               </h3>
 
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-sans font-medium text-foreground">Adresse</p>
+                    <p className="text-sm font-sans font-medium text-foreground">{t('info.address.label')}</p>
                     <p className="text-sm font-sans text-muted-foreground">
-                      TYCHERA INVESTMENTS LTD<br />
-                      Immeuble OHANA<br />
-                      Nyarutarama, Kigali, Rwanda
+                      {t('info.address.line1')}<br />
+                      {t('info.address.line2')}<br />
+                      {t('info.address.line3')}
                     </p>
                   </div>
                 </div>
@@ -243,9 +294,9 @@ const ContactSection = () => {
                 <div className="flex items-start gap-4">
                   <Mail className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-sans font-medium text-foreground">Email</p>
-                    <a 
-                      href="mailto:contact@tycherainvestments.com" 
+                    <p className="text-sm font-sans font-medium text-foreground">{t('info.email.label')}</p>
+                    <a
+                      href="mailto:contact@tycherainvestments.com"
                       className="text-sm font-sans text-primary hover:text-primary/80 transition-colors"
                     >
                       contact@tycherainvestments.com
@@ -256,9 +307,9 @@ const ContactSection = () => {
                 <div className="flex items-start gap-4">
                   <Phone className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-sans font-medium text-foreground">Téléphone</p>
-                    <a 
-                      href="tel:+250793145440" 
+                    <p className="text-sm font-sans font-medium text-foreground">{t('info.phone.label')}</p>
+                    <a
+                      href="tel:+250793145440"
                       className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
                     >
                       +250 793 145 440
@@ -269,10 +320,10 @@ const ContactSection = () => {
                 <div className="flex items-start gap-4">
                   <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-sans font-medium text-foreground">Horaires</p>
+                    <p className="text-sm font-sans font-medium text-foreground">{t('info.hours.label')}</p>
                     <p className="text-sm font-sans text-muted-foreground">
-                      Lundi - Vendredi : 8h00 - 17h00<br />
-                      <span className="text-xs">(EAT - East Africa Time)</span>
+                      {t('info.hours.schedule')}<br />
+                      <span className="text-xs">{t('info.hours.timezone')}</span>
                     </p>
                   </div>
                 </div>
