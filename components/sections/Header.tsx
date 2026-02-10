@@ -20,7 +20,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const isHomepage = useMemo(() => {
-    return pathname === '/';
+    return pathname === '/' || pathname === '/fr' || pathname === '/en';
   }, [pathname]);
 
   useEffect(() => {
@@ -69,12 +69,20 @@ const Header = () => {
 
   const switchLanguage = (newLocale: 'fr' | 'en') => {
     if (newLocale === locale) return;
-    router.replace(pathname, { locale: newLocale });
+    
+    // With next-intl/navigation, pathname is already stripped of locale
+    // We just need to push the same pathname with the new locale
+    router.push(pathname, { locale: newLocale });
   };
 
   const isActive = (href: string) => {
     if (href === '/') return isHomepage;
-    return pathname === href;
+    
+    // Handle locale-specific pathnames
+    const cleanPathname = pathname.replace(/^\/(fr|en)/, '');
+    const cleanHref = href.replace(/^\//, '');
+    
+    return cleanPathname === cleanHref;
   };
 
   return (
