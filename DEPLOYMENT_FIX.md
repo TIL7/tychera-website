@@ -34,7 +34,15 @@ This guide resolves the deployment authentication issue where the Git author (`k
 ## 3. Account Management & Workflow
 
 ### How it Works
-Instead of Vercel pulling code from GitHub and checking *who* pushed it, GitHub Actions now pushes the built code to Vercel using the `VERCEL_TOKEN`. Vercel sees this as a manual deployment authorized by the `tychera` account owner.
+Instead of Vercel pulling code from GitHub (which causes the "Deployment request did not have a git author..." error), GitHub Actions now pushes the built code to Vercel using the `VERCEL_TOKEN`.
+
+**Important:** You will likely still see "Deployment Failed" notifications from Vercel's automatic integration. **Ignore these.** They are failing because of the permission issue we are bypassing. You should verify success in the **GitHub Actions** tab, not the Vercel "Git" logs.
+
+To stop the annoying error notifications:
+1.  Go to Vercel Project Settings → **Git**.
+2.  Scroll to **Deploy Hooks**.
+3.  (Ideally) Disconnect the Git repository if you rely 100% on this Action, OR just ignore the errors.
+4.  Alternatively, use the "Ignored Build Step" command in Vercel settings: `exit 0` (this stops Vercel from trying to build automatically).
 
 ### Workflow
 1.  You push code to `main` on GitHub.
