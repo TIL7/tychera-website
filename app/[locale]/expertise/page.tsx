@@ -13,6 +13,8 @@ interface ExpertisePageProps {
   }>;
 }
 
+type ServiceOrder = 1 | 2 | 3 | 4;
+
 // Icon mapping for dynamic icon rendering
 const iconMap: Record<string, any> = {
   Building2: Landmark,
@@ -37,6 +39,47 @@ const serviceImages: Record<number, string> = {
   4: '/images/expertise/project-structuring.png',
 };
 
+const minimalFallbackBodyByOrder: Record<ServiceOrder, { fr: string; en: string }> = {
+  1: {
+    fr: "Nous structurons des véhicules d'investissement adaptés aux marchés africains et aux exigences institutionnelles.",
+    en: "We structure investment vehicles suited to African markets and institutional requirements.",
+  },
+  2: {
+    fr: "Nous accompagnons le financement des projets de la structuration initiale jusqu'à la clôture financière.",
+    en: "We support project financing from initial structuring through financial close.",
+  },
+  3: {
+    fr: "Nous concevons des mécanismes de garantie pour réduire les risques et améliorer la bancabilité des projets.",
+    en: "We design guarantee mechanisms to reduce risk and improve project bankability.",
+  },
+  4: {
+    fr: "Nous structurons des montages public-privé viables et adaptés aux réalités locales.",
+    en: "We structure viable public-private arrangements adapted to local realities.",
+  },
+};
+
+const toPortableText = (text: string, key: string) => [
+  {
+    _type: 'block',
+    _key: `fallback-block-${key}`,
+    style: 'normal',
+    children: [
+      {
+        _type: 'span',
+        _key: `fallback-span-${key}`,
+        text,
+        marks: [],
+      },
+    ],
+    markDefs: [],
+  },
+];
+
+const isPortableTextBlocks = (value: unknown): value is Array<Record<string, unknown>> => {
+  if (!Array.isArray(value)) return false;
+  return value.every((block) => !!block && typeof block === 'object' && typeof (block as any)._type === 'string');
+};
+
 // Fallback data in case Sanity fetch fails
 const fallbackData: ExpertisePageData = {
   services: [
@@ -47,20 +90,6 @@ const fallbackData: ExpertisePageData = {
       description: {
         fr: "Structuration sophistiquée de véhicules d'investissement adaptés aux spécificités des marchés africains.",
         en: "Sophisticated structuring of investment vehicles adapted to African market specificities."
-      },
-      detailedContent: {
-        fr: [
-          {
-            _type: 'block',
-            children: [{ _type: 'span', text: "TYCHERA Investments Ltd conçoit des solutions financières sur mesure, incluant des obligations vertes, des financements structurés et des instruments innovants, répondant aux exigences des investisseurs institutionnels et des projets stratégiques." }]
-          }
-        ],
-        en: [
-          {
-            _type: 'block',
-            children: [{ _type: 'span', text: 'TYCHERA Investments Ltd designs bespoke financial solutions, including green bonds, structured financing, and innovative instruments, aligned with the requirements of institutional investors and strategic projects.' }]
-          }
-        ]
       },
       icon: "Building2",
       order: 1,
@@ -73,20 +102,6 @@ const fallbackData: ExpertisePageData = {
         fr: "Accompagnement stratégique de bout en bout pour les projets d'infrastructure et d'énergie renouvelable.",
         en: "Strategic end-to-end support for infrastructure and renewable energy projects."
       },
-      detailedContent: {
-        fr: [
-          {
-            _type: 'block',
-            children: [{ _type: 'span', text: "De la phase de conception initiale jusqu'à la clôture financière, TYCHERA Investments Ltd intervient à chaque étape afin d'assurer la viabilité économique, la structuration financière et l'attractivité des projets auprès des investisseurs institutionnels et internationaux." }]
-          }
-        ],
-        en: [
-          {
-            _type: 'block',
-            children: [{ _type: 'span', text: 'From initial project design through financial close, TYCHERA Investments Ltd supports each stage to ensure economic viability, robust financial structuring, and strong appeal to institutional and international investors.' }]
-          }
-        ]
-      },
       icon: "Construction",
       order: 2,
     },
@@ -98,20 +113,6 @@ const fallbackData: ExpertisePageData = {
         fr: "Conception et mise en œuvre de mécanismes de garantie pour sécuriser les investissements et atténuer les risques pour les investisseurs institutionnels.",
         en: "Design and implementation of guarantee mechanisms to secure investments and mitigate risks for institutional investors."
       },
-      detailedContent: {
-        fr: [
-          {
-            _type: 'block',
-            children: [{ _type: 'span', text: "Conception et mise en œuvre de mécanismes de garantie pour sécuriser les investissements et atténuer les risques. TYCHERA Investments Ltd structure des solutions adaptées au contexte africain, afin de renforcer la bancabilité et la mobilisation de capitaux institutionnels." }]
-          }
-        ],
-        en: [
-          {
-            _type: 'block',
-            children: [{ _type: 'span', text: 'Design and implementation of guarantee mechanisms to secure investments and mitigate risk. TYCHERA Investments Ltd structures context-adapted solutions to enhance bankability and unlock institutional capital.' }]
-          }
-        ]
-      },
       icon: "ChartPie",
       order: 3,
     },
@@ -122,20 +123,6 @@ const fallbackData: ExpertisePageData = {
       description: {
         fr: "Conception et montage de projets complexes réunissant acteurs publics et investisseurs privés.",
         en: "Conception and assembly of complex projects uniting public and private actors. We optimize risk-return structures to ensure bankable operations."
-      },
-      detailedContent: {
-        fr: [
-          {
-            _type: 'block',
-            children: [{ _type: 'span', text: "Conception et montage de projets complexes réunissant acteurs publics et privés. TYCHERA Investments Ltd accompagne la structuration de projets stratégiques, en coordonnant partenaires publics et privés afin de sécuriser des montages financiers viables, bancables et adaptés aux contextes locaux." }]
-          }
-        ],
-        en: [
-          {
-            _type: 'block',
-            children: [{ _type: 'span', text: 'Conception and assembly of complex projects uniting public and private actors. TYCHERA Investments Ltd coordinates stakeholders to secure viable, bankable financial structures adapted to local contexts.' }]
-          }
-        ]
       },
       icon: "Handshake",
       order: 4,
@@ -184,36 +171,54 @@ export default async function ExpertisePage(props: ExpertisePageProps) {
     },
   } as const;
 
-  const resolveDetailedContent = (serviceOrder: number, detailedContent: any) => {
+  const resolveBodyBlocks = (serviceOrder: ServiceOrder, detailedContent: any) => {
     const localized = getLocalizedRichText(detailedContent, locale);
-    if (Array.isArray(localized) && localized.length > 0) return detailedContent;
-    const fallback = fallbackData.services.find((s) => s.order === serviceOrder);
-    return fallback?.detailedContent;
+    if (isPortableTextBlocks(localized) && localized.length > 0) return localized;
+    const fallbackText = minimalFallbackBodyByOrder[serviceOrder][locale] || minimalFallbackBodyByOrder[serviceOrder].fr;
+    return toPortableText(fallbackText, `${serviceOrder}-${locale}`);
   };
 
-  // Fetch expertise page data from Sanity with fallback
-  const data = await sanityFetchWithFallback<ExpertisePageData>({
-    query: EXPERTISE_PAGE_QUERY,
-    fallback: fallbackData,
-    tags: ['serviceItem', 'pageContent'],
-  });
+  const createFallbackServices = () =>
+    fallbackData.services.map((service) => ({
+      ...service,
+      _id: typeof service._id === 'string' && service._id.length > 0 ? service._id : `service-${service.order}`,
+      order: service.order as ServiceOrder,
+      bodyBlocks: resolveBodyBlocks(service.order as ServiceOrder, service.detailedContent),
+    }));
 
-  const computedServices = (Array.isArray(data.services) ? data.services : fallbackData.services)
-    .map((service) => {
-      const order = typeof service.order === 'number' ? service.order : 0;
-      return {
-        ...service,
-        order,
-        detailedContent: resolveDetailedContent(order, service.detailedContent),
-      };
-    })
-    .filter((service): service is typeof service & { order: 1 | 2 | 3 | 4 } => {
-      const order = Number(service.order);
-      return !isNaN(order) && order >= 1 && order <= 4;
-    })
-    .sort((a, b) => a.order - b.order);
+  let services = createFallbackServices();
+  try {
+    // Fetch expertise page data from Sanity with fallback
+    const data = await sanityFetchWithFallback<ExpertisePageData>({
+      query: EXPERTISE_PAGE_QUERY,
+      fallback: fallbackData,
+      tags: ['serviceItem', 'pageContent'],
+    });
 
-  const services = computedServices.length > 0 ? computedServices : fallbackData.services;
+    const servicesSource = Array.isArray(data.services) ? data.services : fallbackData.services;
+    const computedServices = servicesSource
+      .filter((service): service is NonNullable<typeof service> => !!service && typeof service === 'object')
+      .map((service) => {
+        const order = typeof service.order === 'number' ? service.order : 0;
+        const normalizedOrder = (order >= 1 && order <= 4 ? order : 1) as ServiceOrder;
+        return {
+          ...service,
+          _id: typeof service._id === 'string' && service._id.length > 0 ? service._id : `service-${normalizedOrder}`,
+          order: normalizedOrder,
+          bodyBlocks: resolveBodyBlocks(normalizedOrder, service.detailedContent),
+        };
+      })
+      .filter((service): service is typeof service & { order: 1 | 2 | 3 | 4 } => {
+        const order = Number(service.order);
+        return !isNaN(order) && order >= 1 && order <= 4;
+      })
+      .sort((a, b) => a.order - b.order);
+
+    services = computedServices.length > 0 ? computedServices : createFallbackServices();
+  } catch (error) {
+    console.error('[ExpertisePage] Failed to resolve services, using fallback content.', error);
+    services = createFallbackServices();
+  }
 
   return (
     <div className="min-h-screen">
@@ -286,9 +291,9 @@ export default async function ExpertisePage(props: ExpertisePageProps) {
                       {/* Detailed Content */}
                       <div className="prose prose-lg max-w-none">
                         <div className="text-muted-foreground font-sans leading-relaxed text-base space-y-4">
-                          {service.detailedContent && (
+                          {service.bodyBlocks && (
                             <PortableText
-                              value={getLocalizedRichText(service.detailedContent, locale)}
+                              value={service.bodyBlocks}
                             />
                           )}
                         </div>

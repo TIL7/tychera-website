@@ -18,9 +18,9 @@ export default function DigitalBusinessCard({
           <Image
             src="/images/tychera-logo-color.svg"
             alt="TYCHERA"
-            width={156}
-            height={40}
-            className="h-10 w-auto"
+            width={281}
+            height={72}
+            className="h-[72px] w-auto"
             priority
           />
           <h1 className="mt-5 text-3xl font-serif leading-tight">{profile.name}</h1>
@@ -57,7 +57,7 @@ export default function DigitalBusinessCard({
 
         <div className="mt-6 space-y-2 text-sm text-foreground/80">
           <a href={profile.website} className="block underline underline-offset-2">
-            {profile.website}
+            {profile.website.replace(/^https?:\/\//, "")}
           </a>
           <p>{profile.address}</p>
           <a
@@ -69,7 +69,7 @@ export default function DigitalBusinessCard({
         </div>
 
         <p className="mt-8 text-center text-xs text-muted-foreground">
-          Powered by TYCHERA
+          Powered by Tychera Investments LTD
         </p>
       </section>
     </main>

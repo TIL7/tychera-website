@@ -14,6 +14,11 @@ const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 const Footer = () => {
   const t = useTranslations('footer');
+  const currentYear = new Date().getFullYear();
+  const localizedCopyright = t('copyright');
+  const copyrightText = /\b\d{4}\b/.test(localizedCopyright)
+    ? localizedCopyright.replace(/\b\d{4}\b/, String(currentYear))
+    : localizedCopyright;
 
   return (
     <footer className="bg-primary text-primary-foreground py-16 lg:py-20">
@@ -103,7 +108,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="flex justify-center">
           <p className="text-sm font-sans text-primary-foreground/60 text-center">
-            {t('copyright')}
+            {copyrightText}
           </p>
         </div>
       </div>

@@ -14,7 +14,7 @@ export const digitalCardByToken: Record<string, DigitalCardProfile> = {
     name: "Kamal ADJAYI",
     title: "Managing Director",
     phone: "+250 793 145 440",
-    whatsappPhone: "+250793145440",
+    whatsappPhone: "+22890469240",
     email: "kamal.adjayi@tycherainvest.com",
     website: "https://www.tycherainvest.com",
     address: "Immeuble OHANA, Nyarutarama, Kigali - Rwanda",

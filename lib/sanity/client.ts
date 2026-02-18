@@ -26,17 +26,26 @@ if (!projectId) {
   console.error('   NEXT_PUBLIC_SITE_URL=http://localhost:3000');
 }
 
-export const client = createClient({
-  projectId: projectId!,
-  dataset,
-  apiVersion,
-  useCdn: process.env.NODE_ENV === 'production',
-  perspective: 'published',
-  stega: {
-    enabled: false,
-    studioUrl: '/studio',
-  },
-});
+let clientInstance: ReturnType<typeof createClient> | null = null;
+
+function getSanityClient() {
+  if (!projectId) return null;
+  if (clientInstance) return clientInstance;
+
+  clientInstance = createClient({
+    projectId,
+    dataset,
+    apiVersion,
+    useCdn: process.env.NODE_ENV === 'production',
+    perspective: 'published',
+    stega: {
+      enabled: false,
+      studioUrl: '/studio',
+    },
+  });
+
+  return clientInstance;
+}
 
 /**
  * Fetch data from Sanity with error handling and caching
@@ -70,6 +79,11 @@ export async function sanityFetch<T>({
   tags?: string[];
 }): Promise<T> {
   try {
+    const client = getSanityClient();
+    if (!client) {
+      throw new Error('Sanity client is not configured (missing NEXT_PUBLIC_SANITY_PROJECT_ID)');
+    }
+
     return await client.fetch<T>(query, params, {
       next: {
         revalidate: process.env.NODE_ENV === 'development' ? 0 : 3600, // 1 hour in production
