@@ -8,14 +8,12 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname, Link } from '@/i18n/navigation';
-import { useSearchParams } from 'next/navigation';
 
 const Header = () => {
   const t = useTranslations('header');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -54,19 +52,6 @@ const Header = () => {
     [t]
   );
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    e.preventDefault();
-    scrollToSection(sectionId);
-    setMobileOpen(false);
-  };
-
   const switchLanguage = (newLocale: 'fr' | 'en') => {
     if (newLocale === locale) return;
     
@@ -87,7 +72,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-[0.22,1,0.36,1] ${isScrolled ? 'glass-header h-20' : 'h-32'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[0.22,1,0.36,1] ${isScrolled ? 'glass-header h-28 md:h-32' : 'h-20 md:h-24'
         }`}
     >
       <div className="container h-full flex items-center justify-between px-6">
@@ -96,9 +81,9 @@ const Header = () => {
           <Image
             src="/images/tychera-logo-color.svg"
             alt="TYCHERA Investments"
-            width={112}
-            height={112}
-            className={`${isScrolled ? 'h-12' : 'h-28'} w-auto transition-all duration-300 ease-[0.22,1,0.36,1]`}
+            width={160}
+            height={160}
+            className={`${isScrolled ? 'h-24 md:h-28' : 'h-16 md:h-20'} w-auto transition-all duration-500 ease-[0.22,1,0.36,1]`}
             style={{ width: 'auto' }}
             priority
           />
@@ -122,18 +107,6 @@ const Header = () => {
             }
 
             if (link.key === 'expertise') {
-              if (isHomepage) {
-                return (
-                  <a
-                    key={link.key}
-                    href="#expertise"
-                    onClick={(e) => handleSectionClick(e, 'expertise')}
-                    className="text-sm font-sans text-foreground/80 hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                );
-              }
               return (
                 <Link
                   key={link.key}
@@ -227,18 +200,6 @@ const Header = () => {
                     }
 
                     if (link.key === 'expertise') {
-                      if (isHomepage) {
-                        return (
-                          <a
-                            key={link.key}
-                            href="#expertise"
-                            onClick={(e) => handleSectionClick(e, 'expertise')}
-                            className="text-2xl font-serif text-foreground hover:text-primary transition-colors py-4 border-b border-border/30"
-                          >
-                            {link.label}
-                          </a>
-                        );
-                      }
                       return (
                         <Link
                           key={link.key}

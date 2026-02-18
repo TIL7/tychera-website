@@ -30,22 +30,22 @@
       "financial": {
         "number": "01",
         "title": "Financial Engineering",
-        "description": "Sophisticated structuring of investment vehicles adapted to the specificities of African markets. We design bespoke solutions including green bonds, structured finance, and innovative instruments that address the requirements of our institutional clients."
+        "description": "Sophisticated structuring of investment vehicles adapted to the specificities of African markets."
       },
       "project": {
         "number": "02",
         "title": "Project Finance",
-        "description": "Strategic end-to-end support for infrastructure and renewable energy projects. From initial conception through financial close, we ensure the viability and attractiveness of each project to international investors."
+        "description": "Strategic end-to-end support for infrastructure projects."
       },
       "fund": {
         "number": "03",
-        "title": "Fund Management",
-        "description": "Active management of institutional portfolios following a rigorous ESG approach. Our expertise combines measurable financial performance with positive social and environmental impact, creating enduring value for our investors."
+        "title": "Guarantee Structuring",
+        "description": "Design and implementation of guarantee mechanisms to secure investments and mitigate risks for institutional investors."
       },
       "deal": {
         "number": "04",
-        "title": "Deal Structuring",
-        "description": "Design and assembly of complex transactions bringing together public actors and private investors. We optimize risk-return structures and develop robust contractual frameworks to ensure bankable, compliant, and sustainable operations."
+        "title": "Project Structuring",
+        "description": "Conception and assembly of complex projects uniting public and private actors. We optimize risk-return structures to ensure bankable operations."
       }
     }
   },
@@ -65,7 +65,7 @@
       "requestType": "Type of Inquiry",
       "requestTypePlaceholder": "Select an option",
       "phone": "Telephone (with country code)",
-      "phonePlaceholder": "+250 7XX XXX XXX",
+      "phonePlaceholder": "+250 700 000 000",
       "country": "Country",
       "countryPlaceholder": "Your country",
       "message": "Message / Project Description",
@@ -131,17 +131,11 @@
       "location": "OHANA Building, Kigali"
     },
     "sections": {
-      "legalIdentity": {
-        "title": "Legal Identity",
-        "company": "TYCHERA INVESTMENTS LTD",
-        "jurisdiction": "Republic of Rwanda",
-        "registration": "Regulated investment company"
-      },
       "location": {
         "title": "Presence",
         "address": "OHANA Building",
         "city": "Kigali, Rwanda",
-        "description": "Strategic headquarters at the heart of East Africa, a rapidly expanding regional financial hub."
+        "description": "Strategic headquarters at the heart of East Africa."
       },
       "team": {
         "title": "Team",
@@ -161,9 +155,9 @@
       "title": "CEO & Founder",
       "quote": "Africa's transformation requires structured partnerships where financial expertise meets deep understanding of institutional realities. Our mission is to create these public-private synergies that generate tangible impact.",
       "bio": {
-        "intro": "Mr. Kamal Alawo Adjayi brings to TYCHERA INVESTMENTS distinctive expertise combining political leadership, senior public administration, and international finance.",
-        "experience": "Former Mayor of Lomé (Togo), he led the urban transformation and economic development of the Togolese capital, acquiring deep understanding of the institutional challenges and infrastructure requirements across the African continent.",
-        "value": "Mr. Adjayi's distinctive value resides in his rare capacity to translate public requirements into structured and attractive financial assets. This dual competence: intimately understanding African institutional priorities while mastering the requirements of international capital markets, enables TYCHERA INVESTMENTS to create financial solutions that are genuinely adapted and effective."
+        "intro": "Mr. Kamal Alawo Adjayi is the Founder and CEO of Tychera Investments Ltd, a private investment firm active in financial services, asset management, and holding activities. A financial engineer and Pan-African entrepreneur, he specializes in financial structuring, strategic governance, and capital mobilization for projects with high economic and social impact.",
+        "education": "Holding degrees from the Universities of Luxembourg and Poitiers, Mr. Adjayi has over ten years of operational experience in international business and finance. This solid academic background, coupled with rigorous market practice, forms the foundation of his expertise in investment engineering.",
+        "experience": "With combined experience in both the public and private sectors, he has led and supervised large-scale projects in infrastructure, urban development, financial inclusion, and sustainable finance. He has structured complex investment vehicles and developed strategic partnerships with international financial institutions, multilateral donors, and private investors in Europe and Africa."
       },
       "cta": "Initiate a collaboration"
     }

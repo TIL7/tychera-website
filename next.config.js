@@ -5,7 +5,7 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['cdn.sanity.io'],
+    domains: ['cdn.sanity.io', 'images.unsplash.com'],
     formats: ['image/avif', 'image/webp'],
   },
   experimental: {

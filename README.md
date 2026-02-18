@@ -93,7 +93,7 @@ Immeuble OHANA, Nyarutarama
 Kigali, Rwanda
 
 Email: contact@tycherainvestments.com  
-Phone: +250 793 145 440
+Phone: +250 722 138 799
 
 ---
 

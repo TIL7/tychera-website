@@ -48,52 +48,18 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
               </h2>
               <div className="space-y-6 text-muted-foreground font-sans leading-relaxed">
                 <p>{t('principal.bio.intro')}</p>
+                <p>{t('principal.bio.education')}</p>
                 <p>{t('principal.bio.experience')}</p>
-                <p>{t('principal.bio.value')}</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Legal Identity & Location Section - Kept as is, it was fine */}
+      {/* Legal Identity & Location Section */}
       <section className="py-24 lg:py-32 bg-background border-t border-border/50">
         <div className="container px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-            <div className="lg:col-span-1">
-              <h2 className="text-2xl md:text-3xl font-serif text-foreground mb-6">
-                {t('sections.legalIdentity.title')}
-              </h2>
-              <div className="space-y-3">
-                <p className="text-foreground font-sans font-medium">
-                  {t('sections.legalIdentity.company')}
-                </p>
-                <p className="text-muted-foreground font-sans">
-                  {t('sections.legalIdentity.jurisdiction')}
-                </p>
-                <p className="text-muted-foreground font-sans text-sm">
-                  {t('sections.legalIdentity.registration')}
-                </p>
-              </div>
-            </div>
-
-            <div className="lg:col-span-1">
-              <h2 className="text-2xl md:text-3xl font-serif text-foreground mb-6">
-                {t('sections.location.title')}
-              </h2>
-              <div className="space-y-3">
-                <p className="text-foreground font-sans font-medium">
-                  {t('sections.location.address')}
-                </p>
-                <p className="text-muted-foreground font-sans">
-                  {t('sections.location.city')}
-                </p>
-                <p className="text-muted-foreground font-sans text-sm leading-relaxed">
-                  {t('sections.location.description')}
-                </p>
-              </div>
-            </div>
-
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-16">
             <div className="lg:col-span-1">
               <h2 className="text-2xl md:text-3xl font-serif text-foreground mb-6">
                 {t('sections.team.title')}

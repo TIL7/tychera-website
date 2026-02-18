@@ -306,10 +306,10 @@ const ContactSection = () => {
                   <div>
                     <p className="text-sm font-sans font-medium text-foreground">{t('info.phone.label')}</p>
                     <a
-                      href="tel:+250793145440"
+                      href="tel:+250722138799"
                       className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
                     >
-                      +250 793 145 440
+                      +250 722 138 799
                     </a>
                   </div>
                 </div>

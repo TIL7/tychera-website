@@ -2,14 +2,14 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { Scale, Construction, TrendingUp, Handshake, ArrowRight } from "lucide-react";
+import { Landmark, Briefcase, ShieldCheck, Handshake, ArrowRight } from "lucide-react";
 import { useTranslations } from 'next-intl';
 
 // Icon mapping for dynamic icon rendering
 const iconMap: Record<string, any> = {
-  Scale,
-  Construction,
-  TrendingUp,
+  Building2: Landmark, // Replaced Building2 with Landmark
+  Construction: Briefcase, // Replaced Construction with Briefcase
+  ChartPie: ShieldCheck, // Replaced ChartPie with ShieldCheck
   Handshake,
 };
 
@@ -69,7 +69,7 @@ function PillarCard({
   }, []);
 
   const teaserDescription = description.length > 120 ? `${description.slice(0, 117)}...` : description;
-  const IconComponent = iconMap[icon] || Scale;
+  const IconComponent = iconMap[icon] || Building2;
 
   return (
     <Link
@@ -87,8 +87,8 @@ function PillarCard({
       <span className="text-4xl lg:text-5xl font-serif text-accent/80 mb-6 block">{number}</span>
 
       {/* Icon */}
-      <div className="mb-6 text-primary">
-        <IconComponent className="w-8 h-8" strokeWidth={1.5} />
+      <div className="mb-6 text-[#2283a2]">
+        <IconComponent className="w-8 h-8 text-[#2283a2] fill-[#588157]/10" strokeWidth={1.5} />
       </div>
 
       {/* Title */}
@@ -121,7 +121,7 @@ export default function ThreePillars({ mode = 'detail' }: ThreePillarsProps) {
       number: t('services.financial.number'),
       title: t('services.financial.title'),
       description: t('services.financial.description'),
-      icon: "Scale",
+      icon: "Building2",
       order: 1,
     },
     {
@@ -137,7 +137,7 @@ export default function ThreePillars({ mode = 'detail' }: ThreePillarsProps) {
       number: t('services.fund.number'),
       title: t('services.fund.title'),
       description: t('services.fund.description'),
-      icon: "TrendingUp",
+      icon: "ChartPie",
       order: 3,
     },
     {
@@ -173,7 +173,6 @@ export default function ThreePillars({ mode = 'detail' }: ThreePillarsProps) {
               description={pillar.description}
               icon={pillar.icon as keyof typeof iconMap}
               learnMoreLabel={t('learnMore')}
-              {...(mode === 'teaser' ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             />
           ))}
         </div>
