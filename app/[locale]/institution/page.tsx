@@ -10,6 +10,10 @@ interface InstitutionPageProps {
 export default async function InstitutionPage(props: InstitutionPageProps) {
   await props.params;
   const t = await getTranslations('institution');
+  const teamMembers = [
+    { name: 'Kamal ADJAYI', role: t('team.roles.managingDirector') },
+    { name: 'Hawa KAYISHARAZA', role: t('team.roles.chiefOperatingOfficer') },
+  ] as const;
 
   return (
     <div className="min-h-screen">
@@ -87,7 +91,7 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
         </div>
       </section>
 
-      {/* Team Placeholders Section - Grid Layout */}
+      {/* Team Section - Grid Layout */}
       <section className="py-24 lg:py-32 bg-muted/30">
         <div className="container px-6">
           <div className="max-w-3xl mb-12">
@@ -97,10 +101,10 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
             <div className="w-16 h-px bg-accent" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {Array.from({ length: 4 }).map((_, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {teamMembers.map((member, idx) => (
               <div
-                key={idx}
+                key={member.name}
                 className="p-6 border border-border/50 rounded-sm bg-background hover:border-accent/50 transition-colors flex flex-col items-center text-center"
               >
                 <div className="w-20 h-20 rounded-full bg-muted mb-4 flex items-center justify-center">
@@ -109,10 +113,10 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
                   </span>
                 </div>
                 <p className="font-serif text-foreground mb-1">
-                  {t('team.cardTitle') || "Membre de l'équipe"}
+                  {member.name}
                 </p>
                 <p className="text-sm font-sans text-muted-foreground">
-                  {t('team.cardRolePlaceholder') || "Rôle"}
+                  {member.role}
                 </p>
               </div>
             ))}

@@ -30,22 +30,22 @@
       "financial": {
         "number": "01",
         "title": "Financial Engineering",
-        "description": "Sophisticated structuring of investment vehicles adapted to the specificities of African markets."
+        "description": "Design of investment vehicles aligned with African market and regulatory realities."
       },
       "project": {
         "number": "02",
         "title": "Project Finance",
-        "description": "Strategic end-to-end support for infrastructure projects."
+        "description": "Structuring and execution support from feasibility through financial close."
       },
       "fund": {
         "number": "03",
         "title": "Guarantee Structuring",
-        "description": "Design and implementation of guarantee mechanisms to secure investments and mitigate risks for institutional investors."
+        "description": "Risk-sharing instruments that improve bankability and mobilize institutional capital."
       },
       "deal": {
         "number": "04",
         "title": "Project Structuring",
-        "description": "Conception and assembly of complex projects uniting public and private actors. We optimize risk-return structures to ensure bankable operations."
+        "description": "Public-private transaction design for viable and investable project frameworks."
       }
     }
   },
@@ -145,7 +145,11 @@
     },
     "team": {
       "cardTitle": "Team member",
-      "cardRolePlaceholder": "Role (coming soon)"
+      "cardRolePlaceholder": "Role (coming soon)",
+      "roles": {
+        "managingDirector": "Managing Director",
+        "chiefOperatingOfficer": "Chief Operating Officer"
+      }
     },
     "principal": {
       "sectionLabel": "The Institution",

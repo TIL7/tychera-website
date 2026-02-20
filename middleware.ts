@@ -7,6 +7,14 @@ const intlMiddleware = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const isDigitalCardRoute = pathname.startsWith('/c/');
+
+  if (isDigitalCardRoute) {
+    const response = NextResponse.next();
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+    response.headers.set('Cache-Control', 'public, max-age=3600');
+    return response;
+  }
   
   // Bypass i18n middleware completely for Studio routes
   if (pathname.startsWith('/studio')) {

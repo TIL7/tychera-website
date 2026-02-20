@@ -30,22 +30,22 @@
       "financial": {
         "number": "01",
         "title": "Ingénierie Financière",
-        "description": "Structuration sophistiquée de véhicules d'investissement adaptés aux spécificités des marchés africains."
+        "description": "Conception de véhicules d'investissement alignés sur les réalités réglementaires et de marché africaines."
       },
       "project": {
         "number": "02",
         "title": "Financement de Projets",
-        "description": "Accompagnement stratégique de bout en bout des projets d’infrastructure."
+        "description": "Accompagnement de la structuration et de l'exécution, de la faisabilité à la clôture financière."
       },
       "fund": {
         "number": "03",
         "title": "Structuration de Garanties",
-        "description": "Conception et mise en œuvre de mécanismes de garantie pour sécuriser les investissements et atténuer les risques pour les investisseurs institutionnels."
+        "description": "Instruments de partage des risques améliorant la bancabilité et la mobilisation de capitaux institutionnels."
       },
       "deal": {
         "number": "04",
         "title": "Structuration de Projets",
-        "description": "Conception et montage de projets complexes réunissant acteurs publics et investisseurs privés."
+        "description": "Montage d'opérations public-privé pour des cadres de projets viables et investissables."
       }
     }
   },
@@ -145,7 +145,11 @@
     },
     "team": {
       "cardTitle": "Membre de l'équipe",
-      "cardRolePlaceholder": "Rôle (à venir)"
+      "cardRolePlaceholder": "Rôle (à venir)",
+      "roles": {
+        "managingDirector": "Directeur Général",
+        "chiefOperatingOfficer": "Directrice des Opérations"
+      }
     },
     "principal": {
       "sectionLabel": "L'Institution",
