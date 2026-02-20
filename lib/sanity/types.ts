@@ -116,6 +116,32 @@ export interface ExpertisePageData {
 }
 
 /**
+ * Site Settings
+ * Global contact and footer settings managed in Sanity.
+ */
+export interface SiteSettings {
+  _id: string;
+  email: string;
+  phone: string;
+  address?: {
+    line1: string;
+    line2?: string;
+    line3?: string;
+  };
+  socials?: {
+    linkedin?: string;
+    x?: string;
+  };
+  logo?: {
+    asset?: {
+      url?: string;
+    };
+  };
+  legalText?: string;
+  copyrightText?: string;
+}
+
+/**
  * Locale type
  * Supported locales in the application
  */

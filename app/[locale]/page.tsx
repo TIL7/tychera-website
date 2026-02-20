@@ -3,6 +3,7 @@ import ThreePillars from "@/components/sections/ThreePillars";
 import FounderTeaser from "@/components/sections/FounderTeaser";
 import ContactSection from "@/components/sections/ContactSection";
 import { CMSErrorBoundary } from "@/components/sections/CMSErrorBoundary";
+import { getSiteSettings } from "@/lib/sanity/getSiteSettings";
 
 interface HomePageProps {
   params: Promise<{
@@ -26,6 +27,7 @@ interface HomePageProps {
  */
 export default async function HomePage(props: HomePageProps) {
   await props.params;
+  const siteSettings = await getSiteSettings();
   // Locale will be used for future CMS queries and metadata generation
 
   return (
@@ -35,7 +37,7 @@ export default async function HomePage(props: HomePageProps) {
         <ThreePillars mode="teaser" />
       </CMSErrorBoundary>
       <FounderTeaser />
-      <ContactSection />
+      <ContactSection siteSettings={siteSettings} />
     </>
   );
 }

@@ -1,8 +1,10 @@
 import Image from "next/image";
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Linkedin } from 'lucide-react';
+import { getSiteSettings } from '@/lib/sanity/getSiteSettings';
+import type { SVGProps } from 'react';
 
-const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
+const XIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 24 24"
     fill="currentColor"
@@ -12,13 +14,25 @@ const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const Footer = () => {
-  const t = useTranslations('footer');
+const Footer = async () => {
+  const t = await getTranslations('footer');
+  const siteSettings = await getSiteSettings();
+  const hasSiteSettings = Boolean(siteSettings);
   const currentYear = new Date().getFullYear();
-  const localizedCopyright = t('copyright');
+  const localizedCopyright = siteSettings?.copyrightText || t('copyright');
   const copyrightText = /\b\d{4}\b/.test(localizedCopyright)
     ? localizedCopyright.replace(/\b\d{4}\b/, String(currentYear))
     : localizedCopyright;
+  const email = siteSettings?.email || 'contact@tycherainvestments.com';
+  const phone = siteSettings?.phone || '+250 722 138 799';
+  const phoneHref = phone.replace(/\s+/g, '');
+  const linkedinUrl = siteSettings?.socials?.linkedin || 'https://www.linkedin.com';
+  const xUrl = siteSettings?.socials?.x || 'https://x.com';
+  const logoUrl = siteSettings?.logo?.asset?.url || '/images/tychera-logo-white-new.png';
+  const addressLine1 = hasSiteSettings ? siteSettings?.address?.line1 : t('address.company');
+  const addressLine2 = hasSiteSettings ? siteSettings?.address?.line2 : t('address.building');
+  const addressLine3 = hasSiteSettings ? siteSettings?.address?.line3 : t('address.city');
+  const legalText = siteSettings?.legalText;
 
   return (
     <footer className="bg-primary text-primary-foreground py-16 lg:py-20">
@@ -27,7 +41,7 @@ const Footer = () => {
           <div className="lg:col-span-5 flex flex-col items-start text-left">
             <div className="flex justify-start text-primary-foreground -mt-3">
               <Image
-                src="/images/tychera-logo-white-new.png"
+                src={logoUrl}
                 alt="TYCHERA Investments"
                 width={842}
                 height={353}
@@ -46,15 +60,21 @@ const Footer = () => {
               {t('headquarters')}
             </h4>
             <address className="not-italic space-y-1.5">
-              <p className="text-sm font-sans text-primary-foreground font-medium">
-                {t('address.company')}
-              </p>
-              <p className="text-sm font-sans text-primary-foreground/90">
-                {t('address.building')}
-              </p>
-              <p className="text-sm font-sans text-primary-foreground/90">
-                {t('address.city')}
-              </p>
+              {addressLine1 && (
+                <p className="text-sm font-sans text-primary-foreground font-medium">
+                  {addressLine1}
+                </p>
+              )}
+              {addressLine2 && (
+                <p className="text-sm font-sans text-primary-foreground/90">
+                  {addressLine2}
+                </p>
+              )}
+              {addressLine3 && (
+                <p className="text-sm font-sans text-primary-foreground/90">
+                  {addressLine3}
+                </p>
+              )}
             </address>
           </div>
 
@@ -64,24 +84,24 @@ const Footer = () => {
             </h4>
             <div className="space-y-2">
               <a
-                href="mailto:contact@tycherainvestments.com"
+                href={`mailto:${email}`}
                 className="block text-sm font-sans text-primary-foreground/90 break-words hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                 aria-label={t('ariaEmail')}
               >
-                contact@tycherainvestments.com
+                {email}
               </a>
               <a
-                href="tel:+250722138799"
+                href={`tel:${phoneHref}`}
                 className="block text-sm font-mono text-primary-foreground/90 hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                 aria-label={t('ariaPhone')}
               >
-                +250 722 138 799
+                {phone}
               </a>
             </div>
 
             <div className="flex gap-4 mt-6">
               <a
-                href="https://www.linkedin.com"
+                href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary-foreground/80 hover:text-primary-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm"
@@ -90,7 +110,7 @@ const Footer = () => {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="https://x.com"
+                href={xUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary-foreground/80 hover:text-primary-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-sm"
@@ -104,6 +124,12 @@ const Footer = () => {
 
         {/* Gold Divider */}
         <div className="my-10 h-px bg-accent/50" />
+
+        {legalText && (
+          <div className="mb-6">
+            <p className="text-sm font-sans text-primary-foreground/70 text-center">{legalText}</p>
+          </div>
+        )}
 
         {/* Bottom Bar */}
         <div className="flex justify-center">

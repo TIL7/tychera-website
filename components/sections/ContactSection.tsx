@@ -19,11 +19,22 @@ import { useTranslations, useLocale } from 'next-intl';
 import { contactFormSchema, contactFormSchemaEN, type ContactFormData } from '@/lib/validations/contact';
 import { submitContactForm } from '@/app/actions/contact';
 import { toast } from 'sonner';
+import type { SiteSettings } from '@/lib/sanity/types';
 
-const ContactSection = () => {
+interface ContactSectionProps {
+  siteSettings?: SiteSettings | null;
+}
+
+const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
   const t = useTranslations('contact');
   const locale = useLocale();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const hasSiteSettings = Boolean(siteSettings);
+  const email = siteSettings?.email || 'contact@tycherainvestments.com';
+  const phone = siteSettings?.phone || '+250 722 138 799';
+  const addressLine1 = hasSiteSettings ? siteSettings?.address?.line1 : t('info.address.line1');
+  const addressLine2 = hasSiteSettings ? siteSettings?.address?.line2 : t('info.address.line2');
+  const addressLine3 = hasSiteSettings ? siteSettings?.address?.line3 : t('info.address.line3');
 
   const requestTypes = [
     { value: "financement" as const, label: t('form.requestTypes.financement') },
@@ -281,9 +292,13 @@ const ContactSection = () => {
                   <div>
                     <p className="text-sm font-sans font-medium text-foreground">{t('info.address.label')}</p>
                     <p className="text-sm font-sans text-muted-foreground">
-                      {t('info.address.line1')}<br />
-                      {t('info.address.line2')}<br />
-                      {t('info.address.line3')}
+                      {addressLine1}<br />
+                      {addressLine2 && (
+                        <>
+                          {addressLine2}<br />
+                        </>
+                      )}
+                      {addressLine3}
                     </p>
                   </div>
                 </div>
@@ -293,10 +308,10 @@ const ContactSection = () => {
                   <div>
                     <p className="text-sm font-sans font-medium text-foreground">{t('info.email.label')}</p>
                     <a
-                      href="mailto:contact@tycherainvestments.com"
+                      href={`mailto:${email}`}
                       className="text-sm font-sans text-primary hover:text-primary/80 transition-colors"
                     >
-                      contact@tycherainvestments.com
+                      {email}
                     </a>
                   </div>
                 </div>
@@ -306,10 +321,10 @@ const ContactSection = () => {
                   <div>
                     <p className="text-sm font-sans font-medium text-foreground">{t('info.phone.label')}</p>
                     <a
-                      href="tel:+250722138799"
+                      href={`tel:${phone.replace(/\s+/g, '')}`}
                       className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
                     >
-                      +250 722 138 799
+                      {phone}
                     </a>
                   </div>
                 </div>
