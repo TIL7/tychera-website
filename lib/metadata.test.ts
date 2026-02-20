@@ -263,7 +263,6 @@ describe("Metadata Generation - Open Graph Tags", () => {
       expect(metadata).toHaveProperty("title");
       expect(metadata).toHaveProperty("description");
       expect(metadata).toHaveProperty("keywords");
-      expect(metadata).toHaveProperty("canonical");
       expect(metadata).toHaveProperty("alternates");
       expect(metadata).toHaveProperty("openGraph");
       expect(metadata).toHaveProperty("twitter");

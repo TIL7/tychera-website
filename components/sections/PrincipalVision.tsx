@@ -50,7 +50,7 @@ export default function PrincipalVision(): JSX.Element {
             {/* Pull Quote */}
             <blockquote className="mb-8 border-l-2 border-accent pl-6">
               <p className="text-xl md:text-2xl lg:text-3xl leading-relaxed text-foreground/90 italic font-serif">
-                "{t('quote')}"
+                &quot;{t('quote')}&quot;
               </p>
             </blockquote>
 
