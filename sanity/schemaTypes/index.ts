@@ -2,6 +2,7 @@ import { type SchemaTypeDefinition } from 'sanity'
 import { serviceItem } from './serviceItem'
 import { teamMember } from './teamMember'
 import { pageContent } from './pageContent'
+import { siteSettings } from './siteSettings'
 
 /**
  * Schema Registry
@@ -16,5 +17,5 @@ import { pageContent } from './pageContent'
  * @requirements 4.2, 4.3, 4.4
  */
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [serviceItem, teamMember, pageContent],
+  types: [siteSettings, serviceItem, teamMember, pageContent],
 }

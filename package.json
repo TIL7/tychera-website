@@ -10,7 +10,8 @@
     "lint": "next lint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "seed": "tsx scripts/seed-content.ts"
+    "seed": "tsx scripts/seed-content.ts",
+    "seed:site-settings": "tsx scripts/seed-site-settings.ts"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",

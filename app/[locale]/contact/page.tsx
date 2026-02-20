@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import ContactSection from "@/components/sections/ContactSection";
+import { getSiteSettings } from '@/lib/sanity/getSiteSettings';
 
 interface ContactPageProps {
   params: Promise<{
@@ -10,6 +11,7 @@ interface ContactPageProps {
 export default async function ContactPage(props: ContactPageProps) {
   await props.params;
   const t = await getTranslations('contactPage');
+  const siteSettings = await getSiteSettings();
 
   return (
     <div className="min-h-screen pt-24 md:pt-32 pb-24 bg-background">
@@ -25,7 +27,7 @@ export default async function ContactPage(props: ContactPageProps) {
         </div>
 
         <div className="bg-white border border-accent/20 shadow-sm p-8 md:p-12 rounded-sm">
-          <ContactSection />
+          <ContactSection siteSettings={siteSettings} />
         </div>
       </div>
     </div>

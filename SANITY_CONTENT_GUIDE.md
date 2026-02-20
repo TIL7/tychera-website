@@ -14,10 +14,42 @@ This guide will help you add content to Sanity Studio for the TYCHERA Investment
    http://localhost:3000/studio
    ```
 
-3. You should see the Sanity Studio interface with three content types:
-   - Service Item
-   - Team Member
-   - Page Content
+3. You should see the Sanity Studio dashboard with:
+   - Site Settings
+   - Services
+   - Team Members
+
+## Site Settings (Singleton)
+
+Use **Site Settings** to edit global contact and footer details.  
+This is a singleton document (one document only) with fixed ID `siteSettings`.
+
+Fields available:
+- Email (required)
+- Phone (required)
+- Address
+  - Line 1 (required)
+  - Line 2 (optional)
+  - Line 3 (optional)
+- Social links
+  - LinkedIn URL (optional)
+  - X URL (optional)
+- Logo image (optional)
+- Legal text (optional)
+- Copyright text (optional)
+
+## Seed Site Settings
+
+To create/update the singleton with defaults:
+
+```bash
+npm run seed:site-settings
+```
+
+The seed script:
+- Requires `SANITY_API_TOKEN`
+- Upserts only the `siteSettings` document
+- Does not modify services or team members
 
 ## Task 7.4: Add Service Items (Four Pillars)
 

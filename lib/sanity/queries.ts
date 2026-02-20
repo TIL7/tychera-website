@@ -203,3 +203,30 @@ export const EXPERTISE_PAGE_QUERY = groq`
     }
   }
 `;
+
+/**
+ * Fetch global site settings singleton
+ */
+export const SITE_SETTINGS_QUERY = groq`
+  *[_type == "siteSettings" && _id == "siteSettings"][0] {
+    _id,
+    email,
+    phone,
+    address {
+      line1,
+      line2,
+      line3
+    },
+    socials {
+      linkedin,
+      x
+    },
+    logo {
+      asset->{
+        url
+      }
+    },
+    legalText,
+    copyrightText
+  }
+`;
