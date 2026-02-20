@@ -50,6 +50,31 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 Access the embedded Sanity Studio at [http://localhost:3000/studio](http://localhost:3000/studio) to manage content.
 
+### Client CMS Portal
+
+The Studio dashboard is intentionally limited to:
+- Site Settings (singleton)
+- Services
+- Team Members
+
+Client-editable content for this portal:
+- Contact email and phone
+- Address lines
+- Social links (LinkedIn, X)
+- Optional footer logo
+- Optional legal/copyright text
+- Services and team member documents
+
+Seed the Site Settings singleton:
+
+```bash
+npm run seed:site-settings
+```
+
+Requirements:
+- `SANITY_API_TOKEN` must be set to a valid write token
+- The script upserts only `_id: "siteSettings"`
+
 ## Project Structure
 
 ```
