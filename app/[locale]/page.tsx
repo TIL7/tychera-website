@@ -1,14 +1,22 @@
+import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
 import ThreePillars from "@/components/sections/ThreePillars";
 import FounderTeaser from "@/components/sections/FounderTeaser";
 import ContactSection from "@/components/sections/ContactSection";
 import { CMSErrorBoundary } from "@/components/sections/CMSErrorBoundary";
 import { getSiteSettings } from "@/lib/sanity/getSiteSettings";
+import { generateHomePageMetadata, type Locale } from "@/lib/metadata";
+import OrganizationJsonLd from "@/components/sections/OrganizationJsonLd";
 
 interface HomePageProps {
   params: Promise<{
     locale: string;
   }>;
+}
+
+export async function generateMetadata(props: HomePageProps): Promise<Metadata> {
+  const params = await props.params;
+  return generateHomePageMetadata(params.locale as Locale);
 }
 
 /**
@@ -26,12 +34,13 @@ interface HomePageProps {
  * @requirements 3.1, 3.4, 3.5, 4.7, 4.8
  */
 export default async function HomePage(props: HomePageProps) {
-  await props.params;
+  const params = await props.params;
+  const locale = params.locale;
   const siteSettings = await getSiteSettings();
-  // Locale will be used for future CMS queries and metadata generation
 
   return (
     <>
+      <OrganizationJsonLd locale={locale} />
       <Hero />
       <CMSErrorBoundary>
         <ThreePillars mode="teaser" />

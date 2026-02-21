@@ -1,11 +1,18 @@
+import type { Metadata } from "next";
 import { getTranslations } from 'next-intl/server';
 import ContactSection from "@/components/sections/ContactSection";
 import { getSiteSettings } from '@/lib/sanity/getSiteSettings';
+import { generateContactPageMetadata, type Locale } from "@/lib/metadata";
 
 interface ContactPageProps {
   params: Promise<{
     locale: string;
   }>;
+}
+
+export async function generateMetadata(props: ContactPageProps): Promise<Metadata> {
+  const params = await props.params;
+  return generateContactPageMetadata(params.locale as Locale);
 }
 
 export default async function ContactPage(props: ContactPageProps) {

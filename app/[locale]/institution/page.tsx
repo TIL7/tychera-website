@@ -1,14 +1,21 @@
+import type { Metadata } from "next";
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { sanityFetchWithFallback } from '@/lib/sanity/client';
 import { TEAM_MEMBERS_QUERY } from '@/lib/sanity/queries';
 import { type TeamMember, type Locale, getLocalizedText } from '@/lib/sanity/types';
+import { generateInstitutionPageMetadata, type Locale as MetaLocale } from "@/lib/metadata";
 
 interface InstitutionPageProps {
   params: Promise<{
     locale: string;
   }>;
+}
+
+export async function generateMetadata(props: InstitutionPageProps): Promise<Metadata> {
+  const params = await props.params;
+  return generateInstitutionPageMetadata(params.locale as MetaLocale);
 }
 
 export default async function InstitutionPage(props: InstitutionPageProps) {

@@ -56,18 +56,38 @@ export async function generateMetadata(
     notFound();
   }
 
-  const isDefault = locale === "fr";
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com";
-  const canonicalUrl = isDefault ? baseUrl : `${baseUrl}/${locale}`;
+
+  const titles: Record<Locale, { default: string; template: string }> = {
+    fr: {
+      default: "TYCHERA Investments LTD",
+      template: "%s | TYCHERA Investments LTD",
+    },
+    en: {
+      default: "TYCHERA Investments LTD",
+      template: "%s | TYCHERA Investments LTD",
+    },
+  };
+
+  const descriptions: Record<Locale, string> = {
+    fr: "Architecte du Financement des Projets en Afrique. Le pont entre capital international et potentiel africain.",
+    en: "Architect of Project Financing in Africa. The bridge between international capital and African potential.",
+  };
 
   return {
+    title: titles[locale],
+    description: descriptions[locale],
     alternates: {
-      canonical: canonicalUrl,
+      canonical: `${baseUrl}/${locale}`,
       languages: {
-        "fr": baseUrl,
-        "en": `${baseUrl}/en`,
-        "x-default": baseUrl,
+        fr: `${baseUrl}/fr`,
+        en: `${baseUrl}/en`,
+        "x-default": `${baseUrl}/fr`,
       },
+    },
+    openGraph: {
+      locale: locale === "en" ? "en_US" : "fr_RW",
+      siteName: "TYCHERA Investments LTD",
     },
   };
 }
