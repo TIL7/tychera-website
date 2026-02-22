@@ -54,9 +54,9 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
       <section className="py-24 bg-background">
         <div className="container px-6">
           <div className="max-w-4xl">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
+            <h1 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
               {t('hero.title')}
-            </h2>
+            </h1>
             <p className="text-lg text-muted-foreground font-sans leading-relaxed">
               {t('hero.subtitle')}
             </p>
