@@ -56,3 +56,11 @@ temporary_docs/
 *_PLAN.md
 *_REQUIRED.md
 *_NEXT_STEPS.md
+*_CHECKLIST.md
+*_GUIDE.md
+*_SETUP.md
+
+# AI/IDE tool directories
+.kiro
+.trae
+.agent

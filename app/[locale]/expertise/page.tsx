@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Landmark, Briefcase, ShieldCheck, Handshake } from "lucide-react";
 import { sanityFetchWithFallback } from "@/lib/sanity/client";
 import { EXPERTISE_PAGE_QUERY } from "@/lib/sanity/queries";
@@ -6,11 +7,17 @@ import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { getTranslations } from 'next-intl/server';
+import { generateExpertisePageMetadata, type Locale as MetaLocale } from "@/lib/metadata";
 
 interface ExpertisePageProps {
   params: Promise<{
     locale: string;
   }>;
+}
+
+export async function generateMetadata(props: ExpertisePageProps): Promise<Metadata> {
+  const params = await props.params;
+  return generateExpertisePageMetadata(params.locale as MetaLocale);
 }
 
 type ServiceOrder = 1 | 2 | 3 | 4;

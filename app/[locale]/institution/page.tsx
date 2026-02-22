@@ -1,14 +1,21 @@
+import type { Metadata } from "next";
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { sanityFetchWithFallback } from '@/lib/sanity/client';
 import { TEAM_MEMBERS_QUERY } from '@/lib/sanity/queries';
 import { type TeamMember, type Locale, getLocalizedText } from '@/lib/sanity/types';
+import { generateInstitutionPageMetadata, type Locale as MetaLocale } from "@/lib/metadata";
 
 interface InstitutionPageProps {
   params: Promise<{
     locale: string;
   }>;
+}
+
+export async function generateMetadata(props: InstitutionPageProps): Promise<Metadata> {
+  const params = await props.params;
+  return generateInstitutionPageMetadata(params.locale as MetaLocale);
 }
 
 export default async function InstitutionPage(props: InstitutionPageProps) {
@@ -47,9 +54,9 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
       <section className="py-24 bg-background">
         <div className="container px-6">
           <div className="max-w-4xl">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
+            <h1 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
               {t('hero.title')}
-            </h2>
+            </h1>
             <p className="text-lg text-muted-foreground font-sans leading-relaxed">
               {t('hero.subtitle')}
             </p>

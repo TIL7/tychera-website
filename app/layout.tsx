@@ -72,6 +72,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com",
+    languages: {
+      fr: `${process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com"}/fr`,
+      en: `${process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com"}/en`,
+    },
   },
 };
 

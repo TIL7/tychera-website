@@ -45,15 +45,11 @@ function getBaseUrl(): string {
  */
 export function generateCanonicalUrl(locale: Locale, path: string = "/"): string {
   const baseUrl = getBaseUrl();
-  const isDefault = locale === "fr";
   
   // Normalize path
   const normalizedPath = path === "/" ? "" : path;
   
-  if (isDefault) {
-    return `${baseUrl}${normalizedPath}`;
-  }
-  
+  // localePrefix: 'always' — all locales have explicit prefix
   return `${baseUrl}/${locale}${normalizedPath}`;
 }
 
@@ -68,9 +64,9 @@ export function generateLanguageAlternates(path: string = "/") {
   const normalizedPath = path === "/" ? "" : path;
   
   return {
-    fr: `${baseUrl}${normalizedPath}`,
+    fr: `${baseUrl}/fr${normalizedPath}`,
     en: `${baseUrl}/en${normalizedPath}`,
-    "x-default": `${baseUrl}${normalizedPath}`,
+    "x-default": `${baseUrl}/fr${normalizedPath}`,
   };
 }
 
@@ -260,6 +256,103 @@ export function generateExpertisePageMetadata(locale: Locale): Metadata {
     description: metadata.description,
     keywords: metadata.keywords,
     path: "/expertise",
+  });
+}
+/**
+ * Generate metadata for the institution page
+ *
+ * @param locale - The current locale (fr or en)
+ * @returns Complete Metadata object for the institution page
+ */
+export function generateInstitutionPageMetadata(locale: Locale): Metadata {
+  const frenchMetadata = {
+    title: "L'Institution - TYCHERA Investments LTD",
+    description:
+      "Architecture financière souveraine au service du développement africain. Une expertise institutionnelle structurée, ancrée dans les réalités du continent.",
+    keywords: [
+      "institution financière",
+      "gouvernance",
+      "Afrique",
+      "développement",
+      "Rwanda",
+      "Kigali",
+      "expertise institutionnelle",
+      "partenariat public-privé",
+    ],
+  };
+
+  const englishMetadata = {
+    title: "The Institution - TYCHERA Investments LTD",
+    description:
+      "Sovereign financial architecture in service of African development. Structured institutional expertise, anchored in continental realities.",
+    keywords: [
+      "financial institution",
+      "governance",
+      "Africa",
+      "development",
+      "Rwanda",
+      "Kigali",
+      "institutional expertise",
+      "public-private partnership",
+    ],
+  };
+
+  const metadata = locale === "en" ? englishMetadata : frenchMetadata;
+
+  return generatePageMetadata({
+    locale,
+    title: metadata.title,
+    description: metadata.description,
+    keywords: metadata.keywords,
+    path: "/institution",
+  });
+}
+
+/**
+ * Generate metadata for the contact page
+ *
+ * @param locale - The current locale (fr or en)
+ * @returns Complete Metadata object for the contact page
+ */
+export function generateContactPageMetadata(locale: Locale): Metadata {
+  const frenchMetadata = {
+    title: "Contact - TYCHERA Investments LTD",
+    description:
+      "Initiez une collaboration stratégique avec TYCHERA Investments. Financement de projets, conseil stratégique et structuration financière en Afrique.",
+    keywords: [
+      "contact",
+      "collaboration stratégique",
+      "financement de projets",
+      "conseil financier",
+      "Afrique",
+      "Rwanda",
+      "Kigali",
+    ],
+  };
+
+  const englishMetadata = {
+    title: "Contact - TYCHERA Investments LTD",
+    description:
+      "Initiate a strategic collaboration with TYCHERA Investments. Project financing, strategic advisory and financial structuring in Africa.",
+    keywords: [
+      "contact",
+      "strategic collaboration",
+      "project financing",
+      "financial advisory",
+      "Africa",
+      "Rwanda",
+      "Kigali",
+    ],
+  };
+
+  const metadata = locale === "en" ? englishMetadata : frenchMetadata;
+
+  return generatePageMetadata({
+    locale,
+    title: metadata.title,
+    description: metadata.description,
+    keywords: metadata.keywords,
+    path: "/contact",
   });
 }
 

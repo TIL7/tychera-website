@@ -7,6 +7,8 @@ import {
   generatePageMetadata,
   generateHomePageMetadata,
   generateExpertisePageMetadata,
+  generateInstitutionPageMetadata,
+  generateContactPageMetadata,
   generate404PageMetadata,
 } from "./metadata";
 
@@ -28,7 +30,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
   describe("generateCanonicalUrl", () => {
     it("should generate canonical URL for French home page (default locale)", () => {
       const url = generateCanonicalUrl("fr", "/");
-      expect(url).toBe(baseUrl);
+      expect(url).toBe(`${baseUrl}/fr`);
     });
 
     it("should generate canonical URL for English home page", () => {
@@ -38,7 +40,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
 
     it("should generate canonical URL for French expertise page", () => {
       const url = generateCanonicalUrl("fr", "/expertise");
-      expect(url).toBe(`${baseUrl}/expertise`);
+      expect(url).toBe(`${baseUrl}/fr/expertise`);
     });
 
     it("should generate canonical URL for English expertise page", () => {
@@ -48,23 +50,23 @@ describe("Metadata Generation - Open Graph Tags", () => {
 
     it("should normalize path without leading slash", () => {
       const url = generateCanonicalUrl("fr", "/expertise");
-      expect(url).toBe(`${baseUrl}/expertise`);
+      expect(url).toBe(`${baseUrl}/fr/expertise`);
     });
   });
 
   describe("generateLanguageAlternates", () => {
     it("should generate language alternates for home page", () => {
       const alternates = generateLanguageAlternates("/");
-      expect(alternates.fr).toBe(baseUrl);
+      expect(alternates.fr).toBe(`${baseUrl}/fr`);
       expect(alternates.en).toBe(`${baseUrl}/en`);
-      expect(alternates["x-default"]).toBe(baseUrl);
+      expect(alternates["x-default"]).toBe(`${baseUrl}/fr`);
     });
 
     it("should generate language alternates for expertise page", () => {
       const alternates = generateLanguageAlternates("/expertise");
-      expect(alternates.fr).toBe(`${baseUrl}/expertise`);
+      expect(alternates.fr).toBe(`${baseUrl}/fr/expertise`);
       expect(alternates.en).toBe(`${baseUrl}/en/expertise`);
-      expect(alternates["x-default"]).toBe(`${baseUrl}/expertise`);
+      expect(alternates["x-default"]).toBe(`${baseUrl}/fr/expertise`);
     });
   });
 
@@ -176,7 +178,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
         path: "/expertise",
       });
 
-      expect(og.url).toBe(`${baseUrl}/expertise`);
+      expect(og.url).toBe(`${baseUrl}/fr/expertise`);
     });
 
     it("should set og:title and og:description", () => {
@@ -303,7 +305,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       expect(metadata.title).toContain("TYCHERA Investments LTD");
       expect(metadata.description).toContain("Le pont");
       expect(metadata.keywords).toContain("financement de projets");
-      expect(metadata.openGraph?.url).toBe(baseUrl);
+      expect(metadata.openGraph?.url).toBe(`${baseUrl}/fr`);
     });
 
     it("should generate English home page metadata", () => {
@@ -335,7 +337,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       expect(metadata.title).toContain("Expertise");
       expect(metadata.description).toContain("Découvrez");
       expect(metadata.keywords).toContain("expertise financière");
-      expect(metadata.openGraph?.url).toContain("/expertise");
+      expect(metadata.openGraph?.url).toContain("/fr/expertise");
     });
 
     it("should generate English expertise page metadata", () => {
@@ -357,6 +359,46 @@ describe("Metadata Generation - Open Graph Tags", () => {
         expect(images[0]).toHaveProperty("width", 1200);
         expect(images[0]).toHaveProperty("height", 630);
       }
+    });
+  });
+
+  describe("generateInstitutionPageMetadata", () => {
+    it("should generate French institution page metadata", () => {
+      const metadata = generateInstitutionPageMetadata("fr");
+
+      expect(metadata.title).toContain("Institution");
+      expect(metadata.description).toContain("Architecture financière");
+      expect(metadata.keywords).toContain("institution financière");
+      expect(metadata.openGraph?.url).toContain("/fr/institution");
+    });
+
+    it("should generate English institution page metadata", () => {
+      const metadata = generateInstitutionPageMetadata("en");
+
+      expect(metadata.title).toContain("Institution");
+      expect(metadata.description).toContain("Sovereign financial");
+      expect(metadata.keywords).toContain("financial institution");
+      expect(metadata.openGraph?.url).toContain("/en/institution");
+    });
+  });
+
+  describe("generateContactPageMetadata", () => {
+    it("should generate French contact page metadata", () => {
+      const metadata = generateContactPageMetadata("fr");
+
+      expect(metadata.title).toContain("Contact");
+      expect(metadata.description).toContain("collaboration stratégique");
+      expect(metadata.keywords).toContain("contact");
+      expect(metadata.openGraph?.url).toContain("/fr/contact");
+    });
+
+    it("should generate English contact page metadata", () => {
+      const metadata = generateContactPageMetadata("en");
+
+      expect(metadata.title).toContain("Contact");
+      expect(metadata.description).toContain("strategic collaboration");
+      expect(metadata.keywords).toContain("contact");
+      expect(metadata.openGraph?.url).toContain("/en/contact");
     });
   });
 
@@ -404,6 +446,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
@@ -417,6 +461,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
@@ -430,6 +476,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
@@ -454,6 +502,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
@@ -467,11 +517,13 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
       pages.forEach((metadata) => {
-        const og = metadata.openGraph as any;
+        const og = metadata.openGraph as Record<string, unknown>;
         expect(og?.type).toBeDefined();
         expect(og?.type).toBe("website");
       });
@@ -481,6 +533,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
@@ -494,6 +548,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
@@ -509,11 +565,13 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
       pages.forEach((metadata) => {
-        const twitter = metadata.twitter as any;
+        const twitter = metadata.twitter as Record<string, unknown>;
         expect(twitter?.card).toBeDefined();
         expect(twitter?.card).toBe("summary_large_image");
       });
@@ -523,6 +581,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
@@ -536,6 +596,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
@@ -549,6 +611,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const pages = [
         generateHomePageMetadata("fr"),
         generateExpertisePageMetadata("fr"),
+        generateInstitutionPageMetadata("fr"),
+        generateContactPageMetadata("fr"),
         generate404PageMetadata("fr"),
       ];
 
