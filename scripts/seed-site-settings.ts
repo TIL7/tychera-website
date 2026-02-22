@@ -34,7 +34,7 @@ if (!token || token === 'your-sanity-api-token-here') {
 const defaults = {
   _id: 'siteSettings',
   _type: 'siteSettings',
-  email: 'contact@tycherainvestments.com',
+  email: 'contact@tycherainvest.com',
   phone: '+250 722 138 799',
   address: {
     line1: 'TYCHERA INVESTMENTS LTD',

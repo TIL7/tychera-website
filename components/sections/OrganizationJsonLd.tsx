@@ -5,21 +5,20 @@
  * for search engine rich results.
  */
 
+import { SITE_URL } from "@/lib/site-url";
+
 interface OrganizationJsonLdProps {
   locale: string;
 }
 
 export default function OrganizationJsonLd({ locale }: OrganizationJsonLdProps): React.ReactElement {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com";
-
   const schema = {
     "@context": "https://schema.org",
     "@type": ["Organization", "FinancialService"],
     name: "TYCHERA Investments LTD",
     legalName: "TYCHERA Investments LTD",
-    url: `${baseUrl}/${locale}`,
-    logo: `${baseUrl}/images/tychera-logo-white-new.png`,
+    url: `${SITE_URL}/${locale}`,
+    logo: `${SITE_URL}/images/tychera-logo-white-new.png`,
     description:
       locale === "en"
         ? "Architect of Project Financing in Africa. The bridge between international capital and African potential."
@@ -34,7 +33,7 @@ export default function OrganizationJsonLd({ locale }: OrganizationJsonLdProps):
       "@type": "ContactPoint",
       telephone: "+250722138799",
       contactType: "customer service",
-      email: "contact@tycherainvestments.com",
+      email: "contact@tycherainvest.com",
       availableLanguage: ["French", "English"],
     },
     founder: {

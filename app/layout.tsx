@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SITE_URL } from "@/lib/site-url";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "TYCHERA Investments LTD",
-      url: "https://tycherainvestments.com",
+      url: SITE_URL,
     },
   ],
   creator: "TYCHERA Investments LTD",
@@ -31,13 +32,11 @@ export const metadata: Metadata = {
     telephone: false,
     address: false,
   },
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com"
-  ),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
     locale: "fr_RW",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com",
+    url: SITE_URL,
     siteName: "TYCHERA Investments LTD",
     title: "TYCHERA Investments LTD",
     description:
@@ -71,13 +70,14 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com",
+    canonical: SITE_URL,
     languages: {
-      fr: `${process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com"}/fr`,
-      en: `${process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com"}/en`,
+      fr: `${SITE_URL}/fr`,
+      en: `${SITE_URL}/en`,
     },
   },
 };
+
 
 export const viewport: Viewport = {
   width: "device-width",

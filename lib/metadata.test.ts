@@ -21,7 +21,7 @@ import {
  */
 
 describe("Metadata Generation - Open Graph Tags", () => {
-  const baseUrl = "https://tycherainvestments.com";
+  const baseUrl = "https://tycherainvest.com";
 
   beforeEach(() => {
     process.env.NEXT_PUBLIC_SITE_URL = baseUrl;

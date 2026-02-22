@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site-url";
 
 const pages = [
   { path: "", priority: 1.0 },
@@ -8,8 +9,6 @@ const pages = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com";
   const lastModified = new Date();
 
   const entries: MetadataRoute.Sitemap = [];
@@ -17,28 +16,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const page of pages) {
     // French (default locale)
     entries.push({
-      url: `${baseUrl}/fr${page.path}`,
+      url: `${SITE_URL}/fr${page.path}`,
       lastModified,
       changeFrequency: "monthly",
       priority: page.priority,
       alternates: {
         languages: {
-          fr: `${baseUrl}/fr${page.path}`,
-          en: `${baseUrl}/en${page.path}`,
+          fr: `${SITE_URL}/fr${page.path}`,
+          en: `${SITE_URL}/en${page.path}`,
         },
       },
     });
 
     // English
     entries.push({
-      url: `${baseUrl}/en${page.path}`,
+      url: `${SITE_URL}/en${page.path}`,
       lastModified,
       changeFrequency: "monthly",
       priority: page.priority,
       alternates: {
         languages: {
-          fr: `${baseUrl}/fr${page.path}`,
-          en: `${baseUrl}/en${page.path}`,
+          fr: `${SITE_URL}/fr${page.path}`,
+          en: `${SITE_URL}/en${page.path}`,
         },
       },
     });

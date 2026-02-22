@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Inter, Playfair_Display } from 'next/font/google';
 import { locales } from "@/i18n/config";
+import { SITE_URL } from "@/lib/site-url";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
 
@@ -56,7 +57,7 @@ export async function generateMetadata(
     notFound();
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com";
+  const baseUrl = SITE_URL;
 
   const titles: Record<Locale, { default: string; template: string }> = {
     fr: {

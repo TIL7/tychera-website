@@ -35,7 +35,7 @@ Create a `.env.local` file with:
 ```env
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=production
-NEXT_PUBLIC_SITE_URL=https://tycherainvestments.com
+NEXT_PUBLIC_SITE_URL=https://tycherainvest.com
 ```
 
 ### Development
@@ -117,7 +117,7 @@ npm start
 Immeuble OHANA, Nyarutarama  
 Kigali, Rwanda
 
-Email: contact@tycherainvestments.com  
+Email: contact@tycherainvest.com  
 Phone: +250 722 138 799
 
 ---

@@ -30,7 +30,7 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
   const locale = useLocale();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const hasSiteSettings = Boolean(siteSettings);
-  const email = siteSettings?.email || 'contact@tycherainvestments.com';
+  const email = siteSettings?.email || 'contact@tycherainvest.com';
   const phone = siteSettings?.phone || '+250 722 138 799';
   const addressLine1 = hasSiteSettings ? siteSettings?.address?.line1 : t('info.address.line1');
   const addressLine2 = hasSiteSettings ? siteSettings?.address?.line2 : t('info.address.line2');

@@ -23,7 +23,7 @@ const Footer = async () => {
   const copyrightText = /\b\d{4}\b/.test(localizedCopyright)
     ? localizedCopyright.replace(/\b\d{4}\b/, String(currentYear))
     : localizedCopyright;
-  const email = siteSettings?.email || 'contact@tycherainvestments.com';
+  const email = siteSettings?.email || 'contact@tycherainvest.com';
   const phone = siteSettings?.phone || '+250 722 138 799';
   const phoneHref = phone.replace(/\s+/g, '');
   const linkedinUrl = siteSettings?.socials?.linkedin || 'https://www.linkedin.com';

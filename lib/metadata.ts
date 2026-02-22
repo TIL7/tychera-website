@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getSiteUrl } from "@/lib/site-url";
 
 /**
  * Metadata Generation Utilities for TYCHERA Website
@@ -30,10 +31,9 @@ interface MetadataConfig {
 
 /**
  * Get the base URL for the application
- * Falls back to production URL if not configured
  */
 function getBaseUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL || "https://tycherainvestments.com";
+  return getSiteUrl();
 }
 
 /**

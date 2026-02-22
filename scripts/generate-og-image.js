@@ -92,7 +92,7 @@ async function generateOGImage() {
 
         <!-- Website URL -->
         <text x="${WIDTH - 60}" y="${HEIGHT - 20}" font-family="Arial, sans-serif" font-size="14" fill="${COLORS.white}" opacity="0.7" text-anchor="end">
-          tycherainvestments.com
+          tycherainvest.com
         </text>
       </svg>
     `;

@@ -208,8 +208,8 @@ export function generateEmailTemplate(data: ContactFormData): string {
           <p>
             <strong>TYCHERA INVESTMENTS LTD</strong><br>
             Immeuble OHANA, Nyarutarama, Kigali, Rwanda<br>
-            <a href="mailto:contact@tycherainvestments.com" style="color: #2283a2;">
-              contact@tycherainvestments.com
+            <a href="mailto:contact@tycherainvest.com" style="color: #2283a2;">
+              contact@tycherainvest.com
             </a> | +250 722 138 799
           </p>
         </div>
