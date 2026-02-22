@@ -137,12 +137,12 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
       </section>
 
       {/* Team Grid */}
-      <section className="py-24 lg:py-32 bg-muted/30">
+      <section className="py-24 lg:py-32 bg-muted/30" aria-labelledby="team-grid-heading">
         <div className="container px-6">
           <div className="max-w-3xl mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+            <h3 id="team-grid-heading" className="text-3xl md:text-4xl font-serif text-foreground mb-4">
               {t('sections.team.title')}
-            </h2>
+            </h3>
             <div className="w-16 h-px bg-accent" />
           </div>
 

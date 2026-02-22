@@ -25,8 +25,6 @@ export default async function FounderTeaser(): Promise<JSX.Element> {
             href="/institution"
             className="inline-flex items-center text-sm font-sans text-primary hover:text-primary/80 transition-colors group"
             aria-label={t('ariaLabel')}
-            target="_blank"
-            rel="noopener noreferrer"
           >
             {t('cta')}
             <svg

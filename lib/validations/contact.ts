@@ -57,6 +57,8 @@ export const contactFormSchema = z.object({
     .string()
     .min(20, 'Le message doit contenir au moins 20 caractères')
     .max(2000, 'Le message ne peut pas dépasser 2000 caractères'),
+  website: z.string().optional(),
+  formRenderedAt: z.string().optional(),
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -113,4 +115,6 @@ export const contactFormSchemaEN = z.object({
     .string()
     .min(20, 'Message must be at least 20 characters')
     .max(2000, 'Message cannot exceed 2000 characters'),
+  website: z.string().optional(),
+  formRenderedAt: z.string().optional(),
 });

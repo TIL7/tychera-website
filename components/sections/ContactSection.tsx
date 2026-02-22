@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail, Phone, Clock, MapPin, Send, CheckCircle, Loader2 } from "lucide-react";
@@ -57,8 +57,15 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
       phone: "",
       country: "",
       message: "",
+      website: "",
+      formRenderedAt: "",
     },
   });
+
+  // Set formRenderedAt timestamp on mount
+  useEffect(() => {
+    form.setValue('formRenderedAt', String(Date.now()));
+  }, [form]);
 
   const onSubmit = async (data: ContactFormData) => {
     try {
@@ -74,7 +81,7 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
         // Set field-specific errors if available
         if (result.errors) {
           Object.entries(result.errors).forEach(([field, messages]) => {
-            form.setError(field as any, {
+            form.setError(field as keyof ContactFormData, {
               type: 'manual',
               message: messages[0],
             });
@@ -125,41 +132,60 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
               </div>
             ) : (
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                {/* Honeypot — hidden from human users, filled by bots */}
+                <input
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ display: 'none' }}
+                  {...form.register('website')}
+                />
+                <input type="hidden" {...form.register('formRenderedAt')} />
                 {/* Row 1: Name + Organization + Title */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-sans font-medium text-foreground">
+                    <label htmlFor="contact-name" className="text-sm font-sans font-medium text-foreground">
                       {t('form.name')} <span className="text-primary">{t('form.required')}</span>
                     </label>
                     <Input
+                      id="contact-name"
                       type="text"
                       placeholder={t('form.namePlaceholder')}
                       {...form.register("name")}
                       className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
+                      aria-required="true"
+                      aria-invalid={!!form.formState.errors.name}
+                      aria-describedby={form.formState.errors.name ? 'name-error' : undefined}
                     />
                     {form.formState.errors.name && (
-                      <p className="text-xs text-destructive">{form.formState.errors.name.message}</p>
+                      <p id="name-error" className="text-xs text-destructive" role="alert">{form.formState.errors.name.message}</p>
                     )}
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-sans font-medium text-foreground">
+                    <label htmlFor="contact-organization" className="text-sm font-sans font-medium text-foreground">
                       {t('form.organization')} <span className="text-primary">{t('form.required')}</span>
                     </label>
                     <Input
+                      id="contact-organization"
                       type="text"
                       placeholder={t('form.organizationPlaceholder')}
                       {...form.register("organization")}
                       className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
+                      aria-required="true"
+                      aria-invalid={!!form.formState.errors.organization}
+                      aria-describedby={form.formState.errors.organization ? 'org-error' : undefined}
                     />
                     {form.formState.errors.organization && (
-                      <p className="text-xs text-destructive">{form.formState.errors.organization.message}</p>
+                      <p id="org-error" className="text-xs text-destructive" role="alert">{form.formState.errors.organization.message}</p>
                     )}
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-sans font-medium text-foreground">
+                    <label htmlFor="contact-title" className="text-sm font-sans font-medium text-foreground">
                       {t('form.title')}
                     </label>
                     <Input
+                      id="contact-title"
                       type="text"
                       placeholder={t('form.titlePlaceholder')}
                       {...form.register("title")}
@@ -171,28 +197,38 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
                 {/* Row 2: Email + Type of Request */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-sans font-medium text-foreground">
+                    <label htmlFor="contact-email" className="text-sm font-sans font-medium text-foreground">
                       {t('form.email')} <span className="text-primary">{t('form.required')}</span>
                     </label>
                     <Input
+                      id="contact-email"
                       type="email"
                       placeholder={t('form.emailPlaceholder')}
                       {...form.register("email")}
                       className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
+                      aria-required="true"
+                      aria-invalid={!!form.formState.errors.email}
+                      aria-describedby={form.formState.errors.email ? 'email-error' : undefined}
                     />
                     {form.formState.errors.email && (
-                      <p className="text-xs text-destructive">{form.formState.errors.email.message}</p>
+                      <p id="email-error" className="text-xs text-destructive" role="alert">{form.formState.errors.email.message}</p>
                     )}
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-sans font-medium text-foreground">
+                    <label htmlFor="contact-requestType" className="text-sm font-sans font-medium text-foreground">
                       {t('form.requestType')} <span className="text-primary">{t('form.required')}</span>
                     </label>
                     <Select
                       value={form.watch("requestType")}
-                      onValueChange={(value) => form.setValue("requestType", value as any)}
+                      onValueChange={(value) => form.setValue("requestType", value as ContactFormData['requestType'])}
                     >
-                      <SelectTrigger className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans">
+                      <SelectTrigger
+                        className="h-12 bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans"
+                        aria-label={t('form.requestType')}
+                        aria-required="true"
+                        aria-invalid={!!form.formState.errors.requestType}
+                        aria-describedby={form.formState.errors.requestType ? 'requestType-error' : undefined}
+                      >
                         <SelectValue placeholder={t('form.requestTypePlaceholder')} />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-sm">
@@ -208,7 +244,7 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
                       </SelectContent>
                     </Select>
                     {form.formState.errors.requestType && (
-                      <p className="text-xs text-destructive">{form.formState.errors.requestType.message}</p>
+                      <p id="requestType-error" className="text-xs text-destructive" role="alert">{form.formState.errors.requestType.message}</p>
                     )}
                   </div>
                 </div>
@@ -216,10 +252,11 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
                 {/* Row 3: Phone + Country */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-sans font-medium text-foreground">
+                    <label htmlFor="contact-phone" className="text-sm font-sans font-medium text-foreground">
                       {t('form.phone')}
                     </label>
                     <Input
+                      id="contact-phone"
                       type="tel"
                       placeholder={t('form.phonePlaceholder')}
                       {...form.register("phone")}
@@ -227,10 +264,11 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-sans font-medium text-foreground">
+                    <label htmlFor="contact-country" className="text-sm font-sans font-medium text-foreground">
                       {t('form.country')}
                     </label>
                     <Input
+                      id="contact-country"
                       type="text"
                       placeholder={t('form.countryPlaceholder')}
                       {...form.register("country")}
@@ -241,16 +279,20 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
 
                 {/* Row 4: Message */}
                 <div className="space-y-2">
-                  <label className="text-sm font-sans font-medium text-foreground">
+                  <label htmlFor="contact-message" className="text-sm font-sans font-medium text-foreground">
                     {t('form.message')} <span className="text-primary">{t('form.required')}</span>
                   </label>
                   <Textarea
+                    id="contact-message"
                     placeholder={t('form.messagePlaceholder')}
                     {...form.register("message")}
                     className="min-h-[140px] bg-muted/30 border-border/50 focus:border-primary rounded-sm font-sans resize-none"
+                    aria-required="true"
+                    aria-invalid={!!form.formState.errors.message}
+                    aria-describedby={form.formState.errors.message ? 'message-error' : undefined}
                   />
                   {form.formState.errors.message && (
-                    <p className="text-xs text-destructive">{form.formState.errors.message.message}</p>
+                    <p id="message-error" className="text-xs text-destructive" role="alert">{form.formState.errors.message.message}</p>
                   )}
                 </div>
 
@@ -262,9 +304,9 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
                     className="w-full md:w-auto px-10 py-6 bg-primary text-primary-foreground font-sans text-sm font-medium rounded-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
                   >
                     {form.formState.isSubmitting ? (
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
                     ) : (
-                      <Send className="w-4 h-4 mr-2" />
+                      <Send className="w-4 h-4 mr-2" aria-hidden="true" />
                     )}
                     {t('form.submit')}
                   </Button>
@@ -288,7 +330,7 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
 
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <p className="text-sm font-sans font-medium text-foreground">{t('info.address.label')}</p>
                     <p className="text-sm font-sans text-muted-foreground">
@@ -304,7 +346,7 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <Mail className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <Mail className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <p className="text-sm font-sans font-medium text-foreground">{t('info.email.label')}</p>
                     <a
@@ -317,7 +359,7 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <Phone className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <Phone className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <p className="text-sm font-sans font-medium text-foreground">{t('info.phone.label')}</p>
                     <a
@@ -330,7 +372,7 @@ const ContactSection = ({ siteSettings = null }: ContactSectionProps) => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <p className="text-sm font-sans font-medium text-foreground">{t('info.hours.label')}</p>
                     <p className="text-sm font-sans text-muted-foreground">

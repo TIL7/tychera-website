@@ -25,6 +25,23 @@ export async function submitContactForm(
     // Validate form data on server side
     const validatedData = contactFormSchema.parse(data);
 
+    // Honeypot check — bots fill hidden fields
+    if (validatedData.website && validatedData.website.length > 0) {
+      // Silent rejection — return success-like response to avoid revealing protection
+      return { success: true, message: 'Votre message a été envoyé avec succès.' };
+    }
+
+    // Minimum submission time check — reject ultra-fast submissions
+    if (validatedData.formRenderedAt) {
+      const elapsed = Date.now() - Number(validatedData.formRenderedAt);
+      if (elapsed < 3000) {
+        return {
+          success: false,
+          message: 'Veuillez prendre le temps de remplir le formulaire.',
+        };
+      }
+    }
+
     // Log the submission (for development and debugging)
     console.log('📧 Contact form submission:', {
       name: validatedData.name,
@@ -138,10 +155,10 @@ export async function submitContactForm(
 
     // Handle Zod validation errors
     if (error instanceof Error && 'issues' in error) {
-      const zodError = error as any;
+      const zodError = error as { issues: Array<{ path: (string | number)[]; message: string }> };
       const errors: Record<string, string[]> = {};
 
-      zodError.issues.forEach((issue: any) => {
+      zodError.issues.forEach((issue) => {
         const path = issue.path.join('.');
         if (!errors[path]) {
           errors[path] = [];

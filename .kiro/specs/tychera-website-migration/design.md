@@ -714,7 +714,7 @@ export async function submitContactForm(
 # .env.example
 
 # Next.js
-NEXT_PUBLIC_SITE_URL=https://tycherainvestments.com
+NEXT_PUBLIC_SITE_URL=https://tycherainvest.com
 
 # Sanity CMS
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
@@ -724,11 +724,11 @@ SANITY_API_TOKEN=your_api_token
 # Zoho SMTP
 ZOHO_SMTP_HOST=smtp.zoho.com
 ZOHO_SMTP_PORT=465
-ZOHO_SMTP_USER=contact@tycherainvestments.com
+ZOHO_SMTP_USER=contact@tycherainvest.com
 ZOHO_SMTP_PASSWORD=your_smtp_password
 
 # Contact Form
-CONTACT_EMAIL_RECIPIENT=contact@tycherainvestments.com
+CONTACT_EMAIL_RECIPIENT=contact@tycherainvest.com
 
 # i18n
 NEXT_PUBLIC_DEFAULT_LOCALE=fr

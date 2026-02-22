@@ -13,3 +13,7 @@ Allow: /
 User-agent: *
 Allow: /
 Disallow: /c/
+Disallow: /studio
+Disallow: /api/
+
+Sitemap: https://tycherainvest.com/sitemap.xml

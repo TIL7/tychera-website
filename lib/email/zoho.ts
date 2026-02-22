@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import type { ContactFormData } from '@/lib/validations/contact';
+import { escapeHtml } from '@/lib/email/escapeHtml';
 
 /**
  * Zoho SMTP Configuration
@@ -149,32 +150,32 @@ export function generateEmailTemplate(data: ContactFormData): string {
         <div class="field">
           <div class="field-label">Type de Demande</div>
           <div class="field-value">
-            <span class="badge">${requestTypeLabels[data.requestType] || data.requestType}</span>
+            <span class="badge">${escapeHtml(requestTypeLabels[data.requestType] ?? data.requestType)}</span>
           </div>
         </div>
 
         <div class="field">
           <div class="field-label">Nom Complet</div>
-          <div class="field-value">${data.name}</div>
+          <div class="field-value">${escapeHtml(data.name)}</div>
         </div>
 
         <div class="field">
           <div class="field-label">Organisation / Entreprise</div>
-          <div class="field-value">${data.organization}</div>
+          <div class="field-value">${escapeHtml(data.organization)}</div>
         </div>
 
         ${data.title ? `
         <div class="field">
           <div class="field-label">Titre / Fonction</div>
-          <div class="field-value">${data.title}</div>
+          <div class="field-value">${escapeHtml(data.title)}</div>
         </div>
         ` : ''}
 
         <div class="field">
           <div class="field-label">Email Professionnel</div>
           <div class="field-value">
-            <a href="mailto:${data.email}" style="color: #2283a2; text-decoration: none;">
-              ${data.email}
+            <a href="mailto:${escapeHtml(data.email)}" style="color: #2283a2; text-decoration: none;">
+              ${escapeHtml(data.email)}
             </a>
           </div>
         </div>
@@ -183,8 +184,8 @@ export function generateEmailTemplate(data: ContactFormData): string {
         <div class="field">
           <div class="field-label">Téléphone</div>
           <div class="field-value">
-            <a href="tel:${data.phone}" style="color: #2283a2; text-decoration: none;">
-              ${data.phone}
+            <a href="tel:${escapeHtml(data.phone)}" style="color: #2283a2; text-decoration: none;">
+              ${escapeHtml(data.phone)}
             </a>
           </div>
         </div>
@@ -193,14 +194,14 @@ export function generateEmailTemplate(data: ContactFormData): string {
         ${data.country ? `
         <div class="field">
           <div class="field-label">Pays</div>
-          <div class="field-value">${data.country}</div>
+          <div class="field-value">${escapeHtml(data.country)}</div>
         </div>
         ` : ''}
 
         <div class="field">
           <div class="field-label">Message / Description du Projet</div>
           <div class="message-box">
-            ${data.message.replace(/\n/g, '<br>')}
+            ${escapeHtml(data.message).replace(/\n/g, '<br>')}
           </div>
         </div>
 

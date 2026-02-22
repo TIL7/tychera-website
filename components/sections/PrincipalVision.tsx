@@ -71,8 +71,7 @@ export default function PrincipalVision(): JSX.Element {
               <Link
                 href="/contact"
                 className="inline-flex items-center text-sm font-sans text-primary hover:text-primary/80 transition-colors group"
-                target="_blank"
-                rel="noopener noreferrer"
+                aria-label={t('cta')}
               >
                 {t('cta')}
                 <svg

@@ -75,7 +75,7 @@ export async function sanityFetch<T>({
   tags = [],
 }: {
   query: string;
-  params?: Record<string, any>;
+  params?: Record<string, string | number | boolean | string[]>;
   tags?: string[];
 }): Promise<T> {
   try {
@@ -120,7 +120,7 @@ export async function sanityFetchWithFallback<T>({
   tags = [],
 }: {
   query: string;
-  params?: Record<string, any>;
+  params?: Record<string, string | number | boolean | string[]>;
   fallback: T;
   tags?: string[];
 }): Promise<T> {

@@ -185,9 +185,14 @@
       }
     }
   },
+  "locationMap": {
+    "title": "Location",
+    "viewOnMaps": "View on Google Maps"
+  },
   "notFound": {
     "title": "Page Not Found",
     "description": "The page you are looking for does not exist or has been moved.",
-    "backToHome": "Back to Home"
+    "backToHome": "Back to Home",
+    "contactCta": "Contact Us"
   }
 }

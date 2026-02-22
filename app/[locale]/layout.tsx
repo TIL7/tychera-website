@@ -11,12 +11,14 @@ import Footer from "@/components/sections/Footer";
 // Configure fonts
 const inter = Inter({
   subsets: ['latin'],
+  weight: ['400', '500', '600'],
   variable: '--font-inter',
   display: 'swap',
 });
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
+  weight: ['400', '700'],
   variable: '--font-playfair',
   display: 'swap',
 });

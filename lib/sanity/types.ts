@@ -21,8 +21,15 @@ export interface BilingualText {
  * Used for longer content with formatting
  */
 export interface BilingualRichText {
-  fr: any[]; // Portable Text blocks
-  en: any[]; // Portable Text blocks
+  fr: PortableTextBlock[];
+  en: PortableTextBlock[];
+}
+
+/** Portable Text block shape (minimal) */
+export interface PortableTextBlock {
+  _type: string;
+  _key?: string;
+  [key: string]: unknown;
 }
 
 /**
@@ -172,7 +179,7 @@ export function getLocalizedText(
 export function getLocalizedRichText(
   bilingualRichText: BilingualRichText | undefined,
   locale: Locale
-): any[] {
+): PortableTextBlock[] {
   if (!bilingualRichText) return [];
   return bilingualRichText[locale] || bilingualRichText.fr; // Fallback to French
 }

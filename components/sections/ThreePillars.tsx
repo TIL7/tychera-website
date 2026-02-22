@@ -6,7 +6,7 @@ import { Landmark, Briefcase, ShieldCheck, Handshake, ArrowRight } from "lucide-
 import { useTranslations } from 'next-intl';
 
 // Icon mapping for dynamic icon rendering
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
   Building2: Landmark, // Replaced Building2 with Landmark
   Construction: Briefcase, // Replaced Construction with Briefcase
   ChartPie: ShieldCheck, // Replaced ChartPie with ShieldCheck

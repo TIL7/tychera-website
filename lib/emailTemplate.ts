@@ -1,4 +1,5 @@
 import type { ContactFormData } from '@/lib/validations/contact';
+import { escapeHtml } from '@/lib/email/escapeHtml';
 
 /**
  * Generate HTML email template
@@ -39,41 +40,41 @@ export function generateEmailTemplate(data: ContactFormData): string {
           <div class="content">
             <div class="field">
               <div class="label">Type de demande:</div>
-              <div class="value">${requestTypeLabels[data.requestType]}</div>
+              <div class="value">${escapeHtml(requestTypeLabels[data.requestType] ?? data.requestType)}</div>
             </div>
             <div class="field">
               <div class="label">Nom:</div>
-              <div class="value">${data.name}</div>
+              <div class="value">${escapeHtml(data.name)}</div>
             </div>
             <div class="field">
               <div class="label">Organisation:</div>
-              <div class="value">${data.organization}</div>
+              <div class="value">${escapeHtml(data.organization)}</div>
             </div>
             ${data.title ? `
             <div class="field">
               <div class="label">Titre:</div>
-              <div class="value">${data.title}</div>
+              <div class="value">${escapeHtml(data.title)}</div>
             </div>
             ` : ''}
             <div class="field">
               <div class="label">Email:</div>
-              <div class="value"><a href="mailto:${data.email}">${data.email}</a></div>
+              <div class="value"><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></div>
             </div>
             ${data.phone ? `
             <div class="field">
               <div class="label">Téléphone:</div>
-              <div class="value"><a href="tel:${data.phone}">${data.phone}</a></div>
+              <div class="value"><a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a></div>
             </div>
             ` : ''}
             ${data.country ? `
             <div class="field">
               <div class="label">Pays:</div>
-              <div class="value">${data.country}</div>
+              <div class="value">${escapeHtml(data.country)}</div>
             </div>
             ` : ''}
             <div class="field">
               <div class="label">Message:</div>
-              <div class="value">${data.message.replace(/\n/g, '<br>')}</div>
+              <div class="value">${escapeHtml(data.message).replace(/\n/g, '<br>')}</div>
             </div>
           </div>
           <div class="footer">

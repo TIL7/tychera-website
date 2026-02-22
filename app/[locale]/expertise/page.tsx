@@ -23,7 +23,7 @@ export async function generateMetadata(props: ExpertisePageProps): Promise<Metad
 type ServiceOrder = 1 | 2 | 3 | 4;
 
 // Icon mapping for dynamic icon rendering
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
   Building2: Landmark,
   Construction: Briefcase,
   ChartPie: ShieldCheck,
@@ -178,8 +178,8 @@ export default async function ExpertisePage(props: ExpertisePageProps) {
     },
   } as const;
 
-  const resolveBodyBlocks = (serviceOrder: ServiceOrder, detailedContent: any) => {
-    const localized = getLocalizedRichText(detailedContent, locale);
+  const resolveBodyBlocks = (serviceOrder: ServiceOrder, detailedContent: unknown) => {
+    const localized = getLocalizedRichText(detailedContent as Parameters<typeof getLocalizedRichText>[0], locale);
     if (isPortableTextBlocks(localized) && localized.length > 0) return localized;
     const fallbackText = minimalFallbackBodyByOrder[serviceOrder][locale] || minimalFallbackBodyByOrder[serviceOrder].fr;
     return toPortableText(fallbackText, `${serviceOrder}-${locale}`);

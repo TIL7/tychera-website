@@ -185,9 +185,14 @@
       }
     }
   },
+  "locationMap": {
+    "title": "Localisation",
+    "viewOnMaps": "Voir sur Google Maps"
+  },
   "notFound": {
     "title": "Page Non Trouvée",
     "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
-    "backToHome": "Retour à l'accueil"
+    "backToHome": "Retour à l'accueil",
+    "contactCta": "Nous contacter"
   }
 }
