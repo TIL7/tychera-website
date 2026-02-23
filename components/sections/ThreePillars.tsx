@@ -2,27 +2,31 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { Landmark, Briefcase, ShieldCheck, Handshake, ArrowRight } from "lucide-react";
+import { type LucideProps, Landmark, Briefcase, ShieldCheck, Handshake, TrendingUp, Globe, ArrowRight } from "lucide-react";
 import { useTranslations } from 'next-intl';
+import type { ServiceItem } from "@/lib/sanity/types";
 
-// Icon mapping for dynamic icon rendering
-const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
-  Building2: Landmark, // Replaced Building2 with Landmark
-  Construction: Briefcase, // Replaced Construction with Briefcase
-  ChartPie: ShieldCheck, // Replaced ChartPie with ShieldCheck
+type IconComponent = React.ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>>;
+
+// Supported icon names from Sanity — extend this list as new icons are needed
+const iconMap: Record<string, IconComponent> = {
+  Building2: Landmark,
+  Landmark,
+  Construction: Briefcase,
+  Briefcase,
+  ChartPie: ShieldCheck,
+  ShieldCheck,
   Handshake,
+  TrendingUp,
+  Globe,
 };
 
-/**
- * ThreePillars Server Component
- * 
- * Displays TYCHERA's four service pillars with CSS-based animations.
- * Uses i18n translations for multi-language support.
- * 
- * @requirements 1.2, 2.1
- */
+const DEFAULT_ICON = Landmark;
+
 interface ThreePillarsProps {
   mode?: 'teaser' | 'detail';
+  services: ServiceItem[];
+  locale: string;
 }
 
 interface PillarCardProps extends React.ComponentPropsWithoutRef<typeof Link> {
@@ -32,7 +36,7 @@ interface PillarCardProps extends React.ComponentPropsWithoutRef<typeof Link> {
   number: string;
   title: string;
   description: string;
-  icon: keyof typeof iconMap;
+  icon: string;
   learnMoreLabel: string;
 }
 
@@ -46,7 +50,7 @@ function PillarCard({
   icon,
   learnMoreLabel,
   ...props
-}: PillarCardProps) {
+}: PillarCardProps): React.ReactElement {
   const ref = useRef<HTMLAnchorElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -69,14 +73,13 @@ function PillarCard({
   }, []);
 
   const teaserDescription = description.length > 120 ? `${description.slice(0, 117)}...` : description;
-  const IconComponent = iconMap[icon] || Building2;
+  const IconComponent = iconMap[icon] ?? DEFAULT_ICON;
 
   return (
     <Link
       href={href}
       ref={ref}
-      className={`group relative p-8 lg:p-10 bg-background border border-border/50 rounded-sm transition-all duration-500 hover:border-accent hover:shadow-lg ${isVisible ? 'animate-fade-in-up' : 'opacity-0'
-        }`}
+      className={`group relative p-8 lg:p-10 bg-background border border-border/50 rounded-sm transition-all duration-500 hover:border-accent hover:shadow-lg ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
       style={isVisible ? ({ animationDelay: `${delayMs}ms` } as React.CSSProperties) : undefined}
       {...props}
     >
@@ -101,8 +104,7 @@ function PillarCard({
 
       {/* Learn More Link */}
       <div
-        className={`flex items-center gap-2 text-primary text-sm font-sans transition-opacity duration-300 ${mode === 'teaser' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-          }`}
+        className={`flex items-center gap-2 text-primary text-sm font-sans transition-opacity duration-300 ${mode === 'teaser' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
       >
         <span>{learnMoreLabel}</span>
         <ArrowRight className="w-4 h-4" />
@@ -111,44 +113,8 @@ function PillarCard({
   );
 }
 
-export default function ThreePillars({ mode = 'detail' }: ThreePillarsProps) {
+export default function ThreePillars({ mode = 'detail', services, locale }: ThreePillarsProps): React.ReactElement {
   const t = useTranslations('pillars');
-
-  // Static data structure - translations come from i18n
-  const pillars = [
-    {
-      _id: "1",
-      number: t('services.financial.number'),
-      title: t('services.financial.title'),
-      description: t('services.financial.description'),
-      icon: "Building2",
-      order: 1,
-    },
-    {
-      _id: "2",
-      number: t('services.project.number'),
-      title: t('services.project.title'),
-      description: t('services.project.description'),
-      icon: "Construction",
-      order: 2,
-    },
-    {
-      _id: "3",
-      number: t('services.fund.number'),
-      title: t('services.fund.title'),
-      description: t('services.fund.description'),
-      icon: "ChartPie",
-      order: 3,
-    },
-    {
-      _id: "4",
-      number: t('services.deal.number'),
-      title: t('services.deal.title'),
-      description: t('services.deal.description'),
-      icon: "Handshake",
-      order: 4,
-    },
-  ];
 
   return (
     <section id="expertise" className="py-24 lg:py-32 bg-background">
@@ -160,21 +126,26 @@ export default function ThreePillars({ mode = 'detail' }: ThreePillarsProps) {
           </h2>
         </div>
 
-        {/* Service Cards Grid - All Identical Styling */}
+        {/* Service Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
-          {pillars.map((pillar, index) => (
-            <PillarCard
-              key={pillar._id}
-              mode={mode}
-              delayMs={index * 200}
-              href="/expertise"
-              number={pillar.number}
-              title={pillar.title}
-              description={pillar.description}
-              icon={pillar.icon as keyof typeof iconMap}
-              learnMoreLabel={t('learnMore')}
-            />
-          ))}
+          {services.map((service, index) => {
+            const title = service.title[locale as 'fr' | 'en'] ?? service.title.fr;
+            const description = service.description[locale as 'fr' | 'en'] ?? service.description.fr;
+
+            return (
+              <PillarCard
+                key={service._id}
+                mode={mode}
+                delayMs={index * 200}
+                href="/expertise"
+                number={service.number}
+                title={title}
+                description={description}
+                icon={service.icon}
+                learnMoreLabel={t('learnMore')}
+              />
+            );
+          })}
         </div>
 
         {/* Gold Divider */}
