@@ -93,18 +93,33 @@ export const serviceItem = defineType({
       ]
     }),
     defineField({
+      name: 'image',
+      title: 'Service Image',
+      type: 'image',
+      description: 'Image displayed on the expertise page alongside this service (recommended: square or 4:3, min 800px)',
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          description: 'Describe the image for accessibility (leave blank to hide from screen readers)',
+        }),
+      ],
+    }),
+    defineField({
       name: 'icon',
       title: 'Icon Name',
       type: 'string',
-      description: 'Lucide icon name (e.g., "Scale", "Construction", "TrendingUp", "Handshake")',
+      description: 'Lucide icon name (e.g., "Landmark", "Briefcase", "ShieldCheck", "Handshake", "TrendingUp", "Globe")',
       validation: Rule => Rule.required()
     }),
     defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      description: 'Order in which this service appears (1-4)',
-      validation: Rule => Rule.required().min(1).max(4).integer()
+      description: 'Order in which this service appears (1, 2, 3, ...)',
+      validation: Rule => Rule.required().min(1).integer()
     })
   ],
   preview: {

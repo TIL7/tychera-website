@@ -25,29 +25,7 @@
   "pillars": {
     "sectionLabel": "Nos Piliers d'Excellence",
     "sectionTitle": "Excellence financière au service du développement durable",
-    "learnMore": "En savoir plus",
-    "services": {
-      "financial": {
-        "number": "01",
-        "title": "Ingénierie Financière",
-        "description": "Conception de véhicules d'investissement alignés sur les réalités réglementaires et de marché africaines."
-      },
-      "project": {
-        "number": "02",
-        "title": "Financement de Projets",
-        "description": "Accompagnement de la structuration et de l'exécution, de la faisabilité à la clôture financière."
-      },
-      "fund": {
-        "number": "03",
-        "title": "Structuration de Garanties",
-        "description": "Instruments de partage des risques améliorant la bancabilité et la mobilisation de capitaux institutionnels."
-      },
-      "deal": {
-        "number": "04",
-        "title": "Structuration de Projets",
-        "description": "Montage d'opérations public-privé pour des cadres de projets viables et investissables."
-      }
-    }
+    "learnMore": "En savoir plus"
   },
   "contact": {
     "sectionLabel": "Contact",
@@ -135,7 +113,7 @@
         "title": "Présence",
         "address": "Immeuble OHANA",
         "city": "Kigali, Rwanda",
-        "description": "Siège stratégique au cœur de l'Afrique de l'Est."
+        "description": "Siège stratégique au coeur de l'Afrique de l'Est."
       },
       "team": {
         "title": "Équipe",
@@ -153,15 +131,15 @@
     },
     "principal": {
       "sectionLabel": "L'Institution",
-      "sectionTitle": "De la Gouvernance Publique à l'Architecture Financière",
+      "sectionTitle": "Une Expertise Financière au Service du Développement Africain",
       "portraitPlaceholder": "Portrait à venir",
       "name": "Kamal Alawo Adjayi",
       "title": "CEO & Fondateur",
-      "quote": "La transformation de l'Afrique nécessite des partenariats structurés où l'expertise financière rencontre la compréhension profonde des réalités institutionnelles. Notre mission est de créer ces synergies public-privé qui génèrent un impact tangible.",
+      "quote": "La transformation de l'Afrique nécessite des partenariats structurés où l'expertise financière rencontre la compréhension profonde des réalités institutionnelles. Notre mission est de créer ces synergies qui génèrent un impact tangible et durable.",
       "bio": {
-        "intro": "Monsieur Kamal Alawo Adjayi est le fondateur et Directeur Général de Tychera Investments Ltd, une société d’investissement privée active dans les services financiers, la gestion d’actifs et les activités de holding. Ingénieur financier et entrepreneur panafricain, il est spécialisé en structuration financière, gouvernance stratégique et mobilisation de capitaux pour des projets à fort impact économique et social.",
-        "education": "Titulaire de diplômes des Universités du Luxembourg et de Poitiers, Monsieur Adjayi cumule plus de dix années d'expérience opérationnelle dans les affaires et la finance internationale. Cette solide formation académique, couplée à une pratique rigoureuse des marchés, constitue le socle de son expertise en ingénierie d'investissement.",
-        "experience": "Fort d’une expérience combinée dans les secteurs public et privé, il a conduit et supervisé des projets d’envergure dans les domaines des infrastructures, du développement urbain, de l’inclusion financière et de la finance durable. Il a structuré des véhicules d’investissement complexes et développé des partenariats stratégiques avec des institutions financières internationales, des bailleurs multilatéraux et des investisseurs privés en Europe et en Afrique."
+        "intro": "Monsieur Kamal Alawo Adjayi est le fondateur et Directeur Général de Tychera Investments Ltd, une société d'investissement privée active dans les services financiers, la gestion d'actifs et les activités de holding. Ingénieur financier et entrepreneur panafricain, il est spécialisé en structuration financière, ingénierie d'investissement et mobilisation de capitaux pour des projets à fort impact économique.",
+        "education": "Titulaire de diplômes des Universités du Luxembourg et de Poitiers, Monsieur Adjayi cumule plus de dix années d'expérience opérationnelle dans les affaires et la finance internationale. Cette solide formation académique, couplée à une pratique rigoureuse des marchés de capitaux, constitue le socle de son expertise en ingénierie financière.",
+        "experience": "Il a structuré et supervisé des opérations d'envergure dans les domaines des infrastructures, du financement de projets, de l'inclusion financière et de la finance durable. Il a développé des partenariats stratégiques avec des institutions financières internationales, des bailleurs multilatéraux et des investisseurs privés en Europe et en Afrique."
       },
       "cta": "Initier une collaboration"
     }
@@ -175,7 +153,7 @@
   },
   "homepage": {
     "teaser": {
-      "quote": "La transformation de l'Afrique nécessite des partenariats structurés où l'expertise financière rencontre la compréhension profonde des réalités institutionnelles. Notre mission est de créer ces synergies public-privé qui génèrent un impact tangible.",
+      "quote": "La transformation de l'Afrique nécessite des partenariats structurés où l'expertise financière rencontre la compréhension profonde des réalités institutionnelles. Notre mission est de créer ces synergies qui génèrent un impact tangible et durable.",
       "context": "Cette vision guide chaque structuration que nous concevons, chaque partenariat que nous tissons.",
       "cta": "En savoir plus",
       "ariaLabel": "En savoir plus sur l'institution",

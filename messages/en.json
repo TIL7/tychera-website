@@ -25,29 +25,7 @@
   "pillars": {
     "sectionLabel": "Our Pillars of Excellence",
     "sectionTitle": "Financial excellence in service of sustainable development",
-    "learnMore": "Learn more",
-    "services": {
-      "financial": {
-        "number": "01",
-        "title": "Financial Engineering",
-        "description": "Design of investment vehicles aligned with African market and regulatory realities."
-      },
-      "project": {
-        "number": "02",
-        "title": "Project Finance",
-        "description": "Structuring and execution support from feasibility through financial close."
-      },
-      "fund": {
-        "number": "03",
-        "title": "Guarantee Structuring",
-        "description": "Risk-sharing instruments that improve bankability and mobilize institutional capital."
-      },
-      "deal": {
-        "number": "04",
-        "title": "Project Structuring",
-        "description": "Public-private transaction design for viable and investable project frameworks."
-      }
-    }
+    "learnMore": "Learn more"
   },
   "contact": {
     "sectionLabel": "Contact",
@@ -153,15 +131,15 @@
     },
     "principal": {
       "sectionLabel": "The Institution",
-      "sectionTitle": "From Public Governance to Financial Architecture",
+      "sectionTitle": "Financial Expertise in Service of African Development",
       "portraitPlaceholder": "Portrait coming soon",
       "name": "Kamal Alawo Adjayi",
       "title": "CEO & Founder",
-      "quote": "Africa's transformation requires structured partnerships where financial expertise meets deep understanding of institutional realities. Our mission is to create these public-private synergies that generate tangible impact.",
+      "quote": "Africa's transformation requires structured partnerships where financial expertise meets deep understanding of institutional realities. Our mission is to create these synergies that generate tangible and enduring impact.",
       "bio": {
-        "intro": "Mr. Kamal Alawo Adjayi is the Founder and CEO of Tychera Investments Ltd, a private investment firm active in financial services, asset management, and holding activities. A financial engineer and Pan-African entrepreneur, he specializes in financial structuring, strategic governance, and capital mobilization for projects with high economic and social impact.",
-        "education": "Holding degrees from the Universities of Luxembourg and Poitiers, Mr. Adjayi has over ten years of operational experience in international business and finance. This solid academic background, coupled with rigorous market practice, forms the foundation of his expertise in investment engineering.",
-        "experience": "With combined experience in both the public and private sectors, he has led and supervised large-scale projects in infrastructure, urban development, financial inclusion, and sustainable finance. He has structured complex investment vehicles and developed strategic partnerships with international financial institutions, multilateral donors, and private investors in Europe and Africa."
+        "intro": "Mr. Kamal Alawo Adjayi is the Founder and CEO of Tychera Investments Ltd, a private investment firm active in financial services, asset management, and holding activities. A financial engineer and Pan-African entrepreneur, he specializes in financial structuring, investment engineering, and capital mobilization for projects with high economic impact.",
+        "education": "Holding degrees from the Universities of Luxembourg and Poitiers, Mr. Adjayi has over ten years of operational experience in international business and finance. This solid academic background, coupled with rigorous capital markets practice, forms the foundation of his expertise in financial engineering.",
+        "experience": "He has structured and supervised large-scale operations in infrastructure, project finance, financial inclusion, and sustainable finance. He has developed strategic partnerships with international financial institutions, multilateral donors, and private investors in Europe and Africa."
       },
       "cta": "Initiate a collaboration"
     }
@@ -175,7 +153,7 @@
   },
   "homepage": {
     "teaser": {
-      "quote": "Africa's transformation requires structured partnerships where financial expertise meets deep understanding of institutional realities. Our mission is to create these public-private synergies that generate tangible impact.",
+      "quote": "Africa's transformation requires structured partnerships where financial expertise meets deep understanding of institutional realities. Our mission is to create these synergies that generate tangible and enduring impact.",
       "context": "This vision guides every structure we design, every partnership we forge.",
       "cta": "Read more",
       "ariaLabel": "Learn more about the institution",

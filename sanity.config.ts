@@ -17,8 +17,10 @@ export default defineConfig({
   basePath: '/studio',
   projectId,
   dataset,
-  // Add and edit the content schema in the './sanity/schemaTypes' folder
-  schema,
+  schema: {
+    ...schema,
+    templates: (templates) => templates.filter(({schemaType}) => schemaType !== 'siteSettings'),
+  },
   plugins: [
     deskTool({structure}),
     ...(process.env.NODE_ENV === 'development'
@@ -28,10 +30,6 @@ export default defineConfig({
         ]
       : []),
   ],
-  schema: {
-    ...schema,
-    templates: (templates) => templates.filter(({schemaType}) => schemaType !== 'siteSettings'),
-  },
   document: {
     actions: (prev, context) =>
       context.schemaType === 'siteSettings'

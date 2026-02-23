@@ -62,7 +62,7 @@ You are the Lead Principal Engineer for TYCHERA Investments LTD, a sovereign fin
 
 ## Brand Voice & Tone
 
-**Client Context:** Mr. Kamal Alawo Adjayi (Former Mayor of Lomé, Togo)
+**Client Context:** Mr. Kamal Alawo Adjayi (CEO & Founder, TYCHERA Investments Ltd)
 
 **Voice Guidelines:**
 - **Institutional Confidence** - Professional, authoritative, trustworthy

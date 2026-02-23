@@ -61,18 +61,19 @@ export interface SanityImage {
 
 /**
  * Service Item
- * Represents one of the four service pillars
+ * Represents one of TYCHERA's service pillars (up to 6 supported)
  */
 export interface ServiceItem {
   _id: string;
   _createdAt?: string;
   _updatedAt?: string;
-  number: string; // "01", "02", "03", "04"
+  number: string;
   title: BilingualText;
   description: BilingualText;
   detailedContent?: BilingualRichText;
-  icon: string; // Lucide icon name
-  order: number; // 1-4
+  image?: SanityImage;
+  icon: string;
+  order: number;
 }
 
 /**

@@ -28,6 +28,10 @@ export const SERVICE_ITEMS_QUERY = groq`
     "title": title,
     "description": description,
     "detailedContent": detailedContent,
+    image {
+      asset->{ _id, url },
+      alt
+    },
     icon,
     order
   }
@@ -163,7 +167,7 @@ export const SINGLE_PAGE_CONTENT_QUERY = groq`
  */
 export const HOME_PAGE_QUERY = groq`
   {
-    "services": *[_type == "serviceItem"] | order(order asc) {
+    "services": *[_type == "serviceItem"] | order(order asc) [0...4] {
       _id,
       number,
       "title": title,
@@ -187,12 +191,16 @@ export const HOME_PAGE_QUERY = groq`
  */
 export const EXPERTISE_PAGE_QUERY = groq`
   {
-    "services": *[_type == "serviceItem"] | order(order asc) {
+    "services": *[_type == "serviceItem"] | order(order asc) [0...6] {
       _id,
       number,
       "title": title,
       "description": description,
       "detailedContent": detailedContent,
+      image {
+        asset->{ _id, url },
+        alt
+      },
       icon,
       order
     },

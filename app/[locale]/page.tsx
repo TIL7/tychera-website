@@ -7,6 +7,9 @@ import { CMSErrorBoundary } from "@/components/sections/CMSErrorBoundary";
 import { getSiteSettings } from "@/lib/sanity/getSiteSettings";
 import { generateHomePageMetadata, type Locale } from "@/lib/metadata";
 import OrganizationJsonLd from "@/components/sections/OrganizationJsonLd";
+import { sanityFetchWithFallback } from "@/lib/sanity/client";
+import { HOME_PAGE_QUERY } from "@/lib/sanity/queries";
+import type { HomePageData, ServiceItem } from "@/lib/sanity/types";
 
 interface HomePageProps {
   params: Promise<{
@@ -19,31 +22,80 @@ export async function generateMetadata(props: HomePageProps): Promise<Metadata> 
   return generateHomePageMetadata(params.locale as Locale);
 }
 
+const fallbackServices: ServiceItem[] = [
+  {
+    _id: "1",
+    number: "01",
+    title: { fr: "Ingénierie Financière", en: "Financial Engineering" },
+    description: {
+      fr: "Conception de véhicules d'investissement alignés sur les réalités réglementaires et de marché africaines.",
+      en: "Design of investment vehicles aligned with African market and regulatory realities.",
+    },
+    icon: "Building2",
+    order: 1,
+  },
+  {
+    _id: "2",
+    number: "02",
+    title: { fr: "Financement de Projets", en: "Project Finance" },
+    description: {
+      fr: "Accompagnement de la structuration et de l'exécution, de la faisabilité à la clôture financière.",
+      en: "Structuring and execution support from feasibility through financial close.",
+    },
+    icon: "Construction",
+    order: 2,
+  },
+  {
+    _id: "3",
+    number: "03",
+    title: { fr: "Structuration de Garanties", en: "Guarantee Structuring" },
+    description: {
+      fr: "Instruments de partage des risques améliorant la bancabilité et la mobilisation de capitaux institutionnels.",
+      en: "Risk-sharing instruments that improve bankability and mobilize institutional capital.",
+    },
+    icon: "ChartPie",
+    order: 3,
+  },
+  {
+    _id: "4",
+    number: "04",
+    title: { fr: "Structuration de Projets", en: "Project Structuring" },
+    description: {
+      fr: "Montage d'opérations public-privé pour des cadres de projets viables et investissables.",
+      en: "Public-private transaction design for viable and investable project frameworks.",
+    },
+    icon: "Handshake",
+    order: 4,
+  },
+];
+
 /**
  * Home Page - Locale-based Route
- * 
- * Composes all major section components in the correct order:
- * 1. Hero - Main value proposition
- * 2. ThreePillars - Service offerings (4 pillars) [CMS-powered]
- * 3. FounderTeaser - Kamal quote with link to institution
- * 4. ContactSection - Contact form and information
- * 
- * This is a Server Component that renders static content.
- * CMS-powered sections are wrapped in error boundaries for graceful degradation.
- * 
- * @requirements 3.1, 3.4, 3.5, 4.7, 4.8
+ *
+ * Fetches services from Sanity CMS and passes them to ThreePillars.
+ * Falls back to hardcoded data if CMS is unavailable.
  */
-export default async function HomePage(props: HomePageProps) {
+export default async function HomePage(props: HomePageProps): Promise<React.ReactElement> {
   const params = await props.params;
   const locale = params.locale;
   const siteSettings = await getSiteSettings();
+
+  const data = await sanityFetchWithFallback<HomePageData>({
+    query: HOME_PAGE_QUERY,
+    fallback: { services: fallbackServices, content: [] },
+    tags: ['serviceItem'],
+  });
+
+  const services = Array.isArray(data.services) && data.services.length > 0
+    ? data.services
+    : fallbackServices;
 
   return (
     <>
       <OrganizationJsonLd locale={locale} />
       <Hero />
       <CMSErrorBoundary>
-        <ThreePillars mode="teaser" />
+        <ThreePillars mode="teaser" services={services} locale={locale} />
       </CMSErrorBoundary>
       <FounderTeaser />
       <ContactSection siteSettings={siteSettings} />

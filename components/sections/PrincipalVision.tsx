@@ -6,7 +6,7 @@ import { Link } from '@/i18n/navigation';
  * 
  * Server Component displaying the CEO's vision and background.
  * Features institutional narrative about Kamal Alawo Adjayi's expertise
- * combining political leadership, public administration, and international finance.
+ * in financial engineering, investment structuring, and international finance.
  * 
  * @component Server Component (RSC)
  */
