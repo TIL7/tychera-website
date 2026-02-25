@@ -8,38 +8,45 @@
 import { SITE_URL } from "@/lib/site-url";
 
 interface OrganizationJsonLdProps {
-  locale: string;
+  locale?: "fr" | "en";
 }
 
-export default function OrganizationJsonLd({ locale }: OrganizationJsonLdProps): React.ReactElement {
+export default function OrganizationJsonLd({ locale }: OrganizationJsonLdProps = {}): React.ReactElement {
+  const localizedUrl = locale ? `${SITE_URL}/${locale}` : SITE_URL;
+  const localizedDescription =
+    locale === "en"
+      ? "Clarity in decisions. Enduring outcomes. Architect of Project Financing in Africa."
+      : locale === "fr"
+        ? "Clarity in decisions. Enduring outcomes. Architecte du Financement des Projets en Afrique."
+        : "Clarity in decisions. Enduring outcomes. Architect of project financing in Africa.";
+
   const schema = {
     "@context": "https://schema.org",
     "@type": ["Organization", "FinancialService"],
     name: "TYCHERA Investments LTD",
     legalName: "TYCHERA Investments LTD",
-    url: `${SITE_URL}/${locale}`,
+    url: localizedUrl,
     logo: `${SITE_URL}/images/tychera-logo-white-new.png`,
-    description:
-      locale === "en"
-        ? "Architect of Project Financing in Africa. The bridge between international capital and African potential."
-        : "Architecte du Financement des Projets en Afrique. Le pont entre capital international et potentiel africain.",
+    description: localizedDescription,
     address: {
       "@type": "PostalAddress",
       streetAddress: "Immeuble OHANA",
       addressLocality: "Kigali",
       addressCountry: "RW",
     },
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+250722138799",
-      contactType: "customer service",
-      email: "contact@tycherainvest.com",
-      availableLanguage: ["French", "English"],
-    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+250722138799",
+        contactType: "customer service",
+        email: "contact@tycherainvest.com",
+        availableLanguage: ["French", "English"],
+      },
+    ],
     founder: {
       "@type": "Person",
-      name: "Kamal Alawo Adjayi",
-      jobTitle: "CEO & Founder",
+      name: "Kamal Alawo ADJAYI",
+      jobTitle: "CEO",
     },
     areaServed: {
       "@type": "Continent",

@@ -1,8 +1,10 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import {
+  ICON_CACHE_BUST,
   generateCanonicalUrl,
   generateLanguageAlternates,
   generateOpenGraphMetadata,
+  generateRootMetadata,
   generateTwitterMetadata,
   generatePageMetadata,
   generateHomePageMetadata,
@@ -10,6 +12,7 @@ import {
   generateInstitutionPageMetadata,
   generateContactPageMetadata,
   generate404PageMetadata,
+  siteIcons,
 } from "./metadata";
 
 /**
@@ -134,7 +137,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
         path: "/",
       });
 
-      expect(og.images).toHaveLength(1);
+      expect(og.images).toHaveLength(2);
       const image = Array.isArray(og.images) ? og.images[0] : og.images;
       expect(image).toHaveProperty("url");
       expect(image).toHaveProperty("width", 1200);
@@ -151,8 +154,9 @@ describe("Metadata Generation - Open Graph Tags", () => {
         path: "/",
       });
 
-      const image = Array.isArray(og.images) ? og.images[0] : og.images;
-      expect(image.url).toContain("og-image.jpg");
+      const images = Array.isArray(og.images) ? og.images : [og.images];
+      expect(images[0].url).toContain("og-image.jpg");
+      expect(images[1].url).toContain("og-image.png");
     });
 
     it("should use custom OG image when specified", () => {
@@ -165,6 +169,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
         ogImage: "/custom-og.jpg",
       });
 
+      expect(og.images).toHaveLength(1);
       const image = Array.isArray(og.images) ? og.images[0] : og.images;
       expect(image.url).toContain("custom-og.jpg");
     });
@@ -246,8 +251,9 @@ describe("Metadata Generation - Open Graph Tags", () => {
 
       const images = twitter.images;
       if (Array.isArray(images)) {
-        expect(images).toHaveLength(1);
+        expect(images).toHaveLength(2);
         expect(images[0]).toContain("og-image.jpg");
+        expect(images[1]).toContain("og-image.png");
       }
     });
   });
@@ -268,6 +274,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       expect(metadata).toHaveProperty("alternates");
       expect(metadata).toHaveProperty("openGraph");
       expect(metadata).toHaveProperty("twitter");
+      expect(metadata.metadataBase?.toString()).toBe(`${baseUrl}/`);
     });
 
     it("should include language alternates", () => {
@@ -321,11 +328,12 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generateHomePageMetadata("fr");
 
       expect(metadata.openGraph?.images).toBeDefined();
-      expect(metadata.openGraph?.images).toHaveLength(1);
+      expect(metadata.openGraph?.images).toHaveLength(2);
       const images = metadata.openGraph?.images;
       if (Array.isArray(images) && images.length > 0) {
         expect(images[0]).toHaveProperty("width", 1200);
         expect(images[0]).toHaveProperty("height", 630);
+        expect(images[0]).toHaveProperty("url");
       }
     });
   });
@@ -353,11 +361,12 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generateExpertisePageMetadata("fr");
 
       expect(metadata.openGraph?.images).toBeDefined();
-      expect(metadata.openGraph?.images).toHaveLength(1);
+      expect(metadata.openGraph?.images).toHaveLength(2);
       const images = metadata.openGraph?.images;
       if (Array.isArray(images) && images.length > 0) {
         expect(images[0]).toHaveProperty("width", 1200);
         expect(images[0]).toHaveProperty("height", 630);
+        expect(images[0]).toHaveProperty("url");
       }
     });
   });
@@ -423,11 +432,12 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generate404PageMetadata("fr");
 
       expect(metadata.openGraph?.images).toBeDefined();
-      expect(metadata.openGraph?.images).toHaveLength(1);
+      expect(metadata.openGraph?.images).toHaveLength(2);
       const images = metadata.openGraph?.images;
       if (Array.isArray(images) && images.length > 0) {
         expect(images[0]).toHaveProperty("width", 1200);
         expect(images[0]).toHaveProperty("height", 630);
+        expect(images[0]).toHaveProperty("url");
       }
     });
   });
@@ -483,7 +493,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
 
       pages.forEach((metadata) => {
         expect(metadata.openGraph?.images).toBeDefined();
-        expect(metadata.openGraph?.images).toHaveLength(1);
+        expect(metadata.openGraph?.images).toHaveLength(2);
 
         const images = metadata.openGraph?.images;
         if (Array.isArray(images) && images.length > 0) {
@@ -620,10 +630,35 @@ describe("Metadata Generation - Open Graph Tags", () => {
         expect(metadata.twitter?.images).toBeDefined();
         const images = metadata.twitter?.images;
         if (Array.isArray(images)) {
-          expect(images).toHaveLength(1);
+          expect(images).toHaveLength(2);
           expect(images[0]).toContain("og-image");
         }
       });
+    });
+  });
+
+  describe("Root metadata and icon set", () => {
+    it("should expose explicit icon assets with cache busting", () => {
+      expect(siteIcons.icon).toBeDefined();
+      expect(siteIcons.apple).toBeDefined();
+
+      const iconEntries = Array.isArray(siteIcons.icon) ? siteIcons.icon : [siteIcons.icon];
+      const iconUrls = iconEntries
+        .filter((entry): entry is { url: string } => typeof entry === "object" && !!entry && "url" in entry)
+        .map((entry) => entry.url);
+
+      expect(iconUrls.some((url) => url.includes(`/favicon.ico?v=${ICON_CACHE_BUST}`))).toBe(true);
+      expect(iconUrls.some((url) => url.includes(`/icon.svg?v=${ICON_CACHE_BUST}`))).toBe(true);
+      expect(iconUrls.some((url) => url.includes(`/favicon-96x96.png?v=${ICON_CACHE_BUST}`))).toBe(true);
+      expect(iconUrls.some((url) => url.includes(`/icon-192.png?v=${ICON_CACHE_BUST}`))).toBe(true);
+      expect(iconUrls.some((url) => url.includes(`/icon-512.png?v=${ICON_CACHE_BUST}`))).toBe(true);
+    });
+
+    it("should include metadataBase and icon metadata in root metadata", () => {
+      const rootMetadata = generateRootMetadata();
+      expect(rootMetadata.metadataBase?.toString()).toBe(`${baseUrl}/`);
+      expect(rootMetadata.icons).toBeDefined();
+      expect(rootMetadata.alternates?.languages).toHaveProperty("x-default");
     });
   });
 });

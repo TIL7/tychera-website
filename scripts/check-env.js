@@ -16,7 +16,7 @@ const optionalEnvVars = [
   'NODE_ENV',
 ];
 
-console.log('\n🔍 Checking environment variables...\n');
+console.log('\nChecking: Checking environment variables...\n');
 
 let hasErrors = false;
 let hasWarnings = false;
@@ -25,10 +25,10 @@ let hasWarnings = false;
 requiredEnvVars.forEach((varName) => {
   const value = process.env[varName];
   if (!value) {
-    console.error(`❌ MISSING: ${varName}`);
+    console.error(`Error: MISSING: ${varName}`);
     hasErrors = true;
   } else {
-    console.log(`✅ ${varName}=${value}`);
+    console.log(`OK: ${varName}=${value}`);
   }
 });
 
@@ -36,18 +36,18 @@ requiredEnvVars.forEach((varName) => {
 optionalEnvVars.forEach((varName) => {
   const value = process.env[varName];
   if (!value) {
-    console.warn(`⚠️  OPTIONAL: ${varName} (not set)`);
+    console.warn(`Warning:  OPTIONAL: ${varName} (not set)`);
     hasWarnings = true;
   } else {
-    console.log(`✅ ${varName}=${value}`);
+    console.log(`OK: ${varName}=${value}`);
   }
 });
 
 console.log('');
 
 if (hasErrors) {
-  console.error('❌ CRITICAL: Missing required environment variables!\n');
-  console.error('📋 Create or update your .env.local file with:\n');
+  console.error('Error: CRITICAL: Missing required environment variables!\n');
+  console.error('Info: Create or update your .env.local file with:\n');
   console.error('NEXT_PUBLIC_SANITY_PROJECT_ID="xiqaa9j2"');
   console.error('NEXT_PUBLIC_SANITY_DATASET="production"');
   console.error('NEXT_PUBLIC_SANITY_API_VERSION="2026-02-05"');
@@ -57,7 +57,7 @@ if (hasErrors) {
 }
 
 if (hasWarnings) {
-  console.warn('⚠️  Some optional variables are not set (this is usually fine)\n');
+  console.warn('Warning:  Some optional variables are not set (this is usually fine)\n');
 }
 
-console.log('✅ All required environment variables are set!\n');
+console.log('OK: All required environment variables are set!\n');

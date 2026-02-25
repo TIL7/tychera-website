@@ -1,47 +1,34 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/site-url";
+import { locales } from "@/i18n/config";
+import { getSiteUrl } from "@/lib/site-url";
 
-const pages = [
+const coreRoutes = [
   { path: "", priority: 1.0 },
   { path: "/expertise", priority: 0.9 },
   { path: "/institution", priority: 0.8 },
   { path: "/contact", priority: 0.7 },
-];
+] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const siteUrl = getSiteUrl();
   const lastModified = new Date();
 
-  const entries: MetadataRoute.Sitemap = [];
+  return coreRoutes.flatMap(({ path, priority }) => {
+    const frUrl = `${siteUrl}/fr${path}`;
+    const enUrl = `${siteUrl}/en${path}`;
 
-  for (const page of pages) {
-    // French (default locale)
-    entries.push({
-      url: `${SITE_URL}/fr${page.path}`,
+    return locales.map((locale) => ({
+      url: locale === "fr" ? frUrl : enUrl,
       lastModified,
       changeFrequency: "monthly",
-      priority: page.priority,
+      priority,
       alternates: {
         languages: {
-          fr: `${SITE_URL}/fr${page.path}`,
-          en: `${SITE_URL}/en${page.path}`,
+          fr: frUrl,
+          en: enUrl,
+          "x-default": frUrl,
         },
       },
-    });
-
-    // English
-    entries.push({
-      url: `${SITE_URL}/en${page.path}`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: page.priority,
-      alternates: {
-        languages: {
-          fr: `${SITE_URL}/fr${page.path}`,
-          en: `${SITE_URL}/en${page.path}`,
-        },
-      },
-    });
-  }
-
-  return entries;
+    }));
+  });
 }

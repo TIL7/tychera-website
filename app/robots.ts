@@ -1,7 +1,22 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/site-url";
+import { getSiteUrl } from "@/lib/site-url";
 
 export default function robots(): MetadataRoute.Robots {
+  const siteUrl = getSiteUrl();
+  const isProduction = process.env.VERCEL_ENV === "production";
+
+  if (!isProduction) {
+    return {
+      rules: [
+        {
+          userAgent: "*",
+          disallow: "/",
+        },
+      ],
+      sitemap: `${siteUrl}/sitemap.xml`,
+    };
+  }
+
   return {
     rules: [
       {
@@ -10,6 +25,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/studio", "/c/", "/api/"],
       },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

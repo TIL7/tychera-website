@@ -43,7 +43,7 @@ export async function submitContactForm(
     }
 
     // Log the submission (for development and debugging)
-    console.log('📧 Contact form submission:', {
+    console.log('Email: Contact form submission:', {
       name: validatedData.name,
       organization: validatedData.organization,
       email: validatedData.email,
@@ -53,7 +53,7 @@ export async function submitContactForm(
 
     // Check if SMTP credentials are configured
     if (!process.env.ZOHO_SMTP_USER || !process.env.ZOHO_SMTP_PASSWORD) {
-      console.error('❌ SMTP credentials not configured');
+      console.error('Error: SMTP credentials not configured');
       return {
         success: false,
         message: 'La configuration email n\'est pas disponible. Veuillez contacter l\'administrateur.',
@@ -61,7 +61,7 @@ export async function submitContactForm(
     }
 
     if (!process.env.CONTACT_EMAIL_RECIPIENT) {
-      console.error('❌ Contact email recipient not configured');
+      console.error('Error: Contact email recipient not configured');
       return {
         success: false,
         message: 'La configuration email n\'est pas disponible. Veuillez contacter l\'administrateur.',
@@ -87,7 +87,7 @@ export async function submitContactForm(
         html: generateEmailTemplate(validatedData),
       });
 
-      console.log('✅ Email sent successfully to:', process.env.CONTACT_EMAIL_RECIPIENT);
+      console.log('OK: Email sent successfully to:', process.env.CONTACT_EMAIL_RECIPIENT);
 
       return {
         success: true,
@@ -95,7 +95,7 @@ export async function submitContactForm(
       };
     } catch (emailError) {
       // Handle SMTP-specific errors
-      console.error('❌ Email sending error:', emailError);
+      console.error('Error: Email sending error:', emailError);
 
       // Check for specific SMTP error types
       if (emailError instanceof Error) {
@@ -111,7 +111,7 @@ export async function submitContactForm(
 
         // Authentication failure
         if (errorMessage.includes('auth') || errorMessage.includes('authentication') || errorMessage.includes('535')) {
-          console.error('❌ SMTP authentication failed - check credentials');
+          console.error('Error: SMTP authentication failed - check credentials');
           return {
             success: false,
             message: 'Erreur d\'authentification email. Veuillez contacter l\'administrateur.',
@@ -136,7 +136,7 @@ export async function submitContactForm(
 
         // Invalid recipient
         if (errorMessage.includes('recipient') || errorMessage.includes('550')) {
-          console.error('❌ Invalid recipient email address');
+          console.error('Error: Invalid recipient email address');
           return {
             success: false,
             message: 'Adresse email de destination invalide. Veuillez contacter l\'administrateur.',
@@ -151,7 +151,7 @@ export async function submitContactForm(
       };
     }
   } catch (error) {
-    console.error('❌ Contact form error:', error);
+    console.error('Error: Contact form error:', error);
 
     // Handle Zod validation errors
     if (error instanceof Error && 'issues' in error) {

@@ -57,17 +57,17 @@ interface TranslationFile {
 }
 
 async function seedContent(): Promise<void> {
-  console.log('🌱 Starting Sanity content seeding...\n');
+  console.log('[seed] Starting Sanity content seeding...\n');
 
   // Validate environment variables
   if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
-    console.error('❌ Missing NEXT_PUBLIC_SANITY_PROJECT_ID');
+    console.error('Error: Missing NEXT_PUBLIC_SANITY_PROJECT_ID');
     process.exit(1);
   }
 
   if (!process.env.SANITY_API_TOKEN) {
-    console.error('❌ Missing SANITY_API_TOKEN');
-    console.error('📋 Create a token at: https://www.sanity.io/manage');
+    console.error('Error: Missing SANITY_API_TOKEN');
+    console.error('Info: Create a token at: https://www.sanity.io/manage');
     console.error('   Add to .env.local: SANITY_API_TOKEN=your-token-here');
     process.exit(1);
   }
@@ -79,7 +79,7 @@ async function seedContent(): Promise<void> {
   const frData: TranslationFile = JSON.parse(fs.readFileSync(frPath, 'utf-8'));
   const enData: TranslationFile = JSON.parse(fs.readFileSync(enPath, 'utf-8'));
 
-  console.log('✅ Loaded translation files\n');
+  console.log('OK: Loaded translation files\n');
 
   // Service keys in order
   const serviceKeys = ['financial', 'project', 'fund', 'deal'];
@@ -143,14 +143,14 @@ async function seedContent(): Promise<void> {
 
     try {
       await client.createOrReplace(serviceItem);
-      console.log(`✅ Created/Updated: ${frService.title} (${frService.number})`);
+      console.log(`OK: Created/Updated: ${frService.title} (${frService.number})`);
     } catch (error) {
-      console.error(`❌ Failed to create ${key}:`, error);
+      console.error(`Error: Failed to create ${key}:`, error);
     }
   }
 
-  console.log('\n🎉 Content seeding complete!');
-  console.log('📍 View your content at: https://www.sanity.io/manage');
+  console.log('\nDone: Content seeding complete!');
+  console.log('Info: View your content at: https://www.sanity.io/manage');
 }
 
 /**
@@ -178,6 +178,6 @@ function generateDetailedContent(key: string, locale: 'fr' | 'en'): string {
 
 // Run the seeding script
 seedContent().catch((error) => {
-  console.error('❌ Seeding failed:', error);
+  console.error('Error: Seeding failed:', error);
   process.exit(1);
 });

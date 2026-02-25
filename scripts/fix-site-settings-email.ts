@@ -55,7 +55,7 @@ async function fixEmail(): Promise<void> {
   }
 
   await client.patch('siteSettings').set({ email: CORRECT_EMAIL }).commit()
-  console.log(`✅ Updated email from "${currentEmail}" to "${CORRECT_EMAIL}"`)
+  console.log(`OK: Updated email from "${currentEmail}" to "${CORRECT_EMAIL}"`)
 }
 
 fixEmail().catch((err) => {

@@ -13,8 +13,8 @@ export const projectId = assertValue(
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
-    console.error(`❌ ${errorMessage}`)
-    console.error('📋 Please create a .env.local file with the following variables:')
+    console.error(`Error: ${errorMessage}`)
+    console.error('Info: Please create a .env.local file with the following variables:')
     console.error('   NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id')
     console.error('   NEXT_PUBLIC_SANITY_DATASET=production')
     console.error('   NEXT_PUBLIC_SANITY_API_VERSION=2026-02-05')

@@ -5,7 +5,7 @@ import { Link } from '@/i18n/navigation';
  * PrincipalVision Component
  * 
  * Server Component displaying the CEO's vision and background.
- * Features institutional narrative about Kamal Alawo Adjayi's expertise
+ * Features institutional narrative about Kamal Alawo ADJAYI's expertise
  * in financial engineering, investment structuring, and international finance.
  * 
  * @component Server Component (RSC)

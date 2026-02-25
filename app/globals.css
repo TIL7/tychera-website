@@ -220,4 +220,14 @@
   .tychera-delay-800 {
     animation-delay: 800ms;
   }
+
+  @keyframes dash-flow {
+    from {
+      stroke-dashoffset: 0;
+    }
+
+    to {
+      stroke-dashoffset: -240;
+    }
+  }
 }

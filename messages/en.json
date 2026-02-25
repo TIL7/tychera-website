@@ -18,7 +18,7 @@
   },
   "hero": {
     "title": "Architect of Project Finance in Africa",
-    "subtitle": "The bridge between international capital and African potential. Sophisticated structuring, enduring impact.",
+    "subtitle": "Clarity in decisions. Enduring outcomes. The bridge between international capital and African potential.",
     "cta": "Discover our expertise",
     "imageAlt": "Modern infrastructure in Africa"
   },
@@ -89,7 +89,7 @@
     }
   },
   "footer": {
-    "tagline": "The bridge between international capital and African potential. Sophisticated structuring, enduring impact.",
+    "tagline": "Clarity in decisions. Enduring outcomes. The bridge between international capital and African potential.",
     "headquarters": "Headquarters",
     "contact": "Contact",
     "address": {
@@ -108,6 +108,45 @@
       "subtitle": "Sovereign financial architecture in service of African development. Structured institutional expertise, anchored in continental realities and connected to international markets.",
       "location": "OHANA Building, Kigali"
     },
+    "globalPresence": {
+      "label": "Global Presence",
+      "title": "Operational presence in Luxembourg, Kigali, and Bissau.",
+      "subtitle": "Our operating model links project execution in East and West Africa with European structuring capabilities.",
+      "cities": {
+        "kigali": {
+          "tag": "Headquarters",
+          "city": "Kigali, Rwanda",
+          "address": "OHANA Building",
+          "description": "Regional origination, stakeholder coordination, and project execution hub."
+        },
+        "luxembourg": {
+          "tag": "European Structuring Desk",
+          "city": "Luxembourg",
+          "address": "Institutional Finance Network",
+          "description": "Cross-border structuring, investor dialogue, and institutional documentation standards."
+        },
+        "bissau": {
+          "tag": "West Africa Coverage",
+          "city": "Bissau, Guinea-Bissau",
+          "address": "Representative Presence",
+          "description": "Pipeline development, local partnership management, and regional market intelligence."
+        }
+      },
+      "kpis": {
+        "regionalCoverage": {
+          "label": "Operational Zones",
+          "value": "3 Strategic Locations"
+        },
+        "workingLanguages": {
+          "label": "Working Languages",
+          "value": "French / English / Portuguese"
+        },
+        "transactionReadiness": {
+          "label": "Execution Model",
+          "value": "Origination to Structuring"
+        }
+      }
+    },
     "sections": {
       "location": {
         "title": "Presence",
@@ -125,20 +164,26 @@
       "cardTitle": "Team member",
       "cardRolePlaceholder": "Role (coming soon)",
       "roles": {
-        "managingDirector": "Managing Director",
+        "managingDirector": "Chief Executive Officer",
         "chiefOperatingOfficer": "Chief Operating Officer"
       }
+    },
+    "teamHighlights": {
+      "title": "Institutional Team DNA",
+      "execution": "Execution-led mindset aligned with project realities on the ground.",
+      "crossBorder": "Cross-border structuring capability connecting African opportunities with international capital.",
+      "governance": "Governance discipline and institutional standards embedded across mandates."
     },
     "principal": {
       "sectionLabel": "The Institution",
       "sectionTitle": "Financial Expertise in Service of African Development",
       "portraitPlaceholder": "Portrait coming soon",
-      "name": "Kamal Alawo Adjayi",
-      "title": "CEO & Founder",
+      "name": "Kamal Alawo ADJAYI",
+      "title": "Chief Executive Officer",
       "quote": "Africa's transformation requires structured partnerships where financial expertise meets deep understanding of institutional realities. Our mission is to create these synergies that generate tangible and enduring impact.",
       "bio": {
-        "intro": "Mr. Kamal Alawo Adjayi is the Founder and CEO of Tychera Investments Ltd, a private investment firm active in financial services, asset management, and holding activities. A financial engineer and Pan-African entrepreneur, he specializes in financial structuring, investment engineering, and capital mobilization for projects with high economic impact.",
-        "education": "Holding degrees from the Universities of Luxembourg and Poitiers, Mr. Adjayi has over ten years of operational experience in international business and finance. This solid academic background, coupled with rigorous capital markets practice, forms the foundation of his expertise in financial engineering.",
+        "intro": "Mr. Kamal Alawo ADJAYI is the Founder and CEO of Tychera Investments Ltd, a private investment firm active in financial services, asset management, and holding activities. A financial engineer and Pan-African entrepreneur, he specializes in financial structuring, investment engineering, and capital mobilization for projects with high economic impact.",
+        "education": "Holding degrees from the Universities of Luxembourg and Poitiers, Mr. ADJAYI has over ten years of operational experience in international business and finance. This solid academic background, coupled with rigorous capital markets practice, forms the foundation of his expertise in financial engineering.",
         "experience": "He has structured and supervised large-scale operations in infrastructure, project finance, financial inclusion, and sustainable finance. He has developed strategic partnerships with international financial institutions, multilateral donors, and private investors in Europe and Africa."
       },
       "cta": "Initiate a collaboration"
@@ -151,6 +196,17 @@
       "subtitle": "Initiate a strategic collaboration."
     }
   },
+  "expertisePage": {
+    "hero": {
+      "label": "Our Expertise",
+      "title": "Institutional financial solutions for Africa",
+      "subtitle": "TYCHERA Investments offers a comprehensive range of financial services designed to meet the sophisticated needs of institutional investors and large-scale projects in Africa."
+    },
+    "cta": {
+      "title": "Ready to explore our solutions?",
+      "subtitle": "Contact our team to discuss your investment needs and discover how TYCHERA can support you."
+    }
+  },
   "homepage": {
     "teaser": {
       "quote": "Africa's transformation requires structured partnerships where financial expertise meets deep understanding of institutional realities. Our mission is to create these synergies that generate tangible and enduring impact.",
@@ -158,8 +214,8 @@
       "cta": "Read more",
       "ariaLabel": "Learn more about the institution",
       "attribution": {
-        "name": "Kamal Alawo Adjayi",
-        "title": "CEO & Founder"
+        "name": "Kamal Alawo ADJAYI",
+        "title": "Chief Executive Officer"
       }
     }
   },

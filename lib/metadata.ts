@@ -19,6 +19,46 @@ import { getSiteUrl } from "@/lib/site-url";
 
 export type Locale = "fr" | "en";
 
+export const ICON_CACHE_BUST = "20260225-1";
+const ICON_QUERY = `?v=${ICON_CACHE_BUST}`;
+
+const DEFAULT_OG_IMAGE_PATHS = ["/og-image.jpg", "/og-image.png"] as const;
+
+const TITLE_TEMPLATE = {
+  default: "TYCHERA Investments LTD",
+  template: "%s | TYCHERA Investments LTD",
+} as const;
+
+const SITE_DESCRIPTION = {
+  fr: "Clarity in decisions. Enduring outcomes. Architecte du Financement des Projets en Afrique.",
+  en: "Clarity in decisions. Enduring outcomes. Architect of Project Financing in Africa.",
+} as const;
+
+const ROOT_KEYWORDS = [
+  "financement de projets",
+  "Afrique",
+  "investissements",
+  "structuration financière",
+  "Rwanda",
+];
+
+export const siteIcons: NonNullable<Metadata["icons"]> = {
+  icon: [
+    { url: "/favicon.ico" },
+    { url: `/favicon.ico${ICON_QUERY}` },
+    { url: "/icon.svg", type: "image/svg+xml" },
+    { url: `/icon.svg${ICON_QUERY}`, type: "image/svg+xml" },
+    { url: `/favicon-96x96.png${ICON_QUERY}`, sizes: "96x96", type: "image/png" },
+    { url: `/icon-192.png${ICON_QUERY}`, sizes: "192x192", type: "image/png" },
+    { url: `/icon-512.png${ICON_QUERY}`, sizes: "512x512", type: "image/png" },
+  ],
+  apple: [
+    { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    { url: `/apple-icon.png${ICON_QUERY}`, sizes: "180x180", type: "image/png" },
+  ],
+  shortcut: ["/favicon.ico", `/favicon.ico${ICON_QUERY}`],
+};
+
 interface MetadataConfig {
   locale: Locale;
   title: string;
@@ -34,6 +74,85 @@ interface MetadataConfig {
  */
 function getBaseUrl(): string {
   return getSiteUrl();
+}
+
+function toAbsoluteUrl(path: string): string {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `${getBaseUrl()}${normalizedPath}`;
+}
+
+function resolveOgImageUrls(customOgImage?: string): string[] {
+  if (customOgImage) return [toAbsoluteUrl(customOgImage)];
+  return DEFAULT_OG_IMAGE_PATHS.map((path) => toAbsoluteUrl(path));
+}
+
+function getMetadataBase(): URL {
+  return new URL(getBaseUrl());
+}
+
+export function generateRootMetadata(): Metadata {
+  const baseUrl = getBaseUrl();
+  const ogImages = resolveOgImageUrls();
+
+  return {
+    title: TITLE_TEMPLATE,
+    description: SITE_DESCRIPTION.fr,
+    keywords: ROOT_KEYWORDS,
+    authors: [
+      {
+        name: "TYCHERA Investments LTD",
+        url: baseUrl,
+      },
+    ],
+    creator: "TYCHERA Investments LTD",
+    publisher: "TYCHERA Investments LTD",
+    formatDetection: {
+      email: false,
+      telephone: false,
+      address: false,
+    },
+    metadataBase: getMetadataBase(),
+    icons: siteIcons,
+    openGraph: {
+      type: "website",
+      locale: "fr_RW",
+      url: baseUrl,
+      siteName: "TYCHERA Investments LTD",
+      title: "TYCHERA Investments LTD",
+      description: SITE_DESCRIPTION.fr,
+      images: ogImages.map((url) => ({
+        url,
+        width: 1200,
+        height: 630,
+        alt: "TYCHERA Investments LTD",
+      })),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "TYCHERA Investments LTD",
+      description: SITE_DESCRIPTION.fr,
+      images: ogImages,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    alternates: {
+      canonical: `${baseUrl}/fr`,
+      languages: {
+        fr: `${baseUrl}/fr`,
+        en: `${baseUrl}/en`,
+        "x-default": `${baseUrl}/fr`,
+      },
+    },
+  };
 }
 
 /**
@@ -78,8 +197,7 @@ export function generateLanguageAlternates(path: string = "/") {
  */
 export function generateOpenGraphMetadata(config: MetadataConfig) {
   const canonicalUrl = generateCanonicalUrl(config.locale, config.path);
-  const baseUrl = getBaseUrl();
-  const ogImage = config.ogImage ? `${baseUrl}${config.ogImage}` : `${baseUrl}/og-image.jpg`;
+  const ogImageUrls = resolveOgImageUrls(config.ogImage);
   
   return {
     type: (config.ogType || "website") as "website" | "article",
@@ -88,14 +206,12 @@ export function generateOpenGraphMetadata(config: MetadataConfig) {
     siteName: "TYCHERA Investments LTD",
     title: config.title,
     description: config.description,
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: config.title,
-      },
-    ],
+    images: ogImageUrls.map((url) => ({
+      url,
+      width: 1200,
+      height: 630,
+      alt: config.title,
+    })),
   };
 }
 
@@ -106,14 +222,13 @@ export function generateOpenGraphMetadata(config: MetadataConfig) {
  * @returns Twitter Card metadata object
  */
 export function generateTwitterMetadata(config: MetadataConfig) {
-  const baseUrl = getBaseUrl();
-  const ogImage = config.ogImage ? `${baseUrl}${config.ogImage}` : `${baseUrl}/og-image.jpg`;
+  const ogImageUrls = resolveOgImageUrls(config.ogImage);
   
   return {
     card: "summary_large_image" as const,
     title: config.title,
     description: config.description,
-    images: [ogImage],
+    images: ogImageUrls,
   };
 }
 
@@ -149,6 +264,7 @@ export function generatePageMetadata(config: MetadataConfig): Metadata {
   const twitter = generateTwitterMetadata(config);
   
   return {
+    metadataBase: getMetadataBase(),
     title: config.title,
     description: config.description,
     keywords: config.keywords,
@@ -171,7 +287,7 @@ export function generateHomePageMetadata(locale: Locale): Metadata {
   const frenchMetadata = {
     title: "TYCHERA Investments LTD - Architecte du Financement des Projets en Afrique",
     description:
-      "Le pont entre capital international et potentiel africain. Structuration sophistiquée, impact durable. Financement de projets, ingénierie financière, gestion de fonds.",
+      "Clarity in decisions. Enduring outcomes. Le pont entre capital international et potentiel africain. Structuration sophistiquée, impact durable. Financement de projets, ingénierie financière, gestion de fonds.",
     keywords: [
       "financement de projets",
       "Afrique",
@@ -187,7 +303,7 @@ export function generateHomePageMetadata(locale: Locale): Metadata {
   const englishMetadata = {
     title: "TYCHERA Investments LTD - Architect of Project Financing in Africa",
     description:
-      "The bridge between international capital and African potential. Sophisticated structuring, sustainable impact. Project financing, financial engineering, fund management.",
+      "Clarity in decisions. Enduring outcomes. The bridge between international capital and African potential. Sophisticated structuring, sustainable impact. Project financing, financial engineering, fund management.",
     keywords: [
       "project financing",
       "Africa",

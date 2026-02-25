@@ -6,7 +6,6 @@ import ContactSection from "@/components/sections/ContactSection";
 import { CMSErrorBoundary } from "@/components/sections/CMSErrorBoundary";
 import { getSiteSettings } from "@/lib/sanity/getSiteSettings";
 import { generateHomePageMetadata, type Locale } from "@/lib/metadata";
-import OrganizationJsonLd from "@/components/sections/OrganizationJsonLd";
 import { sanityFetchWithFallback } from "@/lib/sanity/client";
 import { HOME_PAGE_QUERY } from "@/lib/sanity/queries";
 import type { HomePageData, ServiceItem } from "@/lib/sanity/types";
@@ -92,7 +91,6 @@ export default async function HomePage(props: HomePageProps): Promise<React.Reac
 
   return (
     <>
-      <OrganizationJsonLd locale={locale} />
       <Hero />
       <CMSErrorBoundary>
         <ThreePillars mode="teaser" services={services} locale={locale} />

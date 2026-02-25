@@ -115,7 +115,9 @@ const toPortableText = (text: string, key: string): Array<{ _type: string; [key:
 export default async function ExpertisePage(props: ExpertisePageProps): Promise<React.ReactElement> {
   const params = await props.params;
   const locale = params.locale as Locale;
-  const t = await getTranslations('pillars');
+  const tPillars = await getTranslations('pillars');
+  const tExpertise = await getTranslations('expertisePage');
+  const tHeaderNav = await getTranslations('header.nav');
 
   const data = await sanityFetchWithFallback<ExpertisePageData>({
     query: EXPERTISE_PAGE_QUERY,
@@ -142,117 +144,119 @@ export default async function ExpertisePage(props: ExpertisePageProps): Promise<
     });
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="py-24 lg:py-32 bg-background border-b border-border/50">
+      <section className="border-b border-border/50 bg-[linear-gradient(180deg,hsl(var(--muted)/0.35)_0%,hsl(var(--background))_100%)] py-16 md:py-20 lg:py-24">
         <div className="container px-6">
           <div className="max-w-4xl">
-            <p className="text-sm font-sans uppercase tracking-widest text-primary mb-4">
-              {locale === 'fr' ? 'Notre Expertise' : 'Our Expertise'}
+            <p className="text-sm font-sans uppercase tracking-[0.18em] text-foreground/70 mb-4">
+              {tExpertise('hero.label')}
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight text-foreground mb-6">
-              {locale === 'fr'
-                ? "Solutions financières institutionnelles pour l'Afrique"
-                : 'Institutional financial solutions for Africa'}
+              {tExpertise('hero.title')}
             </h1>
             <p className="text-lg text-muted-foreground font-sans leading-relaxed">
-              {locale === 'fr'
-                ? "TYCHERA Investments offre une gamme complète de services financiers conçus pour répondre aux besoins sophistiqués des investisseurs institutionnels et des projets d'envergure en Afrique."
-                : 'TYCHERA Investments offers a comprehensive range of financial services designed to meet the sophisticated needs of institutional investors and large-scale projects in Africa.'}
+              {tExpertise('hero.subtitle')}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Services Detail Section — Zig-Zag Layout */}
-      <section className="py-24 lg:py-32">
+      {/* Services Detail Section */}
+      <section className="py-12 lg:py-16">
         <div className="container px-6">
-          <div className="space-y-40">
+          <div className="mb-8 max-w-3xl">
+            <p className="mb-3 text-[0.7rem] uppercase tracking-[0.18em] text-foreground/70 font-sans">
+              {tPillars('sectionLabel')}
+            </p>
+            <h2 className="text-2xl md:text-3xl font-serif text-foreground">
+              {tPillars('sectionTitle')}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             {services.map((service, index) => {
               const IconComponent = iconMap[service.icon] ?? DEFAULT_ICON;
-              const isEven = index % 2 === 0;
+              const title = getLocalizedText(service.title, locale);
+              const description = getLocalizedText(service.description, locale);
 
               return (
-                <div
+                <article
                   key={service._id}
-                  className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center"
+                  className="overflow-hidden rounded-sm border border-border/60 bg-background"
+                  aria-labelledby={`service-title-${service._id}`}
                 >
-                  {/* Text Column */}
-                  <div className={`lg:col-span-6 ${isEven ? 'lg:col-start-1' : 'lg:col-start-7'}`}>
-                    <div className="relative">
-                      {/* Large Number Background */}
-                      <div className="absolute -top-12 -left-6 text-[10rem] font-serif text-accent/10 leading-none pointer-events-none select-none">
-                        {service.number}
+                  <div className="relative aspect-[16/9] overflow-hidden border-b border-border/60 bg-muted/30">
+                    <Image
+                      src={service.image?.asset?.url ?? (serviceImages[service.order] ?? FALLBACK_IMAGE)}
+                      alt={service.image?.alt ?? title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 42vw"
+                      priority={index < 2}
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_60%,hsl(var(--background)/0.16)_100%)]"
+                      aria-hidden="true"
+                    />
+                  </div>
+
+                  <div className="p-5 md:p-6">
+                    <header>
+                      <div className="mb-3 flex items-center gap-3">
+                        <span className="font-sans text-xs tracking-[0.16em] uppercase text-foreground/80">
+                          {service.number}
+                        </span>
+                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-sm border border-border/60 bg-muted/40">
+                          <IconComponent className="h-4 w-4 text-foreground/70" strokeWidth={1.5} />
+                        </span>
                       </div>
-
-                      {/* Icon */}
-                      <div className="relative mb-6 text-[#2283a2]">
-                        <IconComponent className="w-8 h-8 text-[#2283a2] fill-[#588157]/10" strokeWidth={1.5} />
-                      </div>
-
-                      {/* Title */}
-                      <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-6 leading-tight">
-                        {getLocalizedText(service.title, locale)}
-                      </h2>
-
-                      {/* Short Description */}
-                      <p className="text-xl text-primary/80 font-sans leading-relaxed mb-8 font-medium">
-                        {getLocalizedText(service.description, locale)}
+                      <h3 id={`service-title-${service._id}`} className="text-2xl md:text-3xl font-serif text-foreground leading-tight">
+                        {title}
+                      </h3>
+                      <p className="mt-3 text-base text-muted-foreground font-sans leading-relaxed">
+                        {description}
                       </p>
+                    </header>
 
-                      {/* Gold Divider */}
-                      <div className="flex items-center gap-3 mb-8">
-                        <div className="h-px w-16 bg-accent" />
-                        <div className="w-1.5 h-1.5 bg-accent rotate-45" />
-                      </div>
+                    <div className="my-5 h-px w-14 bg-border" />
 
-                      {/* Detailed Content */}
-                      <div className="prose prose-lg max-w-none">
-                        <div className="text-muted-foreground font-sans leading-relaxed text-base space-y-4">
-                          <PortableText value={service.bodyBlocks} />
-                        </div>
-                      </div>
+                    <div className="text-muted-foreground font-sans leading-relaxed text-sm md:text-base [&_p+p]:mt-3">
+                      <PortableText value={service.bodyBlocks} />
                     </div>
                   </div>
-
-                  {/* Visual Column */}
-                  <div className={`lg:col-span-5 ${isEven ? 'lg:col-start-8' : 'lg:col-start-1 lg:row-start-1'}`}>
-                    <div className="relative aspect-square rounded-sm overflow-hidden border border-border/30">
-                      <Image
-                        src={service.image?.asset?.url ?? (serviceImages[service.order] ?? FALLBACK_IMAGE)}
-                        alt={service.image?.alt ?? ''}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
-                    </div>
-                  </div>
-                </div>
+                </article>
               );
             })}
           </div>
+
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 lg:py-32 bg-primary/5">
+      <section className="border-t border-border/50 bg-muted/20 py-16 lg:py-20">
         <div className="container px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
-              {locale === 'fr' ? 'Prêt à explorer nos solutions ?' : 'Ready to explore our solutions?'}
+              {tExpertise('cta.title')}
             </h2>
             <p className="text-lg text-muted-foreground font-sans mb-8">
-              {locale === 'fr'
-                ? 'Contactez notre équipe pour discuter de vos besoins en investissement et découvrir comment TYCHERA peut vous accompagner.'
-                : 'Contact our team to discuss your investment needs and discover how TYCHERA can support you.'}
+              {tExpertise('cta.subtitle')}
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-sans text-base rounded-sm hover:bg-primary/90 transition-colors"
-            >
-              {t('learnMore')}
-            </Link>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-sm bg-primary px-8 py-4 font-sans text-base text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                {tPillars('learnMore')}
+              </Link>
+              <Link
+                href="/institution"
+                className="inline-flex items-center justify-center rounded-sm border border-border/70 bg-background px-6 py-4 font-sans text-base text-foreground transition-colors hover:bg-muted/60"
+              >
+                {tHeaderNav('institution')}
+              </Link>
+            </div>
           </div>
         </div>
       </section>

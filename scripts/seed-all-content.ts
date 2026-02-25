@@ -157,18 +157,18 @@ const teamMembers = [
   {
     _id: 'team-kamal-adjayi',
     _type: 'teamMember',
-    name: 'Kamal ADJAYI',
+    name: 'Kamal Alawo ADJAYI',
     role: {
-      fr: 'Directeur Général',
-      en: 'Managing Director',
+      fr: 'Chief Executive Officer',
+      en: 'Chief Executive Officer',
     },
     bio: {
       fr: textBlock(
-        'Monsieur Kamal Alawo Adjayi est le fondateur et Directeur Général de Tychera Investments Ltd, une société d\'investissement privée active dans les services financiers, la gestion d\'actifs et les activités de holding. Ingénieur financier et entrepreneur panafricain, il est spécialisé en structuration financière, gouvernance stratégique et mobilisation de capitaux pour des projets à fort impact économique et social.',
+        'Monsieur Kamal Alawo ADJAYI est le fondateur et CEO de Tychera Investments Ltd, une société d\'investissement privée active dans les services financiers, la gestion d\'actifs et les activités de holding. Ingénieur financier et entrepreneur panafricain, il est spécialisé en structuration financière, gouvernance stratégique et mobilisation de capitaux pour des projets à fort impact économique et social.',
         'kamal-bio-fr'
       ),
       en: textBlock(
-        'Mr. Kamal Alawo Adjayi is the Founder and CEO of Tychera Investments Ltd, a private investment firm active in financial services, asset management, and holding activities. A financial engineer and Pan-African entrepreneur, he specializes in financial structuring, strategic governance, and capital mobilization for projects with high economic and social impact.',
+        'Mr. Kamal Alawo ADJAYI is the Founder and CEO of Tychera Investments Ltd, a private investment firm active in financial services, asset management, and holding activities. A financial engineer and Pan-African entrepreneur, he specializes in financial structuring, strategic governance, and capital mobilization for projects with high economic and social impact.',
         'kamal-bio-en'
       ),
     },
@@ -179,16 +179,16 @@ const teamMembers = [
     _type: 'teamMember',
     name: 'Hawa KAYISHARAZA',
     role: {
-      fr: 'Directrice des Opérations',
+      fr: 'Chief Operating Officer',
       en: 'Chief Operating Officer',
     },
     bio: {
       fr: textBlock(
-        'Madame Hawa Kayisharaza est la Directrice des Opérations de Tychera Investments Ltd, responsable de la coordination opérationnelle et de la gestion quotidienne des activités de la société.',
+        'Madame Hawa Kayisharaza est la COO de Tychera Investments Ltd, responsable de la coordination opérationnelle et de la gestion quotidienne des activités de la société.',
         'hawa-bio-fr'
       ),
       en: textBlock(
-        'Ms. Hawa Kayisharaza is the Chief Operating Officer of Tychera Investments Ltd, responsible for operational coordination and day-to-day management of the company\'s activities.',
+        'Ms. Hawa Kayisharaza is the COO of Tychera Investments Ltd, responsible for operational coordination and day-to-day management of the company\'s activities.',
         'hawa-bio-en'
       ),
     },

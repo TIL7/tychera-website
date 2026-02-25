@@ -30,7 +30,7 @@ const COLORS = {
 
 async function generateOGImage() {
   try {
-    console.log('🎨 Generating Open Graph image...');
+    console.log('Generating: Generating Open Graph image...');
 
     // Create SVG for the OG image
     const svg = `
@@ -110,7 +110,7 @@ async function generateOGImage() {
       .jpeg({ quality: 90, progressive: true })
       .toFile(outputPath);
 
-    console.log(`✅ OG image created successfully: ${outputPath}`);
+    console.log(`OK: OG image created successfully: ${outputPath}`);
     console.log(`   Dimensions: ${WIDTH}x${HEIGHT}px`);
     console.log(`   Format: JPEG (optimized)`);
 
@@ -120,10 +120,10 @@ async function generateOGImage() {
       .png({ quality: 90 })
       .toFile(pngPath);
 
-    console.log(`✅ PNG version also created: ${pngPath}`);
+    console.log(`OK: PNG version also created: ${pngPath}`);
 
   } catch (error) {
-    console.error('❌ Error generating OG image:', error);
+    console.error('Error: Error generating OG image:', error);
     process.exit(1);
   }
 }

@@ -18,8 +18,8 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2026-02-05';
 
 if (!projectId) {
-  console.error('❌ CRITICAL: Missing NEXT_PUBLIC_SANITY_PROJECT_ID');
-  console.error('📋 Create .env.local with:');
+  console.error('Error: CRITICAL: Missing NEXT_PUBLIC_SANITY_PROJECT_ID');
+  console.error('Info: Create .env.local with:');
   console.error('   NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id');
   console.error('   NEXT_PUBLIC_SANITY_DATASET=production');
   console.error('   NEXT_PUBLIC_SANITY_API_VERSION=2026-02-05');

@@ -11,8 +11,8 @@ export interface DigitalCardProfile {
 
 export const digitalCardByToken: Record<string, DigitalCardProfile> = {
   f7K2vQ9mLp4R8xT1cN6b: {
-    name: "Kamal Alawo Adjayi",
-    title: "Managing Director",
+    name: "Kamal Alawo ADJAYI",
+    title: "CEO",
     phone: "+250 793 145 440",
     whatsappPhone: "+22890469240",
     email: "kamal.adjayi@tycherainvest.com",
@@ -22,7 +22,7 @@ export const digitalCardByToken: Record<string, DigitalCardProfile> = {
   },
   u3Jd8sW1pZ5kM9qR2tY4: {
     name: "Hawa KAYISHARAZA",
-    title: "Chief Operating Officer",
+    title: "COO",
     phone: "+250 788 885 572",
     whatsappPhone: "+250788885572",
     email: "hawa.kayisharaza@tycherainvest.com",
@@ -31,4 +31,3 @@ export const digitalCardByToken: Record<string, DigitalCardProfile> = {
     vcfPath: "/vcards/b2.vcf",
   },
 };
-
