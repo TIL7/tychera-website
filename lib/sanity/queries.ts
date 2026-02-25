@@ -71,6 +71,7 @@ export const TEAM_MEMBERS_QUERY = groq`
     _updatedAt,
     name,
     "role": role,
+    "shortBio": shortBio,
     "bio": bio,
     image {
       asset->{

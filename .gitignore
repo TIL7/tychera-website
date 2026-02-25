@@ -64,3 +64,9 @@ temporary_docs/
 .kiro
 .trae
 .agent
+
+# Manual
+manual.html
+
+# Windows reserved filenames
+nul

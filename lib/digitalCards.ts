@@ -11,7 +11,7 @@ export interface DigitalCardProfile {
 
 export const digitalCardByToken: Record<string, DigitalCardProfile> = {
   f7K2vQ9mLp4R8xT1cN6b: {
-    name: "Kamal ADJAYI",
+    name: "Kamal Alawo Adjayi",
     title: "Managing Director",
     phone: "+250 793 145 440",
     whatsappPhone: "+22890469240",

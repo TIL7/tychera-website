@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "app/**/*.{ts,tsx}",
+    "pages/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "lib/**/*.{ts,tsx}",
+    "sanity.config.ts",
+    "sanity/schema.ts",
+    "next.config.js"
+  ],
+  "project": ["**/*.{ts,tsx}"],
+  "ignore": ["node_modules/**", ".next/**", "out/**", "vite.config.ts"],
+  "ignoreDependencies": ["eslint", "prettier"]
+}

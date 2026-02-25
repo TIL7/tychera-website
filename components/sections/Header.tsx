@@ -72,18 +72,18 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[0.22,1,0.36,1] ${isScrolled ? 'glass-header h-28 md:h-32' : 'h-20 md:h-24'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[0.22,1,0.36,1] ${isScrolled ? 'glass-header h-24 md:h-28' : 'h-24 md:h-32'
         }`}
     >
-      <div className="container h-full flex items-center justify-between px-6">
+      <div className="container h-full flex items-center justify-between px-6 md:px-12">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3" aria-label="TYCHERA Investments">
           <Image
-            src="/images/tychera-logo-color.svg"
+            src="/images/tychera-logo-web.svg"
             alt="TYCHERA Investments"
-            width={160}
-            height={160}
-            className={`${isScrolled ? 'h-24 md:h-28' : 'h-16 md:h-20'} w-auto transition-all duration-500 ease-[0.22,1,0.36,1]`}
+            width={240}
+            height={100}
+            className={`${isScrolled ? 'h-16 md:h-20' : 'h-20 md:h-24'} w-auto transition-all duration-500 ease-[0.22,1,0.36,1]`}
             style={{ width: 'auto' }}
             priority
           />

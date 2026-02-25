@@ -44,6 +44,16 @@ export const teamMember = defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
+      name: 'shortBio',
+      title: 'Short Bio',
+      type: 'object',
+      description: 'A short bio line displayed under the name in the team grid',
+      fields: [
+        { name: 'fr', type: 'string', title: 'French' },
+        { name: 'en', type: 'string', title: 'English' }
+      ]
+    }),
+    defineField({
       name: 'bio',
       title: 'Biography',
       type: 'object',

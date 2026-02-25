@@ -86,6 +86,7 @@ export interface TeamMember {
   _updatedAt?: string;
   name: string;
   role: BilingualText;
+  shortBio?: BilingualText;
   bio: BilingualRichText;
   image: SanityImage;
   order: number;

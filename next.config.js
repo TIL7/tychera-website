@@ -11,9 +11,6 @@ const nextConfig = {
     ],
     formats: ['image/avif', 'image/webp'],
   },
-  experimental: {
-    optimizePackageImports: ['lucide-react'],
-  },
   typescript: {
     // Temporarily ignore build errors to complete the asset migration task
     ignoreBuildErrors: true,

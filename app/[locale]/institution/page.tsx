@@ -44,14 +44,14 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
 
   // Fallback team list for the grid (when CMS is empty)
   const fallbackTeam = [
-    { name: 'Kamal ADJAYI', role: t('team.roles.managingDirector') },
+    { name: 'Kamal Alawo Adjayi', role: t('team.roles.managingDirector') },
     { name: 'Hawa KAYISHARAZA', role: t('team.roles.chiefOperatingOfficer') },
   ];
 
   return (
     <div className="min-h-screen">
       {/* Mission Section */}
-      <section className="py-24 bg-background">
+      <section className="py-24 lg:py-32 bg-background">
         <div className="container px-6">
           <div className="max-w-4xl">
             <h1 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
@@ -174,6 +174,11 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
                     <p className="text-sm font-sans text-muted-foreground">
                       {getLocalizedText(member.role, locale)}
                     </p>
+                    {member.shortBio && (
+                      <p className="text-sm font-sans text-muted-foreground/80 mt-2 max-w-sm">
+                        {getLocalizedText(member.shortBio, locale)}
+                      </p>
+                    )}
                   </div>
                 ))
               : fallbackTeam.map((member, idx) => (
