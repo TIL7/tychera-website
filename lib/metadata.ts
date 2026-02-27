@@ -285,9 +285,9 @@ export function generatePageMetadata(config: MetadataConfig): Metadata {
  */
 export function generateHomePageMetadata(locale: Locale): Metadata {
   const frenchMetadata = {
-    title: "TYCHERA Investments LTD - Architecte du Financement des Projets en Afrique",
+    title: "TYCHERA Investments - Financement de Projets en Afrique",
     description:
-      "Clarity in decisions. Enduring outcomes. Structuration sophistiquée, impact durable. Financement de projets, ingénierie financière, gestion de fonds.",
+      "Architecture financière et structuration de projets. Nous transformons les ambitions africaines en réalités bancables et durables.",
     keywords: [
       "financement de projets",
       "Afrique",
@@ -301,9 +301,9 @@ export function generateHomePageMetadata(locale: Locale): Metadata {
   };
 
   const englishMetadata = {
-    title: "TYCHERA Investments LTD - Architect of Project Financing in Africa",
+    title: "TYCHERA Investments - Project Financing in Africa",
     description:
-      "Clarity in decisions. Enduring outcomes. Sophisticated structuring, sustainable impact. Project financing, financial engineering, fund management.",
+      "Financial architecture and project structuring. We transform African ambitions into bankable and sustainable realities.",
     keywords: [
       "project financing",
       "Africa",
@@ -335,9 +335,9 @@ export function generateHomePageMetadata(locale: Locale): Metadata {
  */
 export function generateExpertisePageMetadata(locale: Locale): Metadata {
   const frenchMetadata = {
-    title: "Expertise - TYCHERA Investments LTD",
+    title: "Expertise Financière et Stratégique - TYCHERA Investments",
     description:
-      "Découvrez nos quatre piliers d'excellence : Ingénierie Financière, Financement de Projets, Gestion de Fonds, et Structuration de Deals. Expertise institutionnelle au service du développement africain.",
+      "Ingénierie financière, financement de projets, gestion de fonds et structuration de deals. Expertise institutionnelle pour le développement de l'Afrique.",
     keywords: [
       "expertise financière",
       "ingénierie financière",
@@ -350,9 +350,9 @@ export function generateExpertisePageMetadata(locale: Locale): Metadata {
   };
 
   const englishMetadata = {
-    title: "Expertise - TYCHERA Investments LTD",
+    title: "Financial and Strategic Expertise - TYCHERA Investments",
     description:
-      "Discover our four pillars of excellence: Financial Engineering, Project Financing, Fund Management, and Deal Structuring. Institutional expertise in service of African development.",
+      "Financial engineering, project financing, fund management, and deal structuring. Institutional expertise driving Africa's sustainable development.",
     keywords: [
       "financial expertise",
       "financial engineering",
@@ -382,9 +382,9 @@ export function generateExpertisePageMetadata(locale: Locale): Metadata {
  */
 export function generateInstitutionPageMetadata(locale: Locale): Metadata {
   const frenchMetadata = {
-    title: "L'Institution - TYCHERA Investments LTD",
+    title: "L'Institution Financière - TYCHERA Investments",
     description:
-      "Architecture financière souveraine au service du développement africain. Une expertise institutionnelle structurée, ancrée dans les réalités du continent.",
+      "Architecture financière souveraine pour l'Afrique. Expertise institutionnelle ancrée à Kigali, connectée aux marchés mondiaux.",
     keywords: [
       "institution financière",
       "gouvernance",
@@ -398,9 +398,9 @@ export function generateInstitutionPageMetadata(locale: Locale): Metadata {
   };
 
   const englishMetadata = {
-    title: "The Institution - TYCHERA Investments LTD",
+    title: "The Financial Institution - TYCHERA Investments",
     description:
-      "Sovereign financial architecture in service of African development. Structured institutional expertise, anchored in continental realities.",
+      "Sovereign financial architecture for Africa. Institutional expertise anchored in Kigali, connected to global markets.",
     keywords: [
       "financial institution",
       "governance",
@@ -434,9 +434,9 @@ export function generateInstitutionPageMetadata(locale: Locale): Metadata {
  */
 export function generateContactPageMetadata(locale: Locale): Metadata {
   const frenchMetadata = {
-    title: "Contact - TYCHERA Investments LTD",
+    title: "Contactez TYCHERA Investments - Kigali, Rwanda",
     description:
-      "Initiez une collaboration stratégique avec TYCHERA Investments. Financement de projets, conseil stratégique et structuration financière en Afrique.",
+      "Initiez une collaboration stratégique. Financement de projets, conseil et structuration financière depuis Kigali, Rwanda.",
     keywords: [
       "contact",
       "collaboration stratégique",
@@ -449,9 +449,9 @@ export function generateContactPageMetadata(locale: Locale): Metadata {
   };
 
   const englishMetadata = {
-    title: "Contact - TYCHERA Investments LTD",
+    title: "Contact TYCHERA Investments - Kigali, Rwanda",
     description:
-      "Initiate a strategic collaboration with TYCHERA Investments. Project financing, strategic advisory and financial structuring in Africa.",
+      "Initiate a strategic collaboration. Project financing, advisory and financial structuring from Kigali, Rwanda.",
     keywords: [
       "contact",
       "strategic collaboration",

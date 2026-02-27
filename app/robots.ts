@@ -6,6 +6,9 @@ export default function robots(): MetadataRoute.Robots {
   const isProduction = process.env.VERCEL_ENV === "production";
 
   if (!isProduction) {
+    // In preview/dev environments, we generally disallow indexing,
+    // but the user requested "production-ready" validation.
+    // Ensure this logic aligns with your actual deployment strategy.
     return {
       rules: [
         {

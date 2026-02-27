@@ -25,10 +25,10 @@ export default async function ContactPage(props: ContactPageProps) {
       <div className="container px-6 max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-sm font-sans uppercase tracking-widest text-primary mb-4">{t('hero.label')}</p>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-4">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif text-foreground mb-4">
             {t('hero.title')}
           </h1>
-          <p className="text-lg text-muted-foreground font-sans max-w-2xl mx-auto">
+          <p className="text-base text-muted-foreground font-sans max-w-2xl mx-auto">
             {t('hero.subtitle')}
           </p>
         </div>

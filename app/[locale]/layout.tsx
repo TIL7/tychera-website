@@ -5,6 +5,13 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import { locales } from "@/i18n/config";
 import Header from "@/components/sections/Header";
 import Footer from "@/components/sections/Footer";
+import type { Metadata, Viewport } from "next";
+import { Toaster } from "sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import OrganizationJsonLd from "@/components/sections/OrganizationJsonLd";
+import { generateRootMetadata } from "@/lib/metadata";
+import "@/app/globals.css";
 
 // Configure fonts
 const inter = Inter({
@@ -30,15 +37,6 @@ interface LocaleLayoutProps {
   }>;
 }
 
-/**
- * Locale Layout - i18n Routing
- * 
- * This layout handles locale-based routing for the application.
- * Supports French (fr) as default and English (en) as secondary locale.
- * 
- * @requirements 3.1, 3.4, 5.1, 5.2, 5.3, 5.6, 5.7
- */
-
 export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
@@ -46,6 +44,19 @@ export async function generateStaticParams() {
     locale,
   }));
 }
+
+export const metadata: Metadata = generateRootMetadata();
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#2283a2" },
+    { media: "(prefers-color-scheme: dark)", color: "#2283a2" },
+  ],
+};
 
 export default async function LocaleLayout(props: LocaleLayoutProps) {
   const params = await props.params;
@@ -58,15 +69,27 @@ export default async function LocaleLayout(props: LocaleLayoutProps) {
   const messages = await getMessages();
 
   return (
-    <div className={`${inter.variable} ${playfairDisplay.variable}`}>
-      <NextIntlClientProvider locale={locale} messages={messages}>
-        <Header />
-        <main className="pt-32">
-          {props.children}
-        </main>
-        <Footer />
-      </NextIntlClientProvider>
-    </div>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={`${inter.variable} ${playfairDisplay.variable}`}>
+        <TooltipProvider>
+          <OrganizationJsonLd locale={locale} />
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <Header />
+            <main className="pt-32">
+              {props.children}
+            </main>
+            <Footer />
+          </NextIntlClientProvider>
+          <Toaster
+            position="top-right"
+            richColors
+            closeButton
+            theme="light"
+            expand
+          />
+          <SpeedInsights />
+        </TooltipProvider>
+      </body>
+    </html>
   );
 }
-

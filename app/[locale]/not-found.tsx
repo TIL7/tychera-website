@@ -15,13 +15,13 @@ export default function NotFound() {
         TYCHERA
       </p>
 
-      {/* 404 number with gold underline */}
-      <h1 className="text-9xl font-serif text-primary/20 leading-none mb-2 select-none border-b-2 border-[#E9C46A] pb-4">
+      {/* 404 number with primary underline */}
+      <h1 className="text-9xl font-serif text-primary/20 leading-none mb-2 select-none border-b-2 border-primary/20 pb-4">
         404
       </h1>
 
-      {/* Gold divider */}
-      <div className="w-16 h-px bg-[#E9C46A] my-6" />
+      {/* Primary divider */}
+      <div className="w-16 h-px bg-primary/20 my-6" />
 
       <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
         {t('title')}

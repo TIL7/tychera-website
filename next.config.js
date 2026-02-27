@@ -15,11 +15,11 @@ const nextConfig = {
   },
   typescript: {
     // Temporarily ignore build errors to complete the asset migration task
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   eslint: {
     // Temporarily ignore ESLint errors during build
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   async headers() {
     return [
