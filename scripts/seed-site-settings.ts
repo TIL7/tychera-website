@@ -37,7 +37,7 @@ const defaults = {
   email: 'contact@tycherainvest.com',
   phone: '+250 722 138 799',
   address: {
-    line1: 'TYCHERA INVESTMENTS LTD',
+    line1: 'TYCHERA Investments Ltd',
     line2: 'Immeuble OHANA',
     line3: 'Kigali, Rwanda',
   },

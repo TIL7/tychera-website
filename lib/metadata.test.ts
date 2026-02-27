@@ -155,8 +155,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       });
 
       const images = Array.isArray(og.images) ? og.images : [og.images];
-      expect(images[0].url).toContain("og-image.jpg");
-      expect(images[1].url).toContain("og-image.png");
+      expect(images[0].url).toContain("tychera-logo-color-final.svg");
+      expect(images[1].url).toContain("tychera-logo-black-final.svg");
     });
 
     it("should use custom OG image when specified", () => {
@@ -208,7 +208,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
         path: "/",
       });
 
-      expect(og.siteName).toBe("TYCHERA Investments LTD");
+      expect(og.siteName).toBe("TYCHERA Investments Ltd");
     });
   });
 
@@ -252,8 +252,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const images = twitter.images;
       if (Array.isArray(images)) {
         expect(images).toHaveLength(2);
-        expect(images[0]).toContain("og-image.jpg");
-        expect(images[1]).toContain("og-image.png");
+        expect(images[0]).toContain("tychera-logo-color-final.svg");
+        expect(images[1]).toContain("tychera-logo-black-final.svg");
       }
     });
   });
@@ -309,8 +309,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
     it("should generate French home page metadata", () => {
       const metadata = generateHomePageMetadata("fr");
 
-      expect(metadata.title).toContain("TYCHERA Investments LTD");
-      expect(metadata.description).toContain("Le pont");
+      expect(metadata.title).toContain("TYCHERA Investments Ltd");
+      expect(metadata.description).toBe("Clarity in decisions. Enduring outcomes.");
       expect(metadata.keywords).toContain("financement de projets");
       expect(metadata.openGraph?.url).toBe(`${baseUrl}/fr`);
     });
@@ -318,8 +318,8 @@ describe("Metadata Generation - Open Graph Tags", () => {
     it("should generate English home page metadata", () => {
       const metadata = generateHomePageMetadata("en");
 
-      expect(metadata.title).toContain("TYCHERA Investments LTD");
-      expect(metadata.description).toContain("The bridge");
+      expect(metadata.title).toContain("TYCHERA Investments Ltd");
+      expect(metadata.description).toBe("Clarity in decisions. Enduring outcomes.");
       expect(metadata.keywords).toContain("project financing");
       expect(metadata.openGraph?.url).toBe(`${baseUrl}/en`);
     });
@@ -343,7 +343,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generateExpertisePageMetadata("fr");
 
       expect(metadata.title).toContain("Expertise");
-      expect(metadata.description).toContain("Découvrez");
+      expect(metadata.description).toBe("Clarity in decisions. Enduring outcomes.");
       expect(metadata.keywords).toContain("expertise financière");
       expect(metadata.openGraph?.url).toContain("/fr/expertise");
     });
@@ -352,7 +352,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generateExpertisePageMetadata("en");
 
       expect(metadata.title).toContain("Expertise");
-      expect(metadata.description).toContain("Discover");
+      expect(metadata.description).toBe("Clarity in decisions. Enduring outcomes.");
       expect(metadata.keywords).toContain("financial expertise");
       expect(metadata.openGraph?.url).toContain("/en/expertise");
     });
@@ -376,7 +376,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generateInstitutionPageMetadata("fr");
 
       expect(metadata.title).toContain("Institution");
-      expect(metadata.description).toContain("Architecture financière");
+      expect(metadata.description).toBe("Clarity in decisions. Enduring outcomes.");
       expect(metadata.keywords).toContain("institution financière");
       expect(metadata.openGraph?.url).toContain("/fr/institution");
     });
@@ -385,7 +385,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generateInstitutionPageMetadata("en");
 
       expect(metadata.title).toContain("Institution");
-      expect(metadata.description).toContain("Sovereign financial");
+      expect(metadata.description).toBe("Clarity in decisions. Enduring outcomes.");
       expect(metadata.keywords).toContain("financial institution");
       expect(metadata.openGraph?.url).toContain("/en/institution");
     });
@@ -396,7 +396,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generateContactPageMetadata("fr");
 
       expect(metadata.title).toContain("Contact");
-      expect(metadata.description).toContain("collaboration stratégique");
+      expect(metadata.description).toBe("Clarity in decisions. Enduring outcomes.");
       expect(metadata.keywords).toContain("contact");
       expect(metadata.openGraph?.url).toContain("/fr/contact");
     });
@@ -405,7 +405,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generateContactPageMetadata("en");
 
       expect(metadata.title).toContain("Contact");
-      expect(metadata.description).toContain("strategic collaboration");
+      expect(metadata.description).toBe("Clarity in decisions. Enduring outcomes.");
       expect(metadata.keywords).toContain("contact");
       expect(metadata.openGraph?.url).toContain("/en/contact");
     });
@@ -416,7 +416,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generate404PageMetadata("fr");
 
       expect(metadata.title).toContain("Page non trouvée");
-      expect(metadata.description).toContain("n'existe pas");
+      expect(metadata.description).toBe("Clarity in decisions. Enduring outcomes.");
       expect(metadata.keywords).toContain("404");
     });
 
@@ -424,7 +424,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
       const metadata = generate404PageMetadata("en");
 
       expect(metadata.title).toContain("Page Not Found");
-      expect(metadata.description).toContain("does not exist");
+      expect(metadata.description).toBe("Clarity in decisions. Enduring outcomes.");
       expect(metadata.keywords).toContain("404");
     });
 
@@ -565,7 +565,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
 
       pages.forEach((metadata) => {
         expect(metadata.openGraph?.siteName).toBeDefined();
-        expect(metadata.openGraph?.siteName).toBe("TYCHERA Investments LTD");
+        expect(metadata.openGraph?.siteName).toBe("TYCHERA Investments Ltd");
       });
     });
   });
@@ -631,7 +631,7 @@ describe("Metadata Generation - Open Graph Tags", () => {
         const images = metadata.twitter?.images;
         if (Array.isArray(images)) {
           expect(images).toHaveLength(2);
-          expect(images[0]).toContain("og-image");
+          expect(images[0]).toContain("tychera-logo-color-final.svg");
         }
       });
     });

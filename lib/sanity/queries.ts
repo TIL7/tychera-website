@@ -192,7 +192,7 @@ export const HOME_PAGE_QUERY = groq`
  */
 export const EXPERTISE_PAGE_QUERY = groq`
   {
-    "services": *[_type == "serviceItem"] | order(order asc) [0...6] {
+    "services": *[_type == "serviceItem"] | order(order asc) [0...4] {
       _id,
       number,
       "title": title,

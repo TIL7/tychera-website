@@ -79,10 +79,10 @@ const Header = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3" aria-label="TYCHERA Investments">
           <Image
-            src="/images/tychera-logo-web.svg"
+            src="/images/tychera-logo-color-final.svg"
             alt="TYCHERA Investments"
             width={240}
-            height={100}
+            height={102}
             className={`${isScrolled ? 'h-16 md:h-20' : 'h-20 md:h-24'} w-auto transition-all duration-500 ease-[0.22,1,0.36,1]`}
             style={{ width: 'auto' }}
             priority

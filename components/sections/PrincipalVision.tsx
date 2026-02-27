@@ -54,18 +54,12 @@ export default function PrincipalVision(): JSX.Element {
               </p>
             </blockquote>
 
-            {/* Narrative */}
-            <div className="space-y-4">
+            {/* Narrative - Removed per brief to keep corporate focus */}
+            {/* <div className="space-y-4">
               <p className="text-muted-foreground font-sans leading-relaxed">
                 {t('bio.intro')}
               </p>
-              <p className="text-muted-foreground font-sans leading-relaxed">
-                <span className="text-primary font-medium">{t('bio.experience').split(',')[0]}</span>, {t('bio.experience').substring(t('bio.experience').indexOf(',') + 2)}
-              </p>
-              <p className="text-muted-foreground font-sans leading-relaxed">
-                {t('bio.value')}
-              </p>
-            </div>
+            </div> */}
 
             <div className="pt-8">
               <Link

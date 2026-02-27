@@ -113,7 +113,7 @@ async function seedContent(): Promise<void> {
               {
                 _type: 'span',
                 _key: `span-fr-${key}`,
-                text: generateDetailedContent(key, 'fr'),
+                text: frService.description,
                 marks: [],
               },
             ],
@@ -129,7 +129,7 @@ async function seedContent(): Promise<void> {
               {
                 _type: 'span',
                 _key: `span-en-${key}`,
-                text: generateDetailedContent(key, 'en'),
+                text: enService.description,
                 marks: [],
               },
             ],
@@ -153,28 +153,6 @@ async function seedContent(): Promise<void> {
   console.log('Info: View your content at: https://www.sanity.io/manage');
 }
 
-/**
- * Generate detailed content for expertise page
- * Institutional language matching TYCHERA's sovereign tone
- */
-function generateDetailedContent(key: string, locale: 'fr' | 'en'): string {
-  const templates = {
-    fr: {
-      financial: `Nous concevons des structures financières sur mesure qui répondent aux besoins spécifiques des marchés africains. Notre approche combine une compréhension approfondie des réglementations locales avec les meilleures pratiques internationales en matière de structuration de véhicules d'investissement. Chaque solution est élaborée avec rigueur pour optimiser l'efficacité fiscale, la gouvernance et l'attractivité pour les investisseurs institutionnels.`,
-      project: `Notre expertise en financement de projets couvre l'ensemble du cycle de vie, de la structuration initiale à la clôture financière. Nous accompagnons les porteurs de projets d'infrastructure et d'énergie renouvelable dans la mobilisation de capitaux, la négociation avec les bailleurs de fonds, et la mise en place de structures de financement robustes. Notre valeur ajoutée réside dans notre capacité à créer des montages financiers qui alignent les intérêts de toutes les parties prenantes.`,
-      fund: `Nous gérons des portefeuilles institutionnels avec une approche disciplinée qui intègre les critères ESG tout en visant des rendements supérieurs ajustés au risque. Notre processus d'investissement repose sur une analyse rigoureuse des fondamentaux, une diversification stratégique et un suivi actif des positions. Nous privilégions les investissements à impact positif qui contribuent au développement durable du continent africain.`,
-      deal: `Nous structurons des transactions complexes qui alignent les intérêts des secteurs public et privé, créant des partenariats durables et mutuellement bénéfiques. Notre expertise couvre les partenariats public-privé (PPP), les joint-ventures, et les montages de co-investissement. Nous facilitons le dialogue entre les institutions publiques et les investisseurs privés pour concevoir des solutions de financement innovantes et adaptées aux réalités locales.`,
-    },
-    en: {
-      financial: `We design custom financial structures that meet the specific needs of African markets. Our approach combines deep understanding of local regulations with international best practices in investment vehicle structuring. Each solution is rigorously crafted to optimize tax efficiency, governance, and attractiveness to institutional investors.`,
-      project: `Our project financing expertise covers the entire lifecycle, from initial structuring to financial close. We support infrastructure and renewable energy project sponsors in capital mobilization, negotiations with lenders, and establishment of robust financing structures. Our added value lies in our ability to create financial arrangements that align the interests of all stakeholders.`,
-      fund: `We manage institutional portfolios with a disciplined approach that integrates ESG criteria while targeting superior risk-adjusted returns. Our investment process relies on rigorous fundamental analysis, strategic diversification, and active position monitoring. We prioritize impact investments that contribute to the sustainable development of the African continent.`,
-      deal: `We structure complex transactions that align public and private sector interests, creating sustainable and mutually beneficial partnerships. Our expertise covers public-private partnerships (PPP), joint ventures, and co-investment arrangements. We facilitate dialogue between public institutions and private investors to design innovative financing solutions adapted to local realities.`,
-    },
-  };
-
-  return templates[locale][key as keyof typeof templates.fr];
-}
 
 // Run the seeding script
 seedContent().catch((error) => {

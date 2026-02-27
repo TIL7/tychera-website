@@ -44,7 +44,7 @@ export function generateEmailTemplate(data: ContactFormData): string {
     financement: 'Financement de Projet',
     investissement: 'Opportunité d\'Investissement',
     conseil: 'Conseil Stratégique',
-    gestion: 'Gestion de Fonds',
+    gestion: 'Structuration de Garanties',
     autre: 'Autre Demande',
   };
 
@@ -207,7 +207,7 @@ export function generateEmailTemplate(data: ContactFormData): string {
 
         <div class="footer">
           <p>
-            <strong>TYCHERA INVESTMENTS LTD</strong><br>
+            <strong>TYCHERA Investments Ltd</strong><br>
             Immeuble OHANA, Nyarutarama, Kigali, Rwanda<br>
             <a href="mailto:contact@tycherainvest.com" style="color: #2283a2;">
               contact@tycherainvest.com
@@ -239,3 +239,4 @@ export async function sendEmail(options: EmailOptions): Promise<void> {
 
   await transporter.sendMail(mailOptions);
 }
+

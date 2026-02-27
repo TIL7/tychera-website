@@ -12,7 +12,7 @@ export function generateEmailTemplate(data: ContactFormData): string {
         financement: 'Financement de Projet',
         investissement: 'Opportunité d\'Investissement',
         conseil: 'Conseil Stratégique & Structuration',
-        gestion: 'Gestion de Fonds',
+        gestion: 'Structuration de Garanties',
         autre: 'Autre demande',
     };
 
@@ -78,7 +78,7 @@ export function generateEmailTemplate(data: ContactFormData): string {
             </div>
           </div>
           <div class="footer">
-            <p>TYCHERA INVESTMENTS LTD | Immeuble OHANA, Kigali, Rwanda</p>
+            <p>TYCHERA Investments Ltd | Immeuble OHANA, Kigali, Rwanda</p>
             <p>Ce message a été envoyé depuis le formulaire de contact du site web.</p>
           </div>
         </div>
@@ -86,3 +86,4 @@ export function generateEmailTemplate(data: ContactFormData): string {
     </html>
   `;
 }
+

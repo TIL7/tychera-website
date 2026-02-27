@@ -30,8 +30,8 @@ const TITLE_TEMPLATE = {
 } as const;
 
 const SITE_DESCRIPTION = {
-  fr: "Clarity in decisions. Enduring outcomes. Architecte du Financement des Projets en Afrique.",
-  en: "Clarity in decisions. Enduring outcomes. Architect of Project Financing in Africa.",
+  fr: "Architecte du Financement des Projets en Afrique.",
+  en: "Architect of Project Financing in Africa.",
 } as const;
 
 const ROOT_KEYWORDS = [
@@ -287,7 +287,7 @@ export function generateHomePageMetadata(locale: Locale): Metadata {
   const frenchMetadata = {
     title: "TYCHERA Investments LTD - Architecte du Financement des Projets en Afrique",
     description:
-      "Clarity in decisions. Enduring outcomes. Le pont entre capital international et potentiel africain. Structuration sophistiquée, impact durable. Financement de projets, ingénierie financière, gestion de fonds.",
+      "Clarity in decisions. Enduring outcomes. Structuration sophistiquée, impact durable. Financement de projets, ingénierie financière, gestion de fonds.",
     keywords: [
       "financement de projets",
       "Afrique",
@@ -303,7 +303,7 @@ export function generateHomePageMetadata(locale: Locale): Metadata {
   const englishMetadata = {
     title: "TYCHERA Investments LTD - Architect of Project Financing in Africa",
     description:
-      "Clarity in decisions. Enduring outcomes. The bridge between international capital and African potential. Sophisticated structuring, sustainable impact. Project financing, financial engineering, fund management.",
+      "Clarity in decisions. Enduring outcomes. Sophisticated structuring, sustainable impact. Project financing, financial engineering, fund management.",
     keywords: [
       "project financing",
       "Africa",
@@ -421,6 +421,8 @@ export function generateInstitutionPageMetadata(locale: Locale): Metadata {
     description: metadata.description,
     keywords: metadata.keywords,
     path: "/institution",
+    // Add specific OG image for leadership
+    ogImage: "/images/leadership/kamal-portrait.jpg",
   });
 }
 

@@ -5,9 +5,9 @@ import { defineType, defineField } from 'sanity';
  * 
  * Represents one of the four service pillars of TYCHERA Investments:
  * 1. Ingénierie Financière (Financial Engineering)
- * 2. Financement de Projets (Project Financing)
- * 3. Gestion de Fonds (Fund Management)
- * 4. Structuration de Deals (Deal Structuring)
+ * 2. Structuration de Projets (Project Structuring)
+ * 3. Financement de Projets (Project Finance)
+ * 4. Structuration de Garanties (Guarantee Structuring)
  * 
  * Each service item has bilingual content (French as primary, English as secondary).
  * 

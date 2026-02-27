@@ -58,16 +58,16 @@ const services = [
       en: 'Financial Engineering',
     },
     description: {
-      fr: 'Conception de véhicules d\'investissement alignés sur les réalités réglementaires et de marché africaines.',
-      en: 'Design of investment vehicles aligned with African market and regulatory realities.',
+      fr: 'Nous concevons et structurons des plateformes d\'investissement robustes et bancables, alignées sur les réalités réglementaires, financières et opérationnelles des marchés africains. Notre rôle consiste à traduire la complexité des projets en cadres financiers clairs et investissables, conformes aux standards institutionnels internationaux. En intégrant transparence, atténuation des risques et création de valeur à long terme, nous permettons aux États, sponsors et investisseurs de mobiliser efficacement et durablement les capitaux.',
+      en: 'We design and structure robust, bankable investment platforms aligned with the regulatory, financial, and operational realities of African markets. Our role is to translate complex project dynamics into clear, investable financial frameworks that meet international institutional standards. By integrating transparency, risk mitigation, and long-term value creation, we enable governments, sponsors, and investors to mobilize capital efficiently and sustainably.',
     },
     detailedContent: {
       fr: textBlock(
-        'Nous structurons des véhicules d\'investissement adaptés aux marchés africains et aux exigences institutionnelles.',
+        'Nous concevons et structurons des plateformes d\'investissement robustes et bancables, alignées sur les réalités réglementaires, financières et opérationnelles des marchés africains. Notre rôle consiste à traduire la complexité des projets en cadres financiers clairs et investissables, conformes aux standards institutionnels internationaux. En intégrant transparence, atténuation des risques et création de valeur à long terme, nous permettons aux États, sponsors et investisseurs de mobiliser efficacement et durablement les capitaux.',
         'svc1-fr'
       ),
       en: textBlock(
-        'We structure investment vehicles suited to African markets and institutional requirements.',
+        'We design and structure robust, bankable investment platforms aligned with the regulatory, financial, and operational realities of African markets. Our role is to translate complex project dynamics into clear, investable financial frameworks that meet international institutional standards. By integrating transparency, risk mitigation, and long-term value creation, we enable governments, sponsors, and investors to mobilize capital efficiently and sustainably.',
         'svc1-en'
       ),
     },
@@ -79,24 +79,24 @@ const services = [
     _type: 'serviceItem',
     number: '02',
     title: {
-      fr: 'Financement de Projets',
-      en: 'Project Finance',
+      fr: 'Structuration de Projets',
+      en: 'Project Structuring',
     },
     description: {
-      fr: 'Accompagnement de la structuration et de l\'exécution, de la faisabilité à la clôture financière.',
-      en: 'Structuring and execution support from feasibility through financial close.',
+      fr: 'Nous transformons les concepts stratégiques en projets prêts à l\'investissement en définissant des structures juridiques, financières et opérationnelles optimales. Notre approche garantit une allocation équilibrée des risques, la conformité réglementaire et la viabilité de long terme. En alignant les objectifs du secteur public avec l\'efficacité du secteur privé, nous créons des bases solides pour la réussite des infrastructures et des PPP à travers les marchés africains.',
+      en: 'We transform strategic concepts into investment-ready projects by defining optimal legal, financial, and operational structures. Our approach ensures balanced risk allocation, regulatory compliance, and long-term viability. By aligning public-sector objectives with private-sector efficiency, we create solid foundations for successful infrastructure and PPP delivery across African markets.',
     },
     detailedContent: {
       fr: textBlock(
-        'Nous accompagnons le financement des projets de la structuration initiale jusqu\'à la clôture financière.',
+        'Nous transformons les concepts stratégiques en projets prêts à l\'investissement en définissant des structures juridiques, financières et opérationnelles optimales. Notre approche garantit une allocation équilibrée des risques, la conformité réglementaire et la viabilité de long terme. En alignant les objectifs du secteur public avec l\'efficacité du secteur privé, nous créons des bases solides pour la réussite des infrastructures et des PPP à travers les marchés africains.',
         'svc2-fr'
       ),
       en: textBlock(
-        'We support project financing from initial structuring through financial close.',
+        'We transform strategic concepts into investment-ready projects by defining optimal legal, financial, and operational structures. Our approach ensures balanced risk allocation, regulatory compliance, and long-term viability. By aligning public-sector objectives with private-sector efficiency, we create solid foundations for successful infrastructure and PPP delivery across African markets.',
         'svc2-en'
       ),
     },
-    icon: 'Construction',
+    icon: 'Handshake',
     order: 2,
   },
   {
@@ -104,24 +104,24 @@ const services = [
     _type: 'serviceItem',
     number: '03',
     title: {
-      fr: 'Structuration de Garanties',
-      en: 'Guarantee Structuring',
+      fr: 'Financement de Projets',
+      en: 'Project Finance',
     },
     description: {
-      fr: 'Instruments de partage des risques améliorant la bancabilité et la mobilisation de capitaux institutionnels.',
-      en: 'Risk-sharing instruments that improve bankability and mobilize institutional capital.',
+      fr: 'Nous structurons et arrangeons des solutions de financement de projets sur mesure pour les grandes infrastructures et les initiatives de partenariat public-privé. Notre expertise se concentre sur la conception de cadres financiers bancables qui allouent efficacement les risques, sécurisent des financements de long terme et alignent les intérêts des États, des sponsors et des prêteurs. Nous accompagnons les projets jusqu\'à la clôture financière, en veillant à leur durabilité et à leur bonne exécution.',
+      en: 'We structure and arrange tailored project finance solutions for large-scale infrastructure and public-private partnership initiatives. Our expertise focuses on designing bankable financial frameworks that efficiently allocate risk, secure long-term funding, and align the interests of governments, sponsors, and lenders. We support projects through to financial close, ensuring durability and successful execution.',
     },
     detailedContent: {
       fr: textBlock(
-        'Nous concevons des mécanismes de garantie pour réduire les risques et améliorer la bancabilité des projets.',
+        'Nous structurons et arrangeons des solutions de financement de projets sur mesure pour les grandes infrastructures et les initiatives de partenariat public-privé. Notre expertise se concentre sur la conception de cadres financiers bancables qui allouent efficacement les risques, sécurisent des financements de long terme et alignent les intérêts des États, des sponsors et des prêteurs. Nous accompagnons les projets jusqu\'à la clôture financière, en veillant à leur durabilité et à leur bonne exécution.',
         'svc3-fr'
       ),
       en: textBlock(
-        'We design guarantee mechanisms to reduce risk and improve project bankability.',
+        'We structure and arrange tailored project finance solutions for large-scale infrastructure and public-private partnership initiatives. Our expertise focuses on designing bankable financial frameworks that efficiently allocate risk, secure long-term funding, and align the interests of governments, sponsors, and lenders. We support projects through to financial close, ensuring durability and successful execution.',
         'svc3-en'
       ),
     },
-    icon: 'ChartPie',
+    icon: 'Construction',
     order: 3,
   },
   {
@@ -129,24 +129,24 @@ const services = [
     _type: 'serviceItem',
     number: '04',
     title: {
-      fr: 'Structuration de Projets',
-      en: 'Project Structuring',
+      fr: 'Structuration de Garanties',
+      en: 'Guarantee Structuring',
     },
     description: {
-      fr: 'Montage d\'opérations public-privé pour des cadres de projets viables et investissables.',
-      en: 'Public-private transaction design for viable and investable project frameworks.',
+      fr: 'Nous concevons et structurons des mécanismes de garantie sur mesure qui renforcent la solvabilité et atténuent les risques des projets. En collaboration étroite avec les autorités publiques, les institutions de financement du développement et les investisseurs privés, nous mettons en place des solutions de partage des risques qui renforcent la bancabilité, débloquent les capitaux et consolident la confiance des investisseurs sur les marchés africains.',
+      en: 'We design and structure tailored guarantee mechanisms that enhance creditworthiness and mitigate project risks. Working closely with public authorities, development finance institutions, and private investors, we implement risk-sharing solutions that strengthen bankability, unlock capital, and reinforce investor confidence across African markets.',
     },
     detailedContent: {
       fr: textBlock(
-        'Nous structurons des montages public-privé viables et adaptés aux réalités locales.',
+        'Nous concevons et structurons des mécanismes de garantie sur mesure qui renforcent la solvabilité et atténuent les risques des projets. En collaboration étroite avec les autorités publiques, les institutions de financement du développement et les investisseurs privés, nous mettons en place des solutions de partage des risques qui renforcent la bancabilité, débloquent les capitaux et consolident la confiance des investisseurs sur les marchés africains.',
         'svc4-fr'
       ),
       en: textBlock(
-        'We structure viable public-private arrangements adapted to local realities.',
+        'We design and structure tailored guarantee mechanisms that enhance creditworthiness and mitigate project risks. Working closely with public authorities, development finance institutions, and private investors, we implement risk-sharing solutions that strengthen bankability, unlock capital, and reinforce investor confidence across African markets.',
         'svc4-en'
       ),
     },
-    icon: 'Handshake',
+    icon: 'ChartPie',
     order: 4,
   },
 ]
@@ -164,11 +164,11 @@ const teamMembers = [
     },
     bio: {
       fr: textBlock(
-        'Monsieur Kamal Alawo ADJAYI est le fondateur et CEO de Tychera Investments Ltd, une société d\'investissement privée active dans les services financiers, la gestion d\'actifs et les activités de holding. Ingénieur financier et entrepreneur panafricain, il est spécialisé en structuration financière, gouvernance stratégique et mobilisation de capitaux pour des projets à fort impact économique et social.',
+        'Kamal Alawo ADJAYI dirige TYCHERA Investments Ltd en tant que Chief Executive Officer, avec une approche institutionnelle axée sur la structuration rigoureuse, la gouvernance et l\'impact durable.',
         'kamal-bio-fr'
       ),
       en: textBlock(
-        'Mr. Kamal Alawo ADJAYI is the Founder and CEO of Tychera Investments Ltd, a private investment firm active in financial services, asset management, and holding activities. A financial engineer and Pan-African entrepreneur, he specializes in financial structuring, strategic governance, and capital mobilization for projects with high economic and social impact.',
+        'Kamal Alawo ADJAYI leads TYCHERA Investments Ltd as Chief Executive Officer, with an institutional approach focused on disciplined structuring, governance, and durable impact.',
         'kamal-bio-en'
       ),
     },
@@ -184,11 +184,11 @@ const teamMembers = [
     },
     bio: {
       fr: textBlock(
-        'Madame Hawa Kayisharaza est la COO de Tychera Investments Ltd, responsable de la coordination opérationnelle et de la gestion quotidienne des activités de la société.',
+        'Hawa KAYISHARAZA soutient l\'exécution opérationnelle des mandats et la coordination des parties prenantes au sein de TYCHERA Investments Ltd.',
         'hawa-bio-fr'
       ),
       en: textBlock(
-        'Ms. Hawa Kayisharaza is the COO of Tychera Investments Ltd, responsible for operational coordination and day-to-day management of the company\'s activities.',
+        'Hawa KAYISHARAZA supports operational delivery and stakeholder coordination across TYCHERA Investments Ltd mandates.',
         'hawa-bio-en'
       ),
     },
@@ -199,30 +199,12 @@ const teamMembers = [
 // ─── Execute seed ───
 async function seedAll() {
   console.log('Seeding services...')
-  // First, delete any old serviceItem documents that don't match our IDs
-  const existingServices = await client.fetch<string[]>(`*[_type == "serviceItem"]._id`)
-  const targetServiceIds = services.map((s) => s._id)
-  for (const oldId of existingServices) {
-    if (!targetServiceIds.includes(oldId)) {
-      await client.delete(oldId)
-      console.log(`  Deleted stale service: ${oldId}`)
-    }
-  }
   for (const svc of services) {
     await client.createOrReplace(svc)
     console.log(`  Seeded: ${svc.title.fr}`)
   }
 
   console.log('Seeding team members...')
-  // Delete stale team member documents
-  const existingMembers = await client.fetch<string[]>(`*[_type == "teamMember"]._id`)
-  const targetMemberIds = teamMembers.map((m) => m._id)
-  for (const oldId of existingMembers) {
-    if (!targetMemberIds.includes(oldId)) {
-      await client.delete(oldId)
-      console.log(`  Deleted stale team member: ${oldId}`)
-    }
-  }
   for (const member of teamMembers) {
     await client.createOrReplace(member)
     console.log(`  Seeded: ${member.name}`)

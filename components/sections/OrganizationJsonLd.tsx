@@ -13,20 +13,15 @@ interface OrganizationJsonLdProps {
 
 export default function OrganizationJsonLd({ locale }: OrganizationJsonLdProps = {}): React.ReactElement {
   const localizedUrl = locale ? `${SITE_URL}/${locale}` : SITE_URL;
-  const localizedDescription =
-    locale === "en"
-      ? "Clarity in decisions. Enduring outcomes. Architect of Project Financing in Africa."
-      : locale === "fr"
-        ? "Clarity in decisions. Enduring outcomes. Architecte du Financement des Projets en Afrique."
-        : "Clarity in decisions. Enduring outcomes. Architect of project financing in Africa.";
+  const localizedDescription = "Clarity in decisions. Enduring outcomes.";
 
   const schema = {
     "@context": "https://schema.org",
     "@type": ["Organization", "FinancialService"],
-    name: "TYCHERA Investments LTD",
-    legalName: "TYCHERA Investments LTD",
+    name: "TYCHERA Investments Ltd",
+    legalName: "TYCHERA Investments Ltd",
     url: localizedUrl,
-    logo: `${SITE_URL}/images/tychera-logo-white-new.png`,
+    logo: `${SITE_URL}/images/tychera-logo-color-final.svg`,
     description: localizedDescription,
     address: {
       "@type": "PostalAddress",
@@ -46,7 +41,7 @@ export default function OrganizationJsonLd({ locale }: OrganizationJsonLdProps =
     founder: {
       "@type": "Person",
       name: "Kamal Alawo ADJAYI",
-      jobTitle: "CEO",
+      jobTitle: "Chief Executive Officer",
     },
     areaServed: {
       "@type": "Continent",

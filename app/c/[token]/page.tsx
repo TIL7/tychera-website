@@ -9,7 +9,7 @@ interface CardPageProps {
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Contact | TYCHERA",
+    absolute: "Contact | TYCHERA Investments Ltd",
   },
   other: {
     robots: "noindex, nofollow, noarchive",

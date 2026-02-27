@@ -16,7 +16,7 @@ export default function DigitalBusinessCard({
       <section className="mx-auto w-full max-w-[480px] rounded-xl border border-border bg-white p-6 shadow-sm">
         <div className="mb-5 flex flex-col items-center text-center">
           <Image
-            src="/images/tychera-logo-color.svg"
+            src="/images/tychera-logo-color-final.svg"
             alt="TYCHERA"
             width={281}
             height={72}
@@ -69,10 +69,9 @@ export default function DigitalBusinessCard({
         </div>
 
         <p className="mt-8 text-center text-xs text-muted-foreground">
-          Powered by Tychera Investments LTD
+          Powered by TYCHERA Investments Ltd
         </p>
       </section>
     </main>
   );
 }
-

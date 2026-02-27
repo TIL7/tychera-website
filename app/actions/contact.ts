@@ -73,7 +73,7 @@ export async function submitContactForm(
       financement: 'Financement de Projet',
       investissement: 'Opportunité d\'Investissement',
       conseil: 'Conseil Stratégique',
-      gestion: 'Gestion de Fonds',
+      gestion: 'Structuration de Garanties',
       autre: 'Autre Demande',
     };
 
@@ -180,4 +180,5 @@ export async function submitContactForm(
     };
   }
 }
+
 

@@ -13,24 +13,46 @@
     },
     "mobile": {
       "openMenu": "Ouvrir le menu",
-      "trustIndicator": "TYCHERA INVESTMENTS LTD\nImmeuble OHANA, Kigali"
+      "trustIndicator": "TYCHERA Investments Ltd\nImmeuble OHANA, Kigali"
     }
   },
   "hero": {
-    "title": "Architecte du Financement des Projets en Afrique",
-    "subtitle": "Clarity in decisions. Enduring outcomes. Le pont entre capital international et potentiel africain.",
+    "title": "Solutions financières institutionnelles pour l'Afrique",
+    "subtitle": "Solutions financières institutionnelles pour les marchés africains. Nous structurons des projets durables et bancables, alliant standards internationaux et ancrage local.",
     "cta": "Découvrir notre expertise",
     "imageAlt": "Infrastructure moderne en Afrique"
   },
   "pillars": {
     "sectionLabel": "Nos Piliers d'Excellence",
     "sectionTitle": "Excellence financière au service du développement durable",
-    "learnMore": "En savoir plus"
+    "learnMore": "En savoir plus",
+    "services": {
+      "financial": {
+        "number": "01",
+        "title": "Ingénierie Financière",
+        "description": "Nous concevons et structurons des plateformes d'investissement robustes et bancables, alignées sur les réalités réglementaires, financières et opérationnelles des marchés africains. Notre rôle consiste à traduire la complexité des projets en cadres financiers clairs et investissables, conformes aux standards institutionnels internationaux. En intégrant transparence, atténuation des risques et création de valeur à long terme, nous permettons aux États, sponsors et investisseurs de mobiliser efficacement et durablement les capitaux."
+      },
+      "deal": {
+        "number": "02",
+        "title": "Structuration de Projets",
+        "description": "Nous transformons les concepts stratégiques en projets prêts à l'investissement en définissant des structures juridiques, financières et opérationnelles optimales. Notre approche garantit une allocation équilibrée des risques, la conformité réglementaire et la viabilité de long terme. En alignant les objectifs du secteur public avec l'efficacité du secteur privé, nous créons des bases solides pour la réussite des infrastructures et des PPP à travers les marchés africains."
+      },
+      "project": {
+        "number": "03",
+        "title": "Financement de Projet",
+        "description": "Nous structurons et arrangeons des solutions de financement de projets sur mesure pour les grandes infrastructures et les initiatives de partenariat public-privé. Notre expertise se concentre sur la conception de cadres financiers bancables qui allouent efficacement les risques, sécurisent des financements de long terme et alignent les intérêts des États, des sponsors et des prêteurs. Nous accompagnons les projets jusqu'à la clôture financière, en veillant à leur durabilité et à leur bonne exécution."
+      },
+      "fund": {
+        "number": "04",
+        "title": "Structuration de Garanties",
+        "description": "Nous concevons et structurons des mécanismes de garantie sur mesure qui renforcent la solvabilité et atténuent les risques des projets. En collaboration étroite avec les autorités publiques, les institutions de financement du développement et les investisseurs privés, nous mettons en place des solutions de partage des risques qui renforcent la bancabilité, débloquent les capitaux et consolident la confiance des investisseurs sur les marchés africains."
+      }
+    }
   },
   "contact": {
     "sectionLabel": "Contact",
     "sectionTitle": "Initier une Collaboration Stratégique",
-    "sectionDescription": "Que vous soyez une institution publique cherchant à financer des projets d'infrastructure, un investisseur international en quête d'opportunités à fort impact, ou une entreprise nécessitant des solutions de financement sur mesure, TYCHERA INVESTMENTS est votre partenaire privilégié.",
+    "sectionDescription": "Que vous soyez une institution publique cherchant à financer des projets d'infrastructure, un investisseur international en quête d'opportunités à fort impact, ou une entreprise nécessitant des solutions de financement sur mesure, TYCHERA Investments Ltd est votre partenaire privilégié.",
     "form": {
       "name": "Nom complet",
       "namePlaceholder": "Votre nom",
@@ -71,7 +93,7 @@
       "title": "Coordonnées Directes",
       "address": {
         "label": "Adresse",
-        "line1": "TYCHERA INVESTMENTS LTD",
+        "line1": "TYCHERA Investments Ltd",
         "line2": "Immeuble OHANA",
         "line3": "Kigali, Rwanda"
       },
@@ -89,22 +111,22 @@
     }
   },
   "footer": {
-    "tagline": "Clarity in decisions. Enduring outcomes. Le pont entre capital international et potentiel africain.",
+    "tagline": "Décisions claires. Résultats durables.",
     "headquarters": "Siège Social",
     "contact": "Contact",
     "address": {
-      "company": "TYCHERA INVESTMENTS LTD",
+      "company": "TYCHERA Investments Ltd",
       "building": "Immeuble OHANA",
       "city": "Kigali, Rwanda"
     },
-    "copyright": " 2024 TYCHERA INVESTMENTS LTD. Tous droits réservés.",
+    "copyright": "© 2025 TYCHERA Investments Ltd. Tous droits réservés.",
     "ariaEmail": "Envoyer un email à TYCHERA Investments",
     "ariaPhone": "Appeler TYCHERA Investments"
   },
   "institution": {
     "hero": {
       "label": "L'Institution",
-      "title": "TYCHERA Investments",
+      "title": "TYCHERA Investments Ltd",
       "subtitle": "Architecture financière souveraine au service du développement africain. Une expertise institutionnelle structurée, ancrée dans les réalités du continent et connectée aux marchés internationaux.",
       "location": "Immeuble OHANA, Kigali"
     },
@@ -157,6 +179,8 @@
       "team": {
         "title": "Équipe",
         "description": "Une équipe multidisciplinaire combinant expertise financière internationale et connaissance approfondie des écosystèmes institutionnels africains.",
+        "supportLine": "Une approche fondée sur la rigueur, l'intégrité et l'excellence opérationnelle.",
+        "leadershipBio": "Kamal dirige l'institution avec une attention constante sur une gouvernance prudente et la création de valeur durable. Il défend l'investissement discipliné, une gestion rigoureuse des risques et des partenariats favorisant la croissance régionale. Sous son leadership, les équipes sont mobilisées pour délivrer de la performance avec intégrité, transparence et une vision à long terme.",
         "cta": "Initier une collaboration"
       }
     },
@@ -181,12 +205,15 @@
       "name": "Kamal Alawo ADJAYI",
       "title": "Chief Executive Officer",
       "quote": "La transformation de l'Afrique nécessite des partenariats structurés où l'expertise financière rencontre la compréhension profonde des réalités institutionnelles. Notre mission est de créer ces synergies qui génèrent un impact tangible et durable.",
-      "bio": {
-        "intro": "Monsieur Kamal Alawo ADJAYI est le fondateur et CEO de Tychera Investments Ltd, une société d'investissement privée active dans les services financiers, la gestion d'actifs et les activités de holding. Ingénieur financier et entrepreneur panafricain, il est spécialisé en structuration financière, ingénierie d'investissement et mobilisation de capitaux pour des projets à fort impact économique.",
-        "education": "Titulaire de diplômes des Universités du Luxembourg et de Poitiers, Monsieur ADJAYI cumule plus de dix années d'expérience opérationnelle dans les affaires et la finance internationale. Cette solide formation académique, couplée à une pratique rigoureuse des marchés de capitaux, constitue le socle de son expertise en ingénierie financière.",
-        "experience": "Il a structuré et supervisé des opérations d'envergure dans les domaines des infrastructures, du financement de projets, de l'inclusion financière et de la finance durable. Il a développé des partenariats stratégiques avec des institutions financières internationales, des bailleurs multilatéraux et des investisseurs privés en Europe et en Afrique."
-      },
       "cta": "Initier une collaboration"
+    },
+    "profile": {
+      "aboutLabel": "À Propos",
+      "visionLabel": "Notre Vision",
+      "missionLabel": "Notre Mission",
+      "about": "Fondée en 2025, TYCHERA Investments Ltd est une société d'investissement et de conseil financier dédiée au soutien du développement durable et de la croissance économique en Afrique. Nous allions expertise financière et connaissance locale approfondie pour des résultats à fort impact.",
+      "vision": "Être le pont privilégié entre le capital international et le potentiel africain, créant une valeur durable grâce à la clarté, l'intégrité et une exécution disciplinée.",
+      "mission": "Nous accompagnons gouvernements, sponsors et investisseurs dans la structuration de projets durables et bancables, alignés sur les standards internationaux tout en restant ancrés dans le contexte local."
     }
   },
   "contactPage": {
@@ -200,7 +227,7 @@
     "hero": {
       "label": "Notre Expertise",
       "title": "Solutions financières institutionnelles pour l'Afrique",
-      "subtitle": "TYCHERA Investments offre une gamme complète de services financiers conçus pour répondre aux besoins sophistiqués des investisseurs institutionnels et des projets d'envergure en Afrique."
+      "subtitle": "TYCHERA Investments Ltd offre une gamme complète de services financiers conçus pour répondre aux besoins sophistiqués des investisseurs institutionnels et des projets d'envergure en Afrique."
     },
     "cta": {
       "title": "Prêt à explorer nos solutions ?",

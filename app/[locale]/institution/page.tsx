@@ -41,15 +41,28 @@ interface TeamHighlightsContent {
   governance: string;
 }
 
-function normalizeExecutiveName(name: string): string {
-  const normalized = name.trim().toLowerCase();
-  const isKamal = normalized.includes('kamal');
-  const hasKnownVariant =
-    normalized.includes('alawo') ||
-    normalized.includes('adjayi') ||
-    normalized === 'kamal ajayi';
+interface ProfileContent {
+  aboutLabel: string;
+  visionLabel: string;
+  missionLabel: string;
+  about: string;
+  vision: string;
+  mission: string;
+}
 
-  if (isKamal && hasKnownVariant) {
+function isKamalName(name: string): boolean {
+  const normalized = name.trim().toLowerCase();
+  return (
+    normalized.includes('kamal') &&
+    (normalized.includes('alawo') ||
+      normalized.includes('adjayi') ||
+      normalized === 'kamal ajayi' ||
+      normalized === 'kamal')
+  );
+}
+
+function normalizeExecutiveName(name: string): string {
+  if (isKamalName(name)) {
     return 'Kamal Alawo ADJAYI';
   }
 
@@ -71,25 +84,26 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
   const t = await getTranslations('institution');
   const globalPresence = t.raw('globalPresence') as GlobalPresenceContent;
   const teamHighlights = t.raw('teamHighlights') as TeamHighlightsContent;
+  const profile = t.raw('profile') as ProfileContent;
 
   const presenceCards: Array<{
     city: GlobalPresenceCity;
   }> = [
-    {
-      city: globalPresence.cities.luxembourg,
-    },
-    {
-      city: globalPresence.cities.kigali,
-    },
-    {
-      city: globalPresence.cities.bissau,
-    },
-  ];
+      {
+        city: globalPresence.cities.luxembourg,
+      },
+      {
+        city: globalPresence.cities.kigali,
+      },
+      {
+        city: globalPresence.cities.bissau,
+      },
+    ];
 
-  const founderNarrative: string[] = [
-    t('principal.bio.intro'),
-    t('principal.bio.education'),
-    t('principal.bio.experience'),
+  const founderNarrative: Array<{ label: string; text: string }> = [
+    { label: profile.aboutLabel, text: profile.about },
+    { label: profile.visionLabel, text: profile.vision },
+    { label: profile.missionLabel, text: profile.mission },
   ];
 
   const teamHighlightCards = [
@@ -105,38 +119,39 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
     tags: ['teamMember'],
   });
 
-  const hasCmsData = cmsMembers.length > 0;
+  const leadershipMembers = cmsMembers.filter((member) => isKamalName(member.name));
 
-  // Principal = first CMS member (order 1), or fallback to translations
-  const principal = hasCmsData ? cmsMembers[0] : null;
+  const principal = leadershipMembers.length > 0 ? leadershipMembers[0] : null;
   const principalName = normalizeExecutiveName(principal?.name || t('principal.name'));
-  const principalTitle = t('principal.title');
+  // Force "Chief Executive Officer" title to ensure consistency across languages, ignoring potential CMS inconsistencies.
+  const principalTitle = "Chief Executive Officer";
+  /*
+  const principalTitle = principal?.role
+    ? getLocalizedText(principal.role, locale) || t('principal.title')
+    : t('principal.title');
+  */
   const principalImageUrl = principal?.image?.asset?.url;
   const principalImageAlt = principal?.image?.alt || principalName;
   const principalLqip = principal?.image?.asset?.metadata?.lqip;
+  const leadershipBio = t('sections.team.leadershipBio');
 
-  // Fallback team list for the grid (when CMS is empty)
-  const fallbackTeam = [
-    { name: 'Kamal Alawo ADJAYI', role: t('team.roles.managingDirector') },
-    { name: 'Hawa KAYISHARAZA', role: t('team.roles.chiefOperatingOfficer') },
-  ];
-
-  const getTeamRoleDisplay = (name: string, fallbackRole: string): string => {
-    const normalized = name.trim().toLowerCase();
-
-    if (normalized.includes('kamal')) {
-      return t('team.roles.managingDirector');
-    }
-
-    if (normalized.includes('hawa')) {
-      return t('team.roles.chiefOperatingOfficer');
-    }
-
-    return fallbackRole;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    "name": principalName,
+    "caption": "Executive portrait facing inward with warm studio lighting.",
+    "contentUrl": "/images/leadership/kamal-portrait.jpg",
+    "width": 1200,
+    "height": 1800,
+    "representativeOfPage": true
   };
 
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Mission Section */}
       <section className="py-12 lg:py-14 bg-background">
         <div className="container px-6">
@@ -154,87 +169,100 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
         </div>
       </section>
 
-      {/* Founder Section - monochrome single-column text block */}
+      {/* Institution Profile */}
       <section className="py-12 lg:py-14 bg-background border-t border-border/40">
         <div className="container px-6">
-          <div className="mx-auto max-w-4xl">
-            <div className="relative mb-8 aspect-[16/11] bg-muted rounded-sm overflow-hidden border border-border/60">
-              {principalImageUrl ? (
-                <Image
-                  src={principalImageUrl}
-                  alt={principalImageAlt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  placeholder={principalLqip ? 'blur' : 'empty'}
-                  blurDataURL={principalLqip || undefined}
-                />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                  <span className="font-serif text-lg text-center px-4">{t('principal.portraitPlaceholder')}</span>
-                </div>
-              )}
-            </div>
-
-            <div className="space-y-5 relative">
-              <div className="absolute -inset-6 bg-muted/30 -z-10 rounded-sm" />
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground leading-tight">
-                {principalName}
-              </h2>
-              <p className="text-xs font-sans uppercase tracking-[0.18em] text-foreground/70">
-                {principalTitle}
-              </p>
-
-              <div className="space-y-6 pt-6 border-t border-border/60">
-                {founderNarrative.map((text, idx) => (
-                  <p
-                    key={`narrative-${idx}`}
-                    className="text-base md:text-lg text-muted-foreground font-sans leading-8"
-                  >
-                    {text}
+          <div className="mx-auto max-w-4xl rounded-sm border border-border/60 bg-background p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-serif text-foreground">
+              {t('principal.sectionTitle')}
+            </h2>
+            <div className="mt-6 space-y-6 border-t border-border/60 pt-6">
+              {founderNarrative.map((item, idx) => (
+                <div key={`narrative-${idx}`} className="space-y-2">
+                  <p className="text-xs font-sans uppercase tracking-[0.16em] text-foreground/70">
+                    {item.label}
                   </p>
-                ))}
-              </div>
+                  <p className="text-base md:text-lg text-muted-foreground font-sans leading-8">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Team Intro Section */}
-      <section className="py-12 lg:py-14 bg-muted/20 border-y border-border/50">
+      {/* Team and Leadership */}
+      <section className="py-12 lg:py-16 bg-background border-y border-border/50">
         <div className="container px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-            <div className="lg:col-span-7">
-              <h2 className="text-2xl md:text-3xl font-serif text-foreground mb-5">
-                {t('sections.team.title')}
-              </h2>
-              <p className="text-muted-foreground font-sans leading-relaxed mb-6 max-w-2xl">
-                {t('sections.team.description')}
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center text-sm font-sans text-primary hover:text-primary/80 transition-colors group"
-              >
-                {t('sections.team.cta')}
-                <ArrowRight
-                  className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
-                  aria-hidden="true"
-                />
-              </Link>
+          <div className="max-w-4xl mb-10 md:mb-12">
+            <h2 className="text-2xl md:text-3xl font-serif text-foreground mb-5">
+              {t('sections.team.title')}
+            </h2>
+            <p className="text-lg text-muted-foreground font-sans leading-relaxed">
+              {t('sections.team.description')}
+            </p>
+            <p className="mt-3 text-base text-muted-foreground/90 font-sans leading-relaxed">
+              {t('sections.team.supportLine')}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+            <div className="lg:col-span-7 xl:col-span-8 flex flex-col">
+              <figure className="flex-1 rounded-2xl border border-border/40 bg-background shadow-sm hover:shadow-md transition-shadow overflow-hidden grid grid-cols-1 sm:grid-cols-[280px_1fr] md:grid-cols-[320px_1fr] items-stretch">
+                <div className="relative aspect-[4/5] sm:aspect-auto w-full bg-muted">
+                  <Image
+                    src="/images/leadership/kamal-portrait.jpg"
+                    alt={principalImageAlt}
+                    fill
+                    className="object-cover object-[center_top]"
+                    sizes="(min-width: 640px) 320px, 100vw"
+                    priority
+                  />
+                </div>
+                <figcaption className="p-8 lg:p-10 flex flex-col justify-center bg-background">
+                  <h3 className="font-serif text-foreground text-2xl md:text-3xl leading-tight font-bold">
+                    {principalName}
+                  </h3>
+                  <p className="mt-3 font-sans text-xs uppercase tracking-[0.14em] text-primary font-semibold">
+                    {principalTitle}
+                  </p>
+                  <div className="my-6 h-px w-10 bg-border"></div>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    {leadershipBio}
+                  </p>
+
+                  <div className="mt-8 pt-6 border-t border-border/40">
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center text-sm font-sans font-medium text-foreground hover:text-primary transition-colors group"
+                    >
+                      {t('sections.team.cta')}
+                      <ArrowRight
+                        className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
+                        aria-hidden="true"
+                      />
+                    </Link>
+                  </div>
+                </figcaption>
+              </figure>
             </div>
 
-            <div className="lg:col-span-5 rounded-sm border border-border/60 bg-background p-4 md:p-5">
-              <div>
-                <p className="text-[0.68rem] uppercase tracking-[0.18em] text-foreground/70 font-sans mb-3">
+            {/* Right Sidebar: Team DNA */}
+            <div className="lg:col-span-5 xl:col-span-4 flex flex-col rounded-2xl border border-border/40 bg-muted/20 p-8 lg:p-10 justify-center">
+              <div className="w-full">
+                <p className="text-xs uppercase tracking-[0.2em] text-foreground/60 font-sans mb-8 font-semibold">
                   {teamHighlights.title}
                 </p>
-                <div className="space-y-2.5">
+
+                <div className="space-y-6">
                   {teamHighlightCards.map((text, idx) => (
                     <div
                       key={`team-highlight-${idx}`}
-                      className="border-t border-border/60 pt-3 first:border-t-0 first:pt-0"
+                      className="relative pl-5"
                     >
-                      <p className="text-sm text-muted-foreground font-sans leading-relaxed">
+                      <span className="absolute left-0 top-2.5 w-1 h-1 rounded-full bg-primary/40"></span>
+                      <p className="text-sm md:text-base text-foreground/80 font-sans leading-relaxed">
                         {text}
                       </p>
                     </div>
@@ -242,83 +270,6 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Grid */}
-      <section className="py-12 lg:py-14 bg-background" aria-labelledby="team-grid-heading">
-        <div className="container px-6">
-          <div className="max-w-3xl mb-10">
-            <h3 id="team-grid-heading" className="text-3xl md:text-4xl font-serif text-foreground mb-4">
-              {t('sections.team.title')}
-            </h3>
-            <div className="w-16 h-px bg-border" />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {hasCmsData
-              ? cmsMembers.map((member) => {
-                  const displayName = normalizeExecutiveName(member.name);
-                  const role = getTeamRoleDisplay(displayName, getLocalizedText(member.role, locale));
-                  const shortBio = member.shortBio ? getLocalizedText(member.shortBio, locale) : null;
-
-                  return (
-                    <article
-                      key={member._id}
-                      className="p-5 border border-border/60 rounded-sm bg-background"
-                    >
-                      <div className="flex flex-col items-center text-center">
-                        <div className="w-20 h-20 rounded-full bg-muted mb-4 flex items-center justify-center overflow-hidden border border-border/60">
-                          {member.image?.asset?.url ? (
-                            <Image
-                              src={member.image.asset.url}
-                              alt={member.image.alt || displayName}
-                              width={80}
-                              height={80}
-                              className="w-full h-full object-cover"
-                            />
-                          ) : (
-                            <span className="text-2xl font-serif text-muted-foreground">
-                              {displayName.charAt(0)}
-                            </span>
-                          )}
-                        </div>
-                        <p className="font-serif text-foreground text-lg leading-snug">
-                          {displayName}
-                        </p>
-                        <p className="mt-1 font-sans text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                          {role}
-                        </p>
-                        {shortBio && (
-                          <p className="mt-3 text-sm font-sans text-muted-foreground/85 leading-relaxed line-clamp-4">
-                            {shortBio}
-                          </p>
-                        )}
-                      </div>
-                    </article>
-                  );
-                })
-              : fallbackTeam.map((member, idx) => (
-                  <article
-                    key={member.name}
-                    className="p-5 border border-border/60 rounded-sm bg-background"
-                  >
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-20 h-20 rounded-full bg-muted mb-4 flex items-center justify-center border border-border/60">
-                        <span className="text-2xl font-serif text-muted-foreground">
-                          {String.fromCharCode(65 + idx)}
-                        </span>
-                      </div>
-                      <p className="font-serif text-foreground text-lg leading-snug">
-                        {member.name}
-                      </p>
-                      <p className="mt-1 font-sans text-xs uppercase tracking-[0.14em] text-muted-foreground">
-                        {member.role}
-                      </p>
-                    </div>
-                  </article>
-                ))}
           </div>
         </div>
       </section>
