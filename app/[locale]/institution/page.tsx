@@ -153,36 +153,33 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Mission Section */}
-      <section className="py-12 lg:py-14 bg-background">
+      <section className="py-16 lg:py-24 bg-background">
         <div className="container px-6">
           <div className="max-w-4xl">
             <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-primary font-sans mb-3">
               {t('hero.label')}
             </p>
-            <h1 className="text-3xl md:text-4xl font-serif text-foreground mb-5">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif text-foreground mb-5">
               {t('hero.title')}
             </h1>
-            <p className="text-lg text-muted-foreground font-sans leading-relaxed">
-              {t('hero.subtitle')}
-            </p>
           </div>
         </div>
       </section>
 
       {/* Institution Profile */}
-      <section className="py-12 lg:py-14 bg-background border-t border-border/40">
+      <section className="py-16 lg:py-24 bg-background border-t border-border">
         <div className="container px-6">
-          <div className="mx-auto max-w-4xl rounded-sm border border-border/60 bg-background p-6 md:p-8">
-            <h2 className="text-2xl md:text-3xl font-serif text-foreground">
+          <div className="mx-auto max-w-4xl rounded-sm border border-border bg-background p-6 md:p-8">
+            <h2 className="text-xl md:text-2xl font-serif text-foreground">
               {t('principal.sectionTitle')}
             </h2>
-            <div className="mt-6 space-y-6 border-t border-border/60 pt-6">
+            <div className="mt-6 space-y-6 border-t border-border pt-6">
               {founderNarrative.map((item, idx) => (
                 <div key={`narrative-${idx}`} className="space-y-2">
                   <p className="text-xs font-sans uppercase tracking-[0.16em] text-foreground/70">
                     {item.label}
                   </p>
-                  <p className="text-base md:text-lg text-muted-foreground font-sans leading-8">
+                  <p className="text-sm md:text-base text-muted-foreground font-sans leading-8">
                     {item.text}
                   </p>
                 </div>
@@ -193,23 +190,23 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
       </section>
 
       {/* Team and Leadership */}
-      <section className="py-12 lg:py-16 bg-background border-y border-border/50">
+      <section className="py-16 lg:py-24 bg-background border-y border-border">
         <div className="container px-6">
           <div className="max-w-4xl mb-10 md:mb-12">
-            <h2 className="text-2xl md:text-3xl font-serif text-foreground mb-5">
+            <h2 className="text-xl md:text-2xl font-serif text-foreground mb-5">
               {t('sections.team.title')}
             </h2>
-            <p className="text-lg text-muted-foreground font-sans leading-relaxed">
+            <p className="text-base text-muted-foreground font-sans leading-relaxed">
               {t('sections.team.description')}
             </p>
-            <p className="mt-3 text-base text-muted-foreground/90 font-sans leading-relaxed">
+            <p className="mt-3 text-sm text-muted-foreground/90 font-sans leading-relaxed">
               {t('sections.team.supportLine')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
             <div className="lg:col-span-7 xl:col-span-8 flex flex-col">
-              <figure className="flex-1 rounded-2xl border border-border/40 bg-background shadow-sm hover:shadow-md transition-shadow overflow-hidden grid grid-cols-1 sm:grid-cols-[280px_1fr] md:grid-cols-[320px_1fr] items-stretch">
+              <figure className="flex-1 rounded-2xl border border-border bg-background shadow-sm hover:shadow-md transition-shadow overflow-hidden grid grid-cols-1 sm:grid-cols-[280px_1fr] md:grid-cols-[320px_1fr] items-stretch">
                 <div className="relative aspect-[4/5] sm:aspect-auto w-full bg-muted">
                   <Image
                     src="/images/leadership/kamal-portrait.jpg"
@@ -221,18 +218,18 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
                   />
                 </div>
                 <figcaption className="p-8 lg:p-10 flex flex-col justify-center bg-background">
-                  <h3 className="font-serif text-foreground text-2xl md:text-3xl leading-tight font-bold">
+                  <h3 className="font-serif text-foreground text-xl md:text-2xl leading-tight font-bold">
                     {principalName}
                   </h3>
                   <p className="mt-3 font-sans text-xs uppercase tracking-[0.14em] text-primary font-semibold">
                     {principalTitle}
                   </p>
                   <div className="my-6 h-px w-10 bg-border"></div>
-                  <p className="text-base text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {leadershipBio}
                   </p>
 
-                  <div className="mt-8 pt-6 border-t border-border/40">
+                  <div className="mt-8 pt-6 border-t border-border">
                     <Link
                       href="/contact"
                       className="inline-flex items-center text-sm font-sans font-medium text-foreground hover:text-primary transition-colors group"
@@ -249,7 +246,7 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
             </div>
 
             {/* Right Sidebar: Team DNA */}
-            <div className="lg:col-span-5 xl:col-span-4 flex flex-col rounded-2xl border border-border/40 bg-muted/20 p-8 lg:p-10 justify-center">
+            <div className="lg:col-span-5 xl:col-span-4 flex flex-col rounded-2xl border border-border bg-muted/20 p-8 lg:p-10 justify-center">
               <div className="w-full">
                 <p className="text-xs uppercase tracking-[0.2em] text-foreground/60 font-sans mb-8 font-semibold">
                   {teamHighlights.title}
@@ -275,36 +272,30 @@ export default async function InstitutionPage(props: InstitutionPageProps) {
       </section>
 
       {/* Global Presence */}
-      <section className="py-12 lg:py-14 bg-background border-t border-border/50">
+      <section className="py-16 lg:py-24 bg-background border-t border-border">
         <div className="container px-6">
           <div className="max-w-4xl mb-8 lg:mb-10">
             <p className="text-sm font-sans uppercase tracking-widest text-foreground/70 mb-3">
               {globalPresence.label}
             </p>
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground leading-tight mb-4">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-serif text-foreground leading-tight mb-4">
               {globalPresence.title}
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground font-sans leading-relaxed">
+            <p className="text-base text-muted-foreground font-sans leading-relaxed">
               {globalPresence.subtitle}
             </p>
           </div>
 
-          <div className="rounded-sm border border-border/60 bg-background px-4 py-6 md:px-8 md:py-7">
+          <div className="rounded-sm border border-border bg-background px-4 py-6 md:px-8 md:py-7">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {presenceCards.map(({ city }) => (
                 <article
                   key={city.city}
-                  className="rounded-sm border border-border/60 bg-background p-5 md:p-6"
+                  className="rounded-sm border border-border bg-background p-6 md:p-8 hover:border-primary/40 transition-colors flex flex-col items-center justify-center h-full group"
                 >
-                  <h3 className="text-2xl font-serif text-foreground">
+                  <h3 className="text-xl font-serif text-foreground group-hover:text-primary transition-colors text-center">
                     {getCityWithoutCountry(city.city)}
                   </h3>
-                  <p className="mt-3 text-sm font-sans text-muted-foreground">
-                    {city.address}
-                  </p>
-                  <p className="mt-3 text-sm md:text-base font-sans text-muted-foreground leading-relaxed">
-                    {city.description}
-                  </p>
                 </article>
               ))}
             </div>

@@ -16,11 +16,11 @@ const Hero = () => {
       {/* Left - Typography (40%) */}
       <div className="w-full lg:w-[40%] flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-0 order-2 lg:order-1">
         <div className="max-w-lg">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight animate-text-reveal text-primary">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif leading-tight animate-text-reveal text-primary">
             {t('title')}
           </h1>
           
-          <p className="mt-8 text-lg text-muted-foreground font-sans leading-relaxed animate-text-reveal-delay-1">
+          <p className="mt-6 text-base md:text-lg text-muted-foreground font-sans leading-relaxed animate-text-reveal-delay-1">
             {t('subtitle')}
           </p>
           

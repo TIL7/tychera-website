@@ -79,23 +79,23 @@ function PillarCard({
     <Link
       href={href}
       ref={ref}
-      className={`group relative p-8 lg:p-10 bg-background border border-border/50 rounded-sm transition-all duration-500 hover:border-accent hover:shadow-lg ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`group relative p-8 lg:p-10 bg-background border border-border rounded-sm transition-all duration-500 hover:border-primary hover:shadow-lg ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
       style={isVisible ? ({ animationDelay: `${delayMs}ms` } as React.CSSProperties) : undefined}
       {...props}
     >
-      {/* Gold accent line on hover */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+      {/* Gold accent line on hover - Changed to Primary for One Color rule */}
+      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
       {/* Number */}
-      <span className="text-4xl lg:text-5xl font-serif text-accent/80 mb-6 block">{number}</span>
+      <span className="text-4xl lg:text-5xl font-serif text-primary/40 mb-6 block">{number}</span>
 
       {/* Icon */}
-      <div className="mb-6 text-[#2283a2]">
-        <IconComponent className="w-8 h-8 text-[#2283a2] fill-[#588157]/10" strokeWidth={1.5} />
+      <div className="mb-6 text-primary">
+        <IconComponent className="w-8 h-8 text-primary fill-primary/10" strokeWidth={1.5} />
       </div>
 
       {/* Title */}
-      <h3 className="text-xl lg:text-2xl font-serif mb-4 text-primary">{title}</h3>
+      <h3 className="text-xl lg:text-2xl font-serif mb-4 text-foreground group-hover:text-primary transition-colors">{title}</h3>
 
       {/* Description */}
       <p className="text-muted-foreground font-sans leading-relaxed text-sm lg:text-base mb-6">
@@ -148,11 +148,11 @@ export default function ThreePillars({ mode = 'detail', services, locale }: Thre
           })}
         </div>
 
-        {/* Gold Divider */}
+        {/* Divider - Primary Color */}
         <div className="mt-24 flex items-center justify-center animate-fade-in-up tychera-delay-800">
-          <div className="h-px w-24 bg-accent" />
-          <div className="w-2 h-2 bg-accent mx-4 rotate-45" />
-          <div className="h-px w-24 bg-accent" />
+          <div className="h-px w-24 bg-primary/30" />
+          <div className="w-2 h-2 bg-primary mx-4 rotate-45" />
+          <div className="h-px w-24 bg-primary/30" />
         </div>
       </div>
     </section>

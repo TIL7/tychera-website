@@ -123,8 +123,8 @@ const Footer = async () => {
           </div>
         </div>
 
-        {/* Gold Divider */}
-        <div className="my-10 h-px bg-accent/50" />
+        {/* Divider */}
+        <div className="my-10 h-px bg-primary-foreground/20" />
 
         {legalText && (
           <div className="mb-6">

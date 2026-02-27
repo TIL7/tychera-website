@@ -9,7 +9,8 @@
 @layer base {
   :root {
     /* Core Palette - Light Mode Only (Institutional Swiss) */
-    --background: 210 33% 99%;
+    /* Background with subtle primary tint to eliminate pale/sterile look */
+    --background: 193 30% 99%;
     --foreground: 220 30% 20%;
 
     --card: 0 0% 100%;
@@ -26,8 +27,8 @@
     --secondary: 118 22% 42%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Muted backgrounds */
-    --muted: 210 20% 96%;
+    /* Muted backgrounds - slightly deeper and tinted */
+    --muted: 193 20% 96%;
     --muted-foreground: 220 15% 45%;
 
     /* Accent Gold - Detail #E9C46A = HSL(43, 77%, 66%) */
@@ -37,9 +38,9 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Borders - subtle */
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
+    /* Borders - Enhanced visibility and tinted */
+    --border: 193 20% 85%;
+    --input: 193 20% 85%;
     --ring: 193 65% 38%;
 
     /* Strict radius - 0.25rem or 0px */

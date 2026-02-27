@@ -168,16 +168,16 @@ export default async function ExpertisePage(props: ExpertisePageProps): Promise<
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="border-b border-border/50 bg-[linear-gradient(180deg,hsl(var(--muted)/0.35)_0%,hsl(var(--background))_100%)] py-16 md:py-20 lg:py-24">
+      <section className="border-b border-border bg-[linear-gradient(180deg,hsl(var(--muted)/0.35)_0%,hsl(var(--background))_100%)] py-16 lg:py-24">
         <div className="container px-6">
           <div className="max-w-4xl">
             <p className="text-sm font-sans uppercase tracking-[0.18em] text-foreground/70 mb-4">
               {tExpertise('hero.label')}
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight text-foreground mb-6">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-serif leading-tight text-foreground mb-6">
               {tExpertise('hero.title')}
             </h1>
-            <p className="text-lg text-muted-foreground font-sans leading-relaxed">
+            <p className="text-base text-muted-foreground font-sans leading-relaxed">
               {tExpertise('hero.subtitle')}
             </p>
           </div>
@@ -185,7 +185,7 @@ export default async function ExpertisePage(props: ExpertisePageProps): Promise<
       </section>
 
       {/* Services Detail Section */}
-      <section className="py-12 lg:py-16">
+      <section className="py-16 lg:py-24">
         <div className="container px-6">
           <div className="mb-8 max-w-3xl">
             <p className="mb-3 text-[0.7rem] uppercase tracking-[0.18em] text-foreground/70 font-sans">
@@ -205,10 +205,10 @@ export default async function ExpertisePage(props: ExpertisePageProps): Promise<
               return (
                 <article
                   key={service._id}
-                  className="overflow-hidden rounded-sm border border-border/60 bg-background"
+                  className="overflow-hidden rounded-sm border border-border bg-background"
                   aria-labelledby={`service-title-${service._id}`}
                 >
-                  <div className="relative aspect-[16/9] overflow-hidden border-b border-border/60 bg-muted/30">
+                  <div className="relative aspect-[16/9] overflow-hidden border-b border-border bg-muted/30">
                     <Image
                       src={service.image?.asset?.url ?? (serviceImages[service.order] ?? FALLBACK_IMAGE)}
                       alt={service.image?.alt ?? title}
@@ -229,7 +229,7 @@ export default async function ExpertisePage(props: ExpertisePageProps): Promise<
                         <span className="font-sans text-xs tracking-[0.16em] uppercase text-foreground/80">
                           {service.number}
                         </span>
-                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-sm border border-border/60 bg-muted/40">
+                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-sm border border-border bg-muted/40">
                           <IconComponent className="h-4 w-4 text-foreground/70" strokeWidth={1.5} />
                         </span>
                       </div>
@@ -256,7 +256,7 @@ export default async function ExpertisePage(props: ExpertisePageProps): Promise<
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-border/50 bg-muted/20 py-16 lg:py-20">
+      <section className="border-t border-border bg-muted/20 py-16 lg:py-24">
         <div className="container px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
@@ -274,7 +274,7 @@ export default async function ExpertisePage(props: ExpertisePageProps): Promise<
               </Link>
               <Link
                 href="/institution"
-                className="inline-flex items-center justify-center rounded-sm border border-border/70 bg-background px-6 py-4 font-sans text-base text-foreground transition-colors hover:bg-muted/60"
+                className="inline-flex items-center justify-center rounded-sm border border-border bg-background px-6 py-4 font-sans text-base text-foreground transition-colors hover:bg-muted/60"
               >
                 {tHeaderNav('institution')}
               </Link>

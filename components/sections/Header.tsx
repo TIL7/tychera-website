@@ -149,7 +149,7 @@ const Header = () => {
             >
               FR
             </button>
-            <span className="text-accent">|</span>
+            <span className="text-primary/40">|</span>
             <button
               onClick={() => switchLanguage('en')}
               className={`px-2 py-1 transition-all ${locale === 'en'
